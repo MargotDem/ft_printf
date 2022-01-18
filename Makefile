@@ -16,13 +16,21 @@ SRCS = ft_printf.c
 
 SRCS_LIBFT = ./libft/ft_putstr.c \
 		./libft/ft_strlen.c \
-		./libft/ft_strchr.c
+		./libft/ft_strchr.c \
+		./libft/ft_strcmp.c \
+		./libft/ft_putnbr.c \
+		./libft/ft_putnbr_fd.c \
+		./libft/ft_strequ.c
 
 OBJS = $(SRCS:.c=.o)
 
 OBJS_LIBFT = ft_putstr.o \
 				ft_strlen.o \
-				ft_strchr.o
+				ft_strchr.o \
+				ft_strcmp.o \
+				ft_putnbr.o \
+				ft_putnbr_fd.o \
+				ft_strequ.o
 
 FLAGS = -Wall -Werror -Wextra
 
