@@ -8,7 +8,7 @@
 
 void	ft_putstr(char const *s);
 
-void	ft_printf(char *str, ...);
+int	ft_printf(const char *str, ...);
 
 typedef int handle_arg_type(va_list *list);
 

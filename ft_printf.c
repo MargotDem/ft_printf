@@ -109,7 +109,7 @@ int	handle_arg(char *ptr, va_list *list)
 	return ret;	
 }
 
-void	ft_printf(char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	char	*ptr;
 	int		ret;
@@ -125,8 +125,8 @@ void	ft_printf(char *str, ...)
 		ptr = ft_strchr(str, (int)'%');
 	}
 	write(1, str, ft_strlen(str));
+	return (0);
 }
-
 
 int myfunc2(char *str, ...)
 {
@@ -160,7 +160,7 @@ array of strings
 if ptr
 put the first string bit into array
 then analyse after %
-switch on that
+switch  that
 the functions: add to the string array the appropriate string
 we dont know in advance how big the array is tho?? fuck. linked list then? yeah ok
 the functions add the appropriate el to the list
