@@ -29,8 +29,7 @@ O_FILES = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -c -I ./ $(FILES)
-	ar rc $(NAME) $(O_FILES)
+	$(CC) $(CFLAGS) -c $(FILES)
 
 clean:
 	/bin/rm -f *.o

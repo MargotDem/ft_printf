@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//deletee
-#include <stdio.h>
 #include "ft_printf.h"
 
 static int	handle_int(va_list *list)
@@ -77,7 +75,6 @@ int handle_arg2(char *ptr, va_list *list)
 	return (ret);
 }
 
-
 int	handle_arg(char *ptr, va_list *list)
 {
 	int	ret;
@@ -111,8 +108,8 @@ int	handle_arg(char *ptr, va_list *list)
 
 int	ft_printf(const char *str, ...)
 {
-	char	*ptr;
-	int		ret;
+	char		*ptr;
+	size_t		ret;
 	va_list	list;
 
 	va_start(list, str);
@@ -120,14 +117,17 @@ int	ft_printf(const char *str, ...)
 	while (ptr)
 	{
 		write(1, str, (int)(ptr - str));
-		ret = handle_arg(ptr, &list);
-		str = ptr + ret + 1;
+		//ret = handle_arg(ptr, &list);
+		ret = parse_conv_specification(ptr + 1, &list);
+		//printf("ret %zu\n", ret);
+		str = ptr + 1 + ret;
 		ptr = ft_strchr(str, (int)'%');
 	}
 	write(1, str, ft_strlen(str));
 	return (0);
 }
 
+/*
 int myfunc2(char *str, ...)
 {
    va_list list;
@@ -145,15 +145,18 @@ int myfunc2(char *str, ...)
    va_start(list, str);
    printf("%d\n", va_arg(list, int));
    printf("%s\n", va_arg(list, char *));
-   /*for(j=0; j<count; j++)
-   {
-     printf("%d\n", va_arg(list, int));
-   }*/
+   //for(j=0; j<count; j++)
+   //{
+     //printf("%d\n", va_arg(list, int));
+   //}
 
    va_end(list);
 
    return count;
 }
+
+*/
+
 /*
 ok so
 array of strings
