@@ -29,10 +29,39 @@ void test(void)
 
 }
 
+void test_fct_0(char *str)
+{
+	printf("test fct 0: %s\n", str);
+}
+
+void test_fct_1(char *str)
+{
+	printf("test fct 1: %s\n", str);
+}
+
+void test_fct_2(char *str)
+{
+	printf("test fct 2: %s\n", str);
+}
+
+void test2(void)
+{
+	handle_arg_type3	*array[6];
+	t_uint16	nb = 0x0005;
+
+	array[0] = &test_fct_0;
+	array[1] = &test_fct_1;
+	array[5] = &test_fct_2;
+
+	(array[nb])("hey");
+}
+
 int	main(void)
 {
 	//oldTest();
-	ft_printf("hey %356$# - +d hehe\n");
+	ft_printf("hola %# - +.34c, hehe\n", 'd');
+	//printf("invalid input: %3wesh\n", 2);
+	//test2();
 }
 
 /*
@@ -40,3 +69,4 @@ error handling: what if nb of arguments passed dont correspond to nb of %, or th
 display error i guess?
 
 */
+

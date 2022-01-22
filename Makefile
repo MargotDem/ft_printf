@@ -12,15 +12,7 @@
 
 NAME =  libftprintf.a
 
-SRCS = ft_printf.c parse_conv_specification.c
-
-SRCS_LIBFT = ./libft/ft_putstr.c \
-		./libft/ft_strlen.c \
-		./libft/ft_strchr.c \
-		./libft/ft_strcmp.c \
-		./libft/ft_putnbr.c \
-		./libft/ft_putnbr_fd.c \
-		./libft/ft_strequ.c
+SRCS = ft_printf.c parse_conv_specification.c dispatch.c
 
 FILES = ft_strlen.c ft_putchar.c ft_putstr.c ft_strcmp.c \
 	ft_strdup.c ft_putnbr.c ft_atoi.c ft_strcat.c ft_strncat.c \
