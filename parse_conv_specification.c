@@ -2,26 +2,29 @@
 
 void handle_arg_nb(char *ptr, t_options *options)
 {
-	size_t	arg_nb;
+	int	arg_nb;
 	char *arg_nb_str;
 
+	arg_nb = ft_atoi(ptr);
+	arg_nb_str = ft_itoa(arg_nb);
+	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
+    {
+        options->chars_to_skip = 0;
+        return ;
+    }
     //what is is negative?
-    if (ft_atoi(ptr) < 0)
+    if (arg_nb < 0)
+    {
+        //printf("nope\n");
         exit(1);
-	arg_nb = (size_t)ft_atoi(ptr);
+    }
     if (arg_nb == 0)
     {
         options->arg_nb = 0;
         options->chars_to_skip = 0;
         return ;
     }
-	arg_nb_str = ft_itoa(arg_nb);
 	//printf("%s\n", arg_nb_str);
-	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
-	{
-		printf("wrong input\n");
-		exit(1);
-	}
 	options->arg_nb = arg_nb;
 	options->chars_to_skip = ft_strlen(arg_nb_str) + 1;
 }
@@ -45,6 +48,7 @@ void    handle_flags(char *ptr, t_options *options)
     options->flags = 0x00;
     while (*ptr == '#' || *ptr == '0' || *ptr == '+' || *ptr == '-' || *ptr == ' ')
     {
+        printf("3\n");
         options->flags = options->flags | get_flag(ptr);
         options->chars_to_skip += 1;
         ptr++;
@@ -77,10 +81,8 @@ void    handle_precision(char *ptr, t_options *options)
     int	precision;
 	char *precision_str;
 
-    if (*ptr != '.')
+    if (*ptr != '.' || ft_atoi(ptr + 1) < 0)
         return;
-    if (ft_atoi(ptr + 1) < 0) // actually the std says "decimal int" so what if precision is neg?
-        exit(1);
     precision = (size_t)ft_atoi(ptr + 1);
     if (precision == 0)
     {
@@ -97,7 +99,7 @@ void    handle_precision(char *ptr, t_options *options)
 
 void    handle_len_mod(char *ptr, t_options *options)
 {
-    if ((*ptr == 'l' && *(ptr + 1) == 'l') || (*ptr == 'h' && *(ptr + 1) == 'h'))
+    if (!ft_strncmp(ptr, "ll", 2) || !ft_strncmp(ptr, "hh", 2))
     {
         options->len_mod = ft_strsub(ptr, 0, 2);
         options->chars_to_skip += 2;
@@ -161,7 +163,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list)
 	if (!options)
 		exit(1);
     options->len_mod = NULL;
-    options->precision = 1;
+    options->precision = -1;
     handle_arg_nb(ptr, options);
     handle_flags(ptr + options->chars_to_skip, options);
     handle_field_width(ptr + options->chars_to_skip, options);

@@ -59,7 +59,10 @@ void test2(void)
 int	main(void)
 {
 	//oldTest();
-	ft_printf("hola %# - +.34c, hehe\n", 'd');
+	//ft_printf("hola %.0s, hehe\n", "coucou");
+	//printf("hola%s\n", "coucou");
+	printf("rl: '%5.3s'\n", "coucou");
+	ft_printf("rl: '%5.3s'\n", "coucou");
 	//printf("invalid input: %3wesh\n", 2);
 	//test2();
 }
@@ -68,5 +71,9 @@ int	main(void)
 error handling: what if nb of arguments passed dont correspond to nb of %, or the types dont match?
 display error i guess?
 
+
+
+
 */
+
 
