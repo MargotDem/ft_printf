@@ -34,7 +34,7 @@ t_uchar get_flag(char *ptr)
     if (*ptr == '#')
         return (F_HASHTAG);
     else if (*ptr == '0')
-        return (F_HASHTAG);
+        return (F_ZERO);
     else if (*ptr == '+')
         return (F_PLUS);
     else if (*ptr == '-')
@@ -48,7 +48,6 @@ void    handle_flags(char *ptr, t_options *options)
     options->flags = 0x00;
     while (*ptr == '#' || *ptr == '0' || *ptr == '+' || *ptr == '-' || *ptr == ' ')
     {
-        printf("3\n");
         options->flags = options->flags | get_flag(ptr);
         options->chars_to_skip += 1;
         ptr++;
@@ -66,7 +65,7 @@ void    handle_field_width(char *ptr, t_options *options)
     if (field_width == 0)
     {
         options->field_width = 0;
-        if (*ptr == '0')
+        if (*ptr == '0') // actual printf refuses this cos undefined behavior
             options->chars_to_skip += 1;
         return ;
     }
@@ -124,27 +123,27 @@ void    handle_conv_specifier(char *ptr, t_options *options)
         || c == '%')
     {
         if (c == 'd')
-            options->conv_spec = 0x00;
+            options->conv_spec = CS_D;
         if (c == 'i')
-            options->conv_spec = 0x01;
+            options->conv_spec = CS_I;
         if (c == 'o')
-            options->conv_spec = 0x02;
+            options->conv_spec = CS_O;
         if (c == 'u')
-            options->conv_spec = 0x03;
+            options->conv_spec = CS_U;
         if (c == 'x')
-            options->conv_spec = 0x04;
+            options->conv_spec = CS_X;
         if (c == 'X')
-            options->conv_spec = 0x05;
+            options->conv_spec = CS_XX;
         if (c == 'f')
-            options->conv_spec = 0x06;
+            options->conv_spec = CS_F;
         if (c == 'c')
-            options->conv_spec = 0x07;
+            options->conv_spec = CS_C;
         if (c == 's')
-            options->conv_spec = 0x08;
+            options->conv_spec = CS_S;
         if (c == 'p')
-            options->conv_spec = 0x09;
+            options->conv_spec = CS_P;
         if (c == '%')
-            options->conv_spec = 0x0a;
+            options->conv_spec = CS_PERCENTAGE;
         options->chars_to_skip += 1;
     }
     else

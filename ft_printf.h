@@ -15,7 +15,7 @@ typedef struct s_options {
     t_uchar flags;
     size_t  chars_to_skip;
     size_t  field_width;
-    size_t   precision;
+    int   precision;
     char    *len_mod;
     t_uchar conv_spec;
 }               t_options;
@@ -34,6 +34,18 @@ typedef void handle_arg_type3(char *str);
 # define F_PLUS 0x20
 # define F_MINUS 0x10
 # define F_SPACE 0x08
+
+# define CS_D 0x00
+# define CS_I 0x01
+# define CS_O 0x02
+# define CS_U 0x03
+# define CS_X 0x04
+# define CS_XX 0x05
+# define CS_F 0x06
+# define CS_C 0x07
+# define CS_S 0x08
+# define CS_P 0x09
+# define CS_PERCENTAGE 0x0a
 
 typedef struct s_handle_arg {
     char    *arg;

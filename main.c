@@ -58,21 +58,41 @@ void test2(void)
 
 int	main(void)
 {
-	//oldTest();
-	//ft_printf("hola %.0s, hehe\n", "coucou");
-	//printf("hola%s\n", "coucou");
-	printf("rl: '%5.3s'\n", "coucou");
-	ft_printf("rl: '%5.3s'\n", "coucou");
-	//printf("invalid input: %3wesh\n", 2);
-	//test2();
+
+	printf("rl: '%-10.5d'\n", -58);
+	ft_printf("ft: '%-10.5d'\n", -58);
+
+	printf("rl: '%10.3s'\n", "hehey");
+	ft_printf("ft: '%10.3s'\n", "hehey");
+	
+//endless zeros ft_printf("ft: '%-6d'\n", 589);
 }
 
 /*
 error handling: what if nb of arguments passed dont correspond to nb of %, or the types dont match?
 display error i guess?
 
+why doesnt the real printf pad with zeros in this case: 
 
 
+so
+str:
+padded prtin, with or without precision adjustment
+0 undefined
+
+int
+if precision: make the 0 padded digit if needed, if field width padded print: with space only
+
+if not precision but field width:
+if 0 and -, 0 ignored ie padded print with spaces and left
+if 0, padded print with 0, right
+if -, left and spaces
+if no flag, space and right
+
+
+
+segfault
+ft_printf("ft: '%0d'\n", -58);
 
 */
 
