@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/25 15:45:22 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/01/25 15:45:25 by mde-maul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -23,6 +35,7 @@ typedef struct s_options {
 int     ft_printf(const char *str, ...);
 size_t	parse_conv_specification(char *ptr, va_list *list);
 void    dispatch(t_options *options, va_list *list);
+void	handle_error(void);
 
 typedef int handle_arg_type(va_list *list);
 typedef void handle_arg_type2(t_options *options, va_list *list);

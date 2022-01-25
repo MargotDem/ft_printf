@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dispatch.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/25 15:45:38 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/01/25 15:45:40 by mde-maul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void    zero_pad_print(int  nb, size_t precision)
@@ -51,27 +63,28 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 	}
 	ft_memset(tmp_ptr, '0', zeroes);
 	ft_strcpy(tmp_ptr + zeroes, nb_str_ptr);
-	
 	free (nb_str);
 	nb_str = tmp;
 	return (nb_str);
 }
 
-void	padded_print(char *str, size_t total_len, char c, t_uchar left)
+void	padded_print(char *str, t_options *options)
 {
 	size_t	len;
+	size_t	total_len;
 	int		padding;
 
 	len = ft_strlen(str);
+	total_len = options->field_width;
 	padding = total_len - len;
-	if (left)
+	if (options->flags & F_MINUS)
 		ft_putstr(str);
 	while (padding > 0)
 	{
-		ft_putchar(c);
+		ft_putchar(' ');
 		padding--;
 	}
-	if (!left)
+	if (!(options->flags & F_MINUS))
 		ft_putstr(str);
 }
 
@@ -79,67 +92,71 @@ void    handle_int(t_options *options, va_list *list)
 {
     char *nb_str;
     int nb;
+	size_t	len;
 
     nb = va_arg(*list, int);
     nb_str = ft_itoa(nb);
+	len = ft_strlen(nb_str);
+	if (nb < 0)
+		len--;
 	if (options->precision == -1 && options->flags & F_ZERO)
 	{
 		//printf("1\n");
 		nb_str = adjust_int(nb_str, options->field_width, 1);
 		//printf("B\n");
-		padded_print(nb_str, options->field_width, ' ', 0);
+		padded_print(nb_str, options);
 	}
-	else if (options->precision == -1 && !(options->flags & F_ZERO))
-	{
-		//printf("A\n");
-		padded_print(nb_str, options->field_width, ' ', options->flags & F_MINUS);
-	}
-    else if (options->precision == 0 || options->precision <= ft_strlen(nb_str)) // shorten
+    else if (options->precision <= len)
 	{
 		//printf("2\n");
-		if ((options->flags & F_ZERO) && (!(options->flags & F_MINUS)))
-		{
-			//printf("3\n");
-			//nb_str = adjust_int(nb_str, options->field_width, 1);
-			padded_print(nb_str, options->field_width, ' ', options->flags & F_MINUS);
-		}
-		else
-		{
-			//printf("4\n");
-			padded_print(nb_str, options->field_width, ' ', options->flags & F_MINUS);
-		}
+		padded_print(nb_str, options);
 	}
     else
 	{
 		//printf("5\n");
 		nb_str = adjust_int(nb_str, options->precision, 0);
-		padded_print(nb_str, options->field_width, ' ', options->flags & F_MINUS);
+		padded_print(nb_str, options);
 	}
-	//free(nb_str);
+	free(nb_str);
 }
 
 void    handle_str(t_options *options, va_list *list)
 {
     char    *str;
-	//handle field width
+    char    *substr;
+
     str = va_arg(*list, char *);
     if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
         ft_putchar('?');
     else
     {
         if (options->precision < 0 || options->precision > ft_strlen(str))
-			padded_print(str, options->field_width, ' ', options->flags & F_MINUS);
+			padded_print(str, options);
         else
-			padded_print(ft_strsub(str, 0, options->precision), options->field_width, ' ', options->flags & F_MINUS);
+		{
+			substr = ft_strsub(str, 0, options->precision);
+			padded_print(substr, options);
+			free(substr);
+		}
     }
 }
 
 void    handle_char(t_options *options, va_list *list)
 {
+	char    c;
+	char	*str;
+
+	c = va_arg(*list, int);
+	str = ft_strnew(1);
+	if (!str)
+		handle_error();
+	str[0] = c;
+	str[1] = '\0';
     if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
         ft_putchar('?');
     else
-	    ft_putchar(va_arg(*list, int));
+	    padded_print(str, options);
+	free(str);
 }
 
 void    handle_percentage(t_options *options, va_list *list)
