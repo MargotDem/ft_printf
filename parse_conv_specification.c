@@ -165,7 +165,7 @@ void    handle_conv_specifier(char *ptr, t_options *options)
     // if no conv spec: invalid input??
 }
 
-size_t	parse_conv_specification(char *ptr, va_list *list)
+size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count)
 {
 
 	t_options	*options;
@@ -186,7 +186,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list)
     //printf("precision %zu\n", options->precision);
     //printf("len mod %s\n", options->len_mod);
     //printf("conv spec %x\n", options->conv_spec);
-    dispatch(options, list);
+    dispatch(options, list, char_count);
     if (options->len_mod)
         free(options->len_mod);
     free(options);

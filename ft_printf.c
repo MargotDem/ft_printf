@@ -110,21 +110,25 @@ int	ft_printf(const char *str, ...)
 {
 	char		*ptr;
 	size_t		ret;
-	va_list	list;
+	va_list		list;
+	size_t		char_count;
 
 	va_start(list, str);
+	char_count = 0;
 	ptr = ft_strchr(str, (int)'%');
 	while (ptr)
 	{
 		write(1, str, (int)(ptr - str));
+		char_count += (size_t)(ptr - str);
 		//ret = handle_arg(ptr, &list);
-		ret = parse_conv_specification(ptr + 1, &list);
+		ret = parse_conv_specification(ptr + 1, &list, &char_count);
 		//printf("ret %zu\n", ret);
 		str = ptr + 1 + ret;
 		ptr = ft_strchr(str, (int)'%');
 	}
 	write(1, str, ft_strlen(str));
-	return (0);
+	char_count += ft_strlen(str);
+	return (char_count);
 }
 
 /*

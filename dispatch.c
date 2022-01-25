@@ -68,7 +68,7 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 	return (nb_str);
 }
 
-void	padded_print(char *str, t_options *options)
+void	padded_print(char *str, t_options *options, size_t *char_count)
 {
 	size_t	len;
 	size_t	total_len;
@@ -82,13 +82,15 @@ void	padded_print(char *str, t_options *options)
 	while (padding > 0)
 	{
 		ft_putchar(' ');
+		(*char_count)++;
 		padding--;
 	}
 	if (!(options->flags & F_MINUS))
 		ft_putstr(str);
+	(*char_count) += len;
 }
 
-void    handle_int(t_options *options, va_list *list)
+void    handle_int(t_options *options, va_list *list, size_t *char_count)
 {
     char *nb_str;
     int nb;
@@ -104,23 +106,23 @@ void    handle_int(t_options *options, va_list *list)
 		//printf("1\n");
 		nb_str = adjust_int(nb_str, options->field_width, 1);
 		//printf("B\n");
-		padded_print(nb_str, options);
+		padded_print(nb_str, options, char_count);
 	}
     else if (options->precision <= len)
 	{
 		//printf("2\n");
-		padded_print(nb_str, options);
+		padded_print(nb_str, options, char_count);
 	}
     else
 	{
 		//printf("5\n");
 		nb_str = adjust_int(nb_str, options->precision, 0);
-		padded_print(nb_str, options);
+		padded_print(nb_str, options, char_count);
 	}
 	free(nb_str);
 }
 
-void    handle_str(t_options *options, va_list *list)
+void    handle_str(t_options *options, va_list *list, size_t *char_count)
 {
     char    *str;
     char    *substr;
@@ -131,17 +133,17 @@ void    handle_str(t_options *options, va_list *list)
     else
     {
         if (options->precision < 0 || options->precision > ft_strlen(str))
-			padded_print(str, options);
+			padded_print(str, options, char_count);
         else
 		{
 			substr = ft_strsub(str, 0, options->precision);
-			padded_print(substr, options);
+			padded_print(substr, options, char_count);
 			free(substr);
 		}
     }
 }
 
-void    handle_char(t_options *options, va_list *list)
+void    handle_char(t_options *options, va_list *list, size_t *char_count)
 {
 	char    c;
 	char	*str;
@@ -155,18 +157,18 @@ void    handle_char(t_options *options, va_list *list)
     if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
         ft_putchar('?');
     else
-	    padded_print(str, options);
+	    padded_print(str, options, char_count);
 	free(str);
 }
 
-void    handle_percentage(t_options *options, va_list *list)
+void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 {
-    (void)options;
+    (void)list;
 
-	ft_putchar('%');
+	padded_print("%", options, char_count);
 }
 
-void    dispatch(t_options *options, va_list *list)
+void    dispatch(t_options *options, va_list *list, size_t *char_count)
 {
     handle_arg_type2    *array[11];
 
@@ -176,7 +178,7 @@ void    dispatch(t_options *options, va_list *list)
     array[CS_S] = &handle_str;
     array[CS_PERCENTAGE] = &handle_percentage;
 
-    (array[options->conv_spec])(options, list);
+    (array[options->conv_spec])(options, list, char_count);
 }
 
 

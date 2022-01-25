@@ -33,12 +33,12 @@ typedef struct s_options {
 }               t_options;
 
 int     ft_printf(const char *str, ...);
-size_t	parse_conv_specification(char *ptr, va_list *list);
-void    dispatch(t_options *options, va_list *list);
+size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count);
+void    dispatch(t_options *options, va_list *list, size_t *char_count);
 void	handle_error(void);
 
 typedef int handle_arg_type(va_list *list);
-typedef void handle_arg_type2(t_options *options, va_list *list);
+typedef void handle_arg_type2(t_options *options, va_list *list, size_t *char_count);
 typedef void handle_arg_type3(char *str);
 
 
