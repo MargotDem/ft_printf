@@ -32,15 +32,15 @@ typedef struct s_options {
     t_uchar conv_spec;
 }               t_options;
 
+typedef void handle_arg_type(t_options *options, va_list *list, size_t *char_count);
+
 int     ft_printf(const char *str, ...);
-size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count);
-void    dispatch(t_options *options, va_list *list, size_t *char_count);
+size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, handle_arg_type **dispatcher);
 void	handle_error(void);
-
-typedef int handle_arg_type(va_list *list);
-typedef void handle_arg_type2(t_options *options, va_list *list, size_t *char_count);
-typedef void handle_arg_type3(char *str);
-
+void    handle_percentage(t_options *options, va_list *list, size_t *char_count);
+void    handle_char(t_options *options, va_list *list, size_t *char_count);
+void    handle_str(t_options *options, va_list *list, size_t *char_count);
+void    handle_int(t_options *options, va_list *list, size_t *char_count);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40
@@ -59,10 +59,5 @@ typedef void handle_arg_type3(char *str);
 # define CS_S 0x08
 # define CS_P 0x09
 # define CS_PERCENTAGE 0x0a
-
-typedef struct s_handle_arg {
-    char    *arg;
-    handle_arg_type *func;
-}               t_handle_arg;
 
 #endif

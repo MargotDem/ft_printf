@@ -12,7 +12,7 @@
 
 NAME =  libftprintf.a
 
-SRCS = ft_printf.c parse_conv_specification.c dispatch.c handle_error.c
+SRCS = ft_printf.c parse_conv_specification.c handlers.c handle_error.c
 
 FILES = ft_strlen.c ft_putchar.c ft_putstr.c ft_strcmp.c \
 	ft_strdup.c ft_putnbr.c ft_atoi.c ft_strcat.c ft_strncat.c \

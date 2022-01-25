@@ -44,18 +44,6 @@ void test_fct_2(char *str)
 	printf("test fct 2: %s\n", str);
 }
 
-void test2(void)
-{
-	handle_arg_type3	*array[6];
-	t_uint16	nb = 0x0005;
-
-	array[0] = &test_fct_0;
-	array[1] = &test_fct_1;
-	array[5] = &test_fct_2;
-
-	(array[nb])("hey");
-}
-
 int	main(void)
 {
 	int ret1;

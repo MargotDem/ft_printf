@@ -167,38 +167,3 @@ void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 
 	padded_print("%", options, char_count);
 }
-
-void    dispatch(t_options *options, va_list *list, size_t *char_count)
-{
-    handle_arg_type2    *array[11];
-
-    array[CS_D] = &handle_int;
-    array[CS_I] = &handle_int;
-    array[CS_C] = &handle_char;
-    array[CS_S] = &handle_str;
-    array[CS_PERCENTAGE] = &handle_percentage;
-
-    (array[options->conv_spec])(options, list, char_count);
-}
-
-
-	/*int	arg_nb;
-	char *arg_nb_str;
-	size_t  arg_nb_len;
-
-	arg_nb = ft_atoi(ptr);
-	arg_nb_str = ft_itoa(arg_nb);
-    arg_nb_len = ft_strlen(arg_nb_str);
-    if (*(ptr + arg_nb_len) != '$')
-        return ;
-    //what is is negative?
-    if (ft_atoi(ptr) < 0)
-        exit(1);
-    if (arg_nb == 0)
-    {
-        options->arg_nb = 0;
-        options->chars_to_skip = 0;
-        return ;
-    }
-	options->arg_nb = arg_nb;
-	options->chars_to_skip = arg_nb_len + 1;*/
