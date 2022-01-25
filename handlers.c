@@ -90,6 +90,16 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 	(*char_count) += len;
 }
 
+void	handle_hex(t_options *options, va_list *list, size_t *char_count)
+{
+	char *nb_str;
+    int nb;
+
+	nb = va_arg(*list, int);
+    nb_str = ft_itoa(nb);
+	padded_print(nb_str, options, char_count);
+}
+
 void    handle_int(t_options *options, va_list *list, size_t *char_count)
 {
     char *nb_str;

@@ -186,6 +186,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
     //printf("precision %zu\n", options->precision);
     //printf("len mod %s\n", options->len_mod);
     //printf("conv spec %x\n", options->conv_spec);
+	printf("hey\n");
 	(dispatcher[options->conv_spec])(options, list, char_count);
     if (options->len_mod)
         free(options->len_mod);

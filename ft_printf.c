@@ -18,6 +18,7 @@ void	initialize_dispatcher(handle_arg_type **dispatcher)
 	dispatcher[CS_I] = &handle_int;
 	dispatcher[CS_C] = &handle_char;
 	dispatcher[CS_S] = &handle_str;
+	dispatcher[CS_X] = &handle_hex;
 	dispatcher[CS_PERCENTAGE] = &handle_percentage;
 }
 

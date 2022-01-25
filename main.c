@@ -123,6 +123,7 @@ int	main(void)
 	printf("the ret is %d\n", ret5);
 	printf("the ret is %d\n", ret6);
 	
+	ft_printf("%x", 42);
 //endless zeros ft_printf("ft: '%-6d'\n", 589);
 }
 
