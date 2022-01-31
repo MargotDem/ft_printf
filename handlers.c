@@ -12,32 +12,6 @@
 
 #include "ft_printf.h"
 
-void    zero_pad_print(int  nb, size_t precision)
-{
-    size_t   len;
-    size_t  zeroes;
-    size_t  neg;
-    char    *nb_str;
-
-    neg = 0;
-    if (nb < 0)
-    {
-        nb = -nb;
-        neg = 1;
-    }
-    nb_str = ft_itoa(nb);
-    len = ft_strlen(nb_str);
-    zeroes = precision - len;
-    if (neg)
-        ft_putchar('-');
-    while (zeroes > 0)
-    {
-        ft_putchar('0');
-        zeroes--;
-    }
-    ft_putstr(nb_str);
-}
-
 char	*adjust_int(char *nb_str, size_t precision, int field_width)
 {
 	char	*tmp;
