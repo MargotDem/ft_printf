@@ -71,12 +71,13 @@ void    handle_field_width(char *ptr, t_options *options)
 	int	field_width;
 	char *field_width_str;
 
-    if (ft_atoi(ptr) < 0) //useless bc if starts with -, the - will be interpreted as a flag
+    if (ft_atoi(ptr) < 0) //?? useless bc if starts with -, the - will be interpreted as a flag ??
         exit(1);
 	field_width = (size_t)ft_atoi(ptr);
     if (field_width == 0)
     {
         options->field_width = 0;
+		// why did i do this? if an actual 0 is specified, doesnt it get interpreted as a flag? wtf
         if (*ptr == '0') // actual printf refuses this cos undefined behavior
             options->chars_to_skip += 1;
         return ;
@@ -92,8 +93,10 @@ void    handle_precision(char *ptr, t_options *options)
     int	precision;
 	char *precision_str;
 
-    if (*ptr != '.' || ft_atoi(ptr + 1) < 0)
-        return;
+    if (*ptr != '.')
+        return ;
+	if (*ptr == '.' && ft_atoi(ptr + 1) < 0) // original: invalid conv specifier
+		exit(1);
     precision = (size_t)ft_atoi(ptr + 1);
     if (precision == 0)
     {
@@ -129,49 +132,42 @@ void    handle_conv_specifier(char *ptr, t_options *options)
     char    c;
 
     c = *ptr;
-    if (c == 'd' || c == 'i' || c == 'o' || c == 'u' \
-        || c == 'x' || c == 'X' || c == 'f' \
-        || c == 'c' || c == 's' || c == 'p' \
-        || c == '%')
-    {
-        if (c == 'd')
-            options->conv_spec = CS_D;
-        if (c == 'i')
-            options->conv_spec = CS_I;
-        if (c == 'o')
-            options->conv_spec = CS_O;
-        if (c == 'u')
-            options->conv_spec = CS_U;
-        if (c == 'x')
-            options->conv_spec = CS_X;
-        if (c == 'X')
-            options->conv_spec = CS_XX;
-        if (c == 'f')
-            options->conv_spec = CS_F;
-        if (c == 'c')
-            options->conv_spec = CS_C;
-        if (c == 's')
-            options->conv_spec = CS_S;
-        if (c == 'p')
-            options->conv_spec = CS_P;
-        if (c == '%')
-            options->conv_spec = CS_PERCENTAGE;
-        options->chars_to_skip += 1;
-    }
+	options->chars_to_skip += 1;
+	if (c == 'd')
+		options->conv_spec = CS_D;
+	else if (c == 'i')
+		options->conv_spec = CS_I;
+	else if (c == 'o')
+		options->conv_spec = CS_O;
+	else if (c == 'u')
+		options->conv_spec = CS_U;
+	else if (c == 'x')
+		options->conv_spec = CS_X;
+	else if (c == 'X')
+		options->conv_spec = CS_XX;
+	else if (c == 'f')
+		options->conv_spec = CS_F;
+	else if (c == 'c')
+		options->conv_spec = CS_C;
+	else if (c == 's')
+		options->conv_spec = CS_S;
+	else if (c == 'p')
+		options->conv_spec = CS_P;
+	else if (c == '%')
+		options->conv_spec = CS_PERCENTAGE;
     else
-    {
         exit(1);
-    }
     // if no conv spec: invalid input??
 }
 
 size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, handle_arg_type **dispatcher)
 {
 	t_options	*options;
+	size_t		chars_to_skip;
 
 	options = (t_options *)malloc(sizeof(t_options));
 	if (!options)
-		exit(1);
+		handle_error();
     options->len_mod = NULL;
     options->precision = -1;
     handle_arg_nb(ptr, options);
@@ -189,6 +185,11 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
 	(dispatcher[options->conv_spec])(options, list, char_count);
     if (options->len_mod)
         free(options->len_mod);
+	/*// by what black magic was this working? if you free it how can you access it???
     free(options);
 	return (options->chars_to_skip);
+	*/
+	chars_to_skip = options->chars_to_skip;
+	free(options);
+	return (chars_to_skip);
 }
