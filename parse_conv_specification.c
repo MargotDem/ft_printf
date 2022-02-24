@@ -167,7 +167,6 @@ void    handle_conv_specifier(char *ptr, t_options *options)
 
 size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, handle_arg_type **dispatcher)
 {
-
 	t_options	*options;
 
 	options = (t_options *)malloc(sizeof(t_options));

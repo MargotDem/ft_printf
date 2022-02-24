@@ -30,6 +30,7 @@ all: $(NAME)
 
 $(NAME):
 	$(CC) $(CFLAGS) -c $(FILES)
+	ar rc $(NAME) $(O_FILES)
 
 clean:
 	/bin/rm -f *.o

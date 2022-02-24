@@ -38,9 +38,7 @@ int	ft_printf(const char *str, ...)
 	{
 		write(1, str, (int)(ptr - str));
 		char_count += (size_t)(ptr - str);
-		//ret = handle_arg(ptr, &list);
 		ret = parse_conv_specification(ptr + 1, &list, &char_count, dispatcher);
-		//printf("ret %zu\n", ret);
 		str = ptr + 1 + ret;
 		ptr = ft_strchr(str, (int)'%');
 	}
@@ -48,47 +46,3 @@ int	ft_printf(const char *str, ...)
 	char_count += ft_strlen(str);
 	return (char_count);
 }
-
-/*
-int myfunc2(char *str, ...)
-{
-   va_list list;
-   int j = 0;
-   int i = 0;
-   int count = 0;
-
-
-	while (str[i])
-	{
-		if (str[i] == 'd' || str[i] == 's')
-			count++;
-		i++;
-	}
-   va_start(list, str);
-   printf("%d\n", va_arg(list, int));
-   printf("%s\n", va_arg(list, char *));
-   //for(j=0; j<count; j++)
-   //{
-     //printf("%d\n", va_arg(list, int));
-   //}
-
-   va_end(list);
-
-   return count;
-}
-
-*/
-
-/*
-ok so
-array of strings
-if ptr
-put the first string bit into array
-then analyse after %
-switch  that
-the functions: add to the string array the appropriate string
-we dont know in advance how big the array is tho?? fuck. linked list then? yeah ok
-the functions add the appropriate el to the list
-after a function returned, skip to after the flag bit and redo
-...???
-*/
