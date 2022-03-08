@@ -30,8 +30,9 @@ void test_fct_2(char *str)
 
 int	main(void)
 {
-	//test_ints();
-	printf("hey '%08.1X'\n", 31);
-	ft_printf("hey '%08.1X'\n", 31);
+	//char r = 'R';
+	//short int my_int = 42;
+	printf("hey '%ld'\n", (long int)(-4));
+	ft_printf("hey '%ld'\n", (long int)(-4));
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }

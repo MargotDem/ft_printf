@@ -40,7 +40,7 @@ void	handle_error(void);
 void    handle_percentage(t_options *options, va_list *list, size_t *char_count);
 void    handle_char(t_options *options, va_list *list, size_t *char_count);
 void    handle_str(t_options *options, va_list *list, size_t *char_count);
-void    handle_int(t_options *options, va_list *list, size_t *char_count);
+void    handle_d(t_options *options, va_list *list, size_t *char_count);
 void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X);
 void	handle_hex_x(t_options *options, va_list *list, size_t *char_count);
 void	handle_hex_X(t_options *options, va_list *list, size_t *char_count);

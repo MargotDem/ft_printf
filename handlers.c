@@ -82,7 +82,30 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 }
 
-void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
+void	handle_hex_long(t_options *options, va_list *list, size_t *char_count, size_t is_X)
+{
+	char				*nb_str;
+	unsigned long int	nb;
+	size_t	i;
+	size_t	len;
+
+	nb = va_arg(*list, unsigned long int);
+	nb_str = ft_uitoa_base(nb, 16);
+	len = ft_strlen(nb_str);
+	i = 0;
+	if (is_X)
+	{
+		while(nb_str[i])
+		{
+			nb_str[i] = ft_toupper(nb_str[i]);
+			i++;
+		}
+	}
+	print_out_nb_str(options, char_count, len, nb_str);
+	//ft_memdel((void *)nb_str);
+}
+
+void	handle_hex_int(t_options *options, va_list *list, size_t *char_count, size_t is_X)
 {
 	char			*nb_str;
 	unsigned int	nb;
@@ -103,6 +126,14 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 	}
 	print_out_nb_str(options, char_count, len, nb_str);
 	//ft_memdel((void *)nb_str);
+}
+
+void	handle_hex_type(t_options *options, va_list *list, size_t *char_count, size_t is_X)
+{
+	if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		handle_hex_long(options, list, char_count, is_X);
+	else
+		handle_hex_int(options, list, char_count, is_X);
 }
 
 void	handle_oct(t_options *options, va_list *list, size_t *char_count)
@@ -133,12 +164,12 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 
 void	handle_hex_x(t_options *options, va_list *list, size_t *char_count)
 {
-	handle_hex(options, list, char_count, 0);
+	handle_hex_type(options, list, char_count, 0);
 }
 
 void	handle_hex_X(t_options *options, va_list *list, size_t *char_count)
 {
-	handle_hex(options, list, char_count, 1);
+	handle_hex_type(options, list, char_count, 1);
 }
 
 void    handle_int(t_options *options, va_list *list, size_t *char_count)
@@ -155,6 +186,92 @@ void    handle_int(t_options *options, va_list *list, size_t *char_count)
 	print_out_nb_str(options, char_count, len, nb_str);
 	// ???? abort trap? what r u talking about é.é
 	//free(nb_str);
+}
+
+//
+
+static int	get_size(long int n, int negative)
+{
+	int		size;
+
+	size = 0;
+	while (n)
+	{
+		size++;
+		n = n / 10;
+	}
+	if (negative)
+		size++;
+	return (size);
+}
+
+static int	get_abs_value(long int n)
+{
+	if (n >= 0)
+		return (n);
+	return (-n);
+}
+
+static void	make_string(char *str, int size, long int n)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		str[size - i - 1] = get_abs_value(n % 10) + '0';
+		n = n / 10;
+		i++;
+	}
+	str[size] = '\0';
+}
+
+char	*ft_long_itoa(long int n)
+{
+	int		negative;
+	int		size;
+	char	*str;
+
+	negative = 0;
+	if (n < 0)
+		negative = 1;
+	size = get_size(n, negative);
+	if (n == 0)
+		size = 1;
+	str = (char *)malloc((size + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	make_string(str, size, n);
+	if (negative)
+		str[0] = '-';
+	return (str);
+}
+
+
+///
+
+void    handle_long_int(t_options *options, va_list *list, size_t *char_count)
+{
+    char		*nb_str;
+    long int	nb;
+	size_t		len;
+
+    nb = va_arg(*list, long int);
+    nb_str = ft_long_itoa(nb);
+	len = ft_strlen(nb_str);
+	if (nb < 0)
+		len--;
+	print_out_nb_str(options, char_count, len, nb_str);
+	// ???? abort trap? what r u talking about é.é
+	//free(nb_str);
+}
+
+void	handle_d(t_options *options, va_list *list, size_t *char_count)
+{
+	if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		handle_long_int(options, list, char_count);
+	else
+		handle_int(options, list, char_count);
 }
 
 void    handle_str(t_options *options, va_list *list, size_t *char_count)
