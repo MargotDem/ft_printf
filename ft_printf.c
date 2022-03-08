@@ -17,6 +17,7 @@ void	initialize_dispatcher(handle_arg_type **dispatcher)
 	dispatcher[CS_D] = &handle_int;
 	dispatcher[CS_I] = &handle_int;
 	dispatcher[CS_O] = &handle_oct;
+	dispatcher[CS_U] = &handle_decimal;
 	dispatcher[CS_C] = &handle_char;
 	dispatcher[CS_S] = &handle_str;
 	dispatcher[CS_X] = &handle_hex_x;

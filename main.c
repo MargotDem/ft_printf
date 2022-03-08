@@ -30,9 +30,16 @@ void test_fct_2(char *str)
 
 int	main(void)
 {
-	//test_ints();
-	//printf("this is a test %2$d, %1$d\n", 18, 23);
-	printf("hey '%X'\n", 271);
-	ft_printf("hey '%X'\n", 271);
+	unsigned int test_uint;
+	int test_int;
+
+
+	test_int = -271;
+	test_uint = (unsigned int)test_int;
+	//printf("test_int to uint: %u\n", test_uint);
+	//printf("12 : %u\n", 12);
+	//printf("-12 : %u\n", -12);
+	printf("hey '%-5o'\n", 456);
+	ft_printf("hey '%-5o'\n", 456);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }

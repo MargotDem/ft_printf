@@ -98,6 +98,7 @@ int		ft_iswhitespace(char c);
 int		ft_lstsize(t_list *list);
 int		ft_abs(int i);
 char	*ft_itoa_base(int nb, int base);
+char	*ft_uitoa_base(unsigned int nb, int base);
 
 // btrees
 
