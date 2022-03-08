@@ -82,6 +82,7 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 		}
 	}
 	padded_print(nb_str, options, char_count);
+	//ft_memdel((void *)nb_str);
 }
 
 void	handle_oct(t_options *options, va_list *list, size_t *char_count)
@@ -92,6 +93,7 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 	nb = va_arg(*list, int);
 	nb_str = ft_itoa_base(nb, 8);
 	padded_print(nb_str, options, char_count);
+	//ft_memdel((void *)nb_str);
 }
 
 void	handle_hex_x(t_options *options, va_list *list, size_t *char_count)
