@@ -64,14 +64,34 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 	(*char_count) += len;
 }
 
+void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *nb_str)
+{
+	if (options->precision == -1 && options->flags & F_ZERO)
+	{
+		nb_str = adjust_int(nb_str, options->field_width, 1);
+		padded_print(nb_str, options, char_count);
+	}
+    else if (options->precision <= len)
+	{
+		padded_print(nb_str, options, char_count);
+	}
+    else
+	{
+		nb_str = adjust_int(nb_str, options->precision, 0);
+		padded_print(nb_str, options, char_count);
+	}
+}
+
 void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
 {
 	char			*nb_str;
 	unsigned int	nb;
 	size_t	i;
+	size_t	len;
 
 	nb = va_arg(*list, unsigned int);
 	nb_str = ft_uitoa_base(nb, 16);
+	len = ft_strlen(nb_str);
 	i = 0;
 	if (is_X)
 	{
@@ -81,7 +101,7 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 			i++;
 		}
 	}
-	padded_print(nb_str, options, char_count);
+	print_out_nb_str(options, char_count, len, nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -89,10 +109,12 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 {
 	char			*nb_str;
 	unsigned int	nb;
+	size_t			len;
 
 	nb = va_arg(*list, unsigned int);
 	nb_str = ft_uitoa_base(nb, 8);
-	padded_print(nb_str, options, char_count);
+	len = ft_strlen(nb_str);
+	print_out_nb_str(options, char_count, len, nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -100,10 +122,12 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 {
 	char			*nb_str;
 	unsigned int	nb;
+	size_t			len;
 
 	nb = va_arg(*list, unsigned int);
 	nb_str = ft_uitoa_base(nb, 10);
-	padded_print(nb_str, options, char_count);
+	len = ft_strlen(nb_str);
+	print_out_nb_str(options, char_count, len, nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -128,25 +152,9 @@ void    handle_int(t_options *options, va_list *list, size_t *char_count)
 	len = ft_strlen(nb_str);
 	if (nb < 0)
 		len--;
-	if (options->precision == -1 && options->flags & F_ZERO)
-	{
-		//printf("1\n");
-		nb_str = adjust_int(nb_str, options->field_width, 1);
-		//printf("B\n");
-		padded_print(nb_str, options, char_count);
-	}
-    else if (options->precision <= len)
-	{
-		//printf("2\n");
-		padded_print(nb_str, options, char_count);
-	}
-    else
-	{
-		//printf("5\n");
-		nb_str = adjust_int(nb_str, options->precision, 0);
-		padded_print(nb_str, options, char_count);
-	}
-	free(nb_str);
+	print_out_nb_str(options, char_count, len, nb_str);
+	// ???? abort trap? what r u talking about é.é
+	//free(nb_str);
 }
 
 void    handle_str(t_options *options, va_list *list, size_t *char_count)
