@@ -64,14 +64,44 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 	(*char_count) += len;
 }
 
-void	handle_hex(t_options *options, va_list *list, size_t *char_count)
+void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
 {
-	char *nb_str;
-    int nb;
+	char	*nb_str;
+	int		nb;
+	size_t	i;
 
 	nb = va_arg(*list, int);
-    nb_str = ft_itoa(nb);
+	nb_str = ft_itoa_base(nb, 16);
+	i = 0;
+	if (is_X)
+	{
+		while(nb_str[i])
+		{
+			nb_str[i] = ft_toupper(nb_str[i]);
+			i++;
+		}
+	}
 	padded_print(nb_str, options, char_count);
+}
+
+void	handle_oct(t_options *options, va_list *list, size_t *char_count)
+{
+	char	*nb_str;
+	int		nb;
+
+	nb = va_arg(*list, int);
+	nb_str = ft_itoa_base(nb, 8);
+	padded_print(nb_str, options, char_count);
+}
+
+void	handle_hex_x(t_options *options, va_list *list, size_t *char_count)
+{
+	handle_hex(options, list, char_count, 0);
+}
+
+void	handle_hex_X(t_options *options, va_list *list, size_t *char_count)
+{
+	handle_hex(options, list, char_count, 1);
 }
 
 void    handle_int(t_options *options, va_list *list, size_t *char_count)

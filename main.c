@@ -32,6 +32,7 @@ int	main(void)
 {
 	//test_ints();
 	//printf("this is a test %2$d, %1$d\n", 18, 23);
-	printf("hey '%.3d', and '%d'\n", 42, 58);
-	ft_printf("hey '%.3d', and '%d'\n", 42, 58);
+	printf("hey '%X'\n", 271);
+	ft_printf("hey '%X'\n", 271);
+	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
