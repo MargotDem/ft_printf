@@ -188,68 +188,6 @@ void    handle_int(t_options *options, va_list *list, size_t *char_count)
 	//free(nb_str);
 }
 
-//
-
-static int	get_size(long int n, int negative)
-{
-	int		size;
-
-	size = 0;
-	while (n)
-	{
-		size++;
-		n = n / 10;
-	}
-	if (negative)
-		size++;
-	return (size);
-}
-
-static int	get_abs_value(long int n)
-{
-	if (n >= 0)
-		return (n);
-	return (-n);
-}
-
-static void	make_string(char *str, int size, long int n)
-{
-	int		i;
-
-	i = 0;
-	while (i < size)
-	{
-		str[size - i - 1] = get_abs_value(n % 10) + '0';
-		n = n / 10;
-		i++;
-	}
-	str[size] = '\0';
-}
-
-char	*ft_long_itoa(long int n)
-{
-	int		negative;
-	int		size;
-	char	*str;
-
-	negative = 0;
-	if (n < 0)
-		negative = 1;
-	size = get_size(n, negative);
-	if (n == 0)
-		size = 1;
-	str = (char *)malloc((size + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	make_string(str, size, n);
-	if (negative)
-		str[0] = '-';
-	return (str);
-}
-
-
-///
-
 void    handle_long_int(t_options *options, va_list *list, size_t *char_count)
 {
     char		*nb_str;
@@ -257,7 +195,23 @@ void    handle_long_int(t_options *options, va_list *list, size_t *char_count)
 	size_t		len;
 
     nb = va_arg(*list, long int);
-    nb_str = ft_long_itoa(nb);
+    nb_str = ft_l_itoa(nb);
+	len = ft_strlen(nb_str);
+	if (nb < 0)
+		len--;
+	print_out_nb_str(options, char_count, len, nb_str);
+	// ???? abort trap? what r u talking about é.é
+	//free(nb_str);
+}
+
+void    handle_long_long_int(t_options *options, va_list *list, size_t *char_count)
+{
+    char		*nb_str;
+    long int	nb;
+	size_t		len;
+
+    nb = va_arg(*list, long long int);
+    nb_str = ft_ll_itoa(nb);
 	len = ft_strlen(nb_str);
 	if (nb < 0)
 		len--;
