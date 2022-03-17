@@ -82,150 +82,104 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 }
 
-void	handle_hex_long(t_options *options, va_list *list, size_t *char_count, size_t is_X)
+void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
 {
-	char				*nb_str;
-	unsigned long int	nb;
-	size_t	i;
-	size_t	len;
+	char					*nb_str;
+	unsigned long long int	nb;
+	size_t					i;
+	size_t					len;
 
-	nb = va_arg(*list, unsigned long int);
-	nb_str = ft_uitoa_base(nb, 16);
-	len = ft_strlen(nb_str);
-	i = 0;
-	if (is_X)
-	{
-		while(nb_str[i])
-		{
-			nb_str[i] = ft_toupper(nb_str[i]);
-			i++;
-		}
-	}
-	print_out_nb_str(options, char_count, len, nb_str);
-	//ft_memdel((void *)nb_str);
-}
-
-void	handle_hex_int(t_options *options, va_list *list, size_t *char_count, size_t is_X)
-{
-	char			*nb_str;
-	unsigned int	nb;
-	size_t	i;
-	size_t	len;
-
-	nb = va_arg(*list, unsigned int);
-	nb_str = ft_uitoa_base(nb, 16);
-	len = ft_strlen(nb_str);
-	i = 0;
-	if (is_X)
-	{
-		while(nb_str[i])
-		{
-			nb_str[i] = ft_toupper(nb_str[i]);
-			i++;
-		}
-	}
-	print_out_nb_str(options, char_count, len, nb_str);
-	//ft_memdel((void *)nb_str);
-}
-
-void	handle_hex_type(t_options *options, va_list *list, size_t *char_count, size_t is_X)
-{
-	if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		handle_hex_long(options, list, char_count, is_X);
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		nb = va_arg(*list, unsigned long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		nb = va_arg(*list, unsigned long int);
 	else
-		handle_hex_int(options, list, char_count, is_X);
-}
-
-void	handle_oct(t_options *options, va_list *list, size_t *char_count)
-{
-	char			*nb_str;
-	unsigned int	nb;
-	size_t			len;
-
-	nb = va_arg(*list, unsigned int);
-	nb_str = ft_uitoa_base(nb, 8);
+		nb = va_arg(*list, unsigned int);
+	nb_str = ft_ull_itoa_base(nb, 16);
 	len = ft_strlen(nb_str);
+	i = 0;
+	if (is_X)
+	{
+		while(nb_str[i])
+		{
+			nb_str[i] = ft_toupper(nb_str[i]);
+			i++;
+		}
+	}
 	print_out_nb_str(options, char_count, len, nb_str);
-	//ft_memdel((void *)nb_str);
-}
-
-void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
-{
-	char			*nb_str;
-	unsigned int	nb;
-	size_t			len;
-
-	nb = va_arg(*list, unsigned int);
-	nb_str = ft_uitoa_base(nb, 10);
-	len = ft_strlen(nb_str);
-	print_out_nb_str(options, char_count, len, nb_str);
+	free(nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
 void	handle_hex_x(t_options *options, va_list *list, size_t *char_count)
 {
-	handle_hex_type(options, list, char_count, 0);
+	handle_hex(options, list, char_count, 0);
 }
 
 void	handle_hex_X(t_options *options, va_list *list, size_t *char_count)
 {
-	handle_hex_type(options, list, char_count, 1);
+	handle_hex(options, list, char_count, 1);
 }
 
-void    handle_int(t_options *options, va_list *list, size_t *char_count)
+void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 {
-    char *nb_str;
-    int nb;
-	size_t	len;
+	char					*nb_str;
+	unsigned long long int	nb;
+	size_t					len;
 
-    nb = va_arg(*list, int);
-    nb_str = ft_itoa(nb);
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		nb = va_arg(*list, unsigned long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		nb = va_arg(*list, unsigned long int);
+	else
+		nb = va_arg(*list, unsigned int);
+	nb_str = ft_ull_itoa_base(nb, 8);
 	len = ft_strlen(nb_str);
-	if (nb < 0)
-		len--;
 	print_out_nb_str(options, char_count, len, nb_str);
-	// ???? abort trap? what r u talking about é.é
-	//free(nb_str);
+	free(nb_str);
+	//ft_memdel((void *)nb_str);
 }
 
-void    handle_long_int(t_options *options, va_list *list, size_t *char_count)
+void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 {
-    char		*nb_str;
-    long int	nb;
-	size_t		len;
+	char					*nb_str;
+	unsigned long long int	nb;
+	size_t					len;
 
-    nb = va_arg(*list, long int);
-    nb_str = ft_l_itoa(nb);
+	//this is copy pasted from above so do something about it
+	// also r u kidding, if the only thing that changes is the base.. factoriser tout ca
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		nb = va_arg(*list, unsigned long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		nb = va_arg(*list, unsigned long int);
+	else
+		nb = va_arg(*list, unsigned int);
+	nb_str = ft_ull_itoa_base(nb, 10);
 	len = ft_strlen(nb_str);
-	if (nb < 0)
-		len--;
 	print_out_nb_str(options, char_count, len, nb_str);
-	// ???? abort trap? what r u talking about é.é
-	//free(nb_str);
+	free(nb_str);
+	//ft_memdel((void *)nb_str);
 }
 
-void    handle_long_long_int(t_options *options, va_list *list, size_t *char_count)
+void	handle_d(t_options *options, va_list *list, size_t *char_count)
 {
-    char		*nb_str;
-    long int	nb;
-	size_t		len;
+	char			*nb_str;
+	size_t			len;
+	long long int	nb;
 
-    nb = va_arg(*list, long long int);
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		nb = va_arg(*list, long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		nb = va_arg(*list, long int);
+	else
+		nb = va_arg(*list, int);
     nb_str = ft_ll_itoa(nb);
 	len = ft_strlen(nb_str);
 	if (nb < 0)
 		len--;
 	print_out_nb_str(options, char_count, len, nb_str);
-	// ???? abort trap? what r u talking about é.é
-	//free(nb_str);
-}
-
-void	handle_d(t_options *options, va_list *list, size_t *char_count)
-{
-	if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		handle_long_int(options, list, char_count);
-	else
-		handle_int(options, list, char_count);
+	free(nb_str);
+	//ft_memdel((void *)nb_str);
 }
 
 void    handle_str(t_options *options, va_list *list, size_t *char_count)

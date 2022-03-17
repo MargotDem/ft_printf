@@ -30,9 +30,22 @@ void test_fct_2(char *str)
 
 int	main(void)
 {
+	long long int	ll_nb;
+	long int	l_nb;
+	int	nb;
+	unsigned int u_nb;
+	unsigned long int ul_nb;
+	unsigned long long int ull_nb;
+
+	ll_nb = -9223372036854775807;
+	l_nb = -922;
+	nb = -563;
+	ull_nb = 25;
+	ul_nb = 56;
+	u_nb = -52;
 	//char r = 'R';
 	//short int my_int = 42;
-	printf("hey '%ld'\n", (long int)(-4));
-	ft_printf("hey '%ld'\n", (long int)(-4));
+	printf("hey '%llx'\n", ull_nb);
+	ft_printf("hey '%llx'\n", ull_nb);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
