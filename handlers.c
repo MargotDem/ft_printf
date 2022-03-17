@@ -93,6 +93,10 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 		nb = va_arg(*list, unsigned long long int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
 		nb = va_arg(*list, unsigned long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		nb = (char)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		nb = (short int)va_arg(*list, int);
 	else
 		nb = va_arg(*list, unsigned int);
 	nb_str = ft_ull_itoa_base(nb, 16);
@@ -131,6 +135,10 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 		nb = va_arg(*list, unsigned long long int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
 		nb = va_arg(*list, unsigned long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		nb = (char)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		nb = (short int)va_arg(*list, int);
 	else
 		nb = va_arg(*list, unsigned int);
 	nb_str = ft_ull_itoa_base(nb, 8);
@@ -152,12 +160,16 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 		nb = va_arg(*list, unsigned long long int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
 		nb = va_arg(*list, unsigned long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		nb = (char)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		nb = (short int)va_arg(*list, int);
 	else
 		nb = va_arg(*list, unsigned int);
 	nb_str = ft_ull_itoa_base(nb, 10);
 	len = ft_strlen(nb_str);
 	print_out_nb_str(options, char_count, len, nb_str);
-	free(nb_str);
+	//free(nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -171,6 +183,10 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 		nb = va_arg(*list, long long int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
 		nb = va_arg(*list, long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		nb = (char)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		nb = (short int)va_arg(*list, int);
 	else
 		nb = va_arg(*list, int);
     nb_str = ft_ll_itoa(nb);
@@ -188,19 +204,14 @@ void    handle_str(t_options *options, va_list *list, size_t *char_count)
     char    *substr;
 
     str = va_arg(*list, char *);
-    if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-        ft_putchar('?');
-    else
-    {
-        if (options->precision < 0 || options->precision > ft_strlen(str))
-			padded_print(str, options, char_count);
-        else
-		{
-			substr = ft_strsub(str, 0, options->precision);
-			padded_print(substr, options, char_count);
-			free(substr);
-		}
-    }
+	if (options->precision < 0 || options->precision > ft_strlen(str))
+		padded_print(str, options, char_count);
+	else
+	{
+		substr = ft_strsub(str, 0, options->precision);
+		padded_print(substr, options, char_count);
+		free(substr);
+	}
 }
 
 void    handle_char(t_options *options, va_list *list, size_t *char_count)
@@ -214,10 +225,7 @@ void    handle_char(t_options *options, va_list *list, size_t *char_count)
 		handle_error();
 	str[0] = c;
 	str[1] = '\0';
-    if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-        ft_putchar('?');
-    else
-	    padded_print(str, options, char_count);
+	padded_print(str, options, char_count);
 	free(str);
 }
 

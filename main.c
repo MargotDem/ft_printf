@@ -33,9 +33,11 @@ int	main(void)
 	long long int	ll_nb;
 	long int	l_nb;
 	int	nb;
+	short int	short_nb;
 	unsigned int u_nb;
 	unsigned long int ul_nb;
 	unsigned long long int ull_nb;
+	char	my_char;
 
 	ll_nb = -9223372036854775807;
 	l_nb = -922;
@@ -43,9 +45,11 @@ int	main(void)
 	ull_nb = 25;
 	ul_nb = 56;
 	u_nb = -52;
+	short_nb = 32765;
+	my_char = 'g';
 	//char r = 'R';
 	//short int my_int = 42;
-	printf("hey '%llx'\n", ull_nb);
-	ft_printf("hey '%llx'\n", ull_nb);
+	printf("hey '%hu'\n", short_nb);
+	ft_printf("hey '%hu'\n", short_nb);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
