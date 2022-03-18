@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 
+/*
 char	*adjust_int(char *nb_str, size_t precision, int field_width)
 {
 	char	*tmp;
@@ -32,6 +33,42 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 	if (*nb_str == '-')
 	{
 		ft_memset(tmp_ptr, '-', 1);
+		tmp_ptr++;
+		nb_str_ptr++;
+	}
+	ft_memset(tmp_ptr, '0', zeroes);
+	ft_strcpy(tmp_ptr + zeroes, nb_str_ptr);
+	free (nb_str);
+	nb_str = tmp;
+	return (nb_str);
+}
+*/
+
+char	*adjust_int(char *nb_str, size_t precision, int field_width)
+{
+	char	*tmp;
+	char	*tmp_ptr;
+	char	*nb_str_ptr;
+	size_t   len;
+	int  zeroes;
+	char	sign;
+
+	len = ft_strlen(nb_str);
+	zeroes = precision - len;
+	if (zeroes < 0)
+		return (nb_str);
+	if (*nb_str == '-' || *nb_str == '+')
+		sign = *nb_str;
+	else
+		sign = 0;
+	if (sign && !(field_width))
+		zeroes++;
+	tmp = (char *)malloc(zeroes + len + 1);
+	tmp_ptr = tmp;
+	nb_str_ptr = nb_str;
+	if (sign)
+	{
+		ft_memset(tmp_ptr, sign, 1);
 		tmp_ptr++;
 		nb_str_ptr++;
 	}
@@ -175,6 +212,7 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 void	handle_d(t_options *options, va_list *list, size_t *char_count)
 {
 	char			*nb_str;
+	char			*tmp;
 	size_t			len;
 	long long int	nb;
 
@@ -183,6 +221,15 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	len = ft_strlen(nb_str);
 	if (nb < 0)
 		len--;
+	else
+	{
+		if (options->flags & F_PLUS)
+		{
+			tmp = ft_strjoin("+", nb_str);
+			free(nb_str);
+			nb_str = tmp;
+		}
+	}
 	print_out_nb_str(options, char_count, len, nb_str);
 	//free(nb_str);
 	//ft_memdel((void *)nb_str);

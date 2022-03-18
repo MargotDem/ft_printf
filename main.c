@@ -41,7 +41,7 @@ int	main(void)
 
 	ll_nb = -9223372036854775807;
 	l_nb = -922;
-	nb = -563;
+	nb = 42;
 	ull_nb = 25;
 	ul_nb = 56;
 	u_nb = -52;
@@ -49,7 +49,10 @@ int	main(void)
 	my_char = 'g';
 	//char r = 'R';
 	//short int my_int = 42;
-	printf("hey '%-*.*hd'\n", 8, -5, short_nb);
-	ft_printf("hey '%-*.*hd'\n", 8, -5, short_nb);
+	printf("hey '% 10.5d'\n", nb);
+	ft_printf("hey '% 10.5d'\n", nb);
+	printf("\n\n");
+	printf("hey '% d'\n", nb);
+	ft_printf("hey '% d'\n", nb);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
