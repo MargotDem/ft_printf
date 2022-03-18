@@ -82,6 +82,34 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 }
 
+void	set_nb(t_options *options, va_list *list, long long int *nb)
+{
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		*nb = va_arg(*list, long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		*nb = va_arg(*list, long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		*nb = (char)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		*nb = (short int)va_arg(*list, int);
+	else
+		*nb = va_arg(*list, int);
+}
+
+void	set_nb_unsigned(t_options *options, va_list *list, unsigned long long int *nb)
+{
+	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
+		*nb = va_arg(*list, unsigned long long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
+		*nb = va_arg(*list, unsigned long int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
+		*nb = (unsigned char)va_arg(*list, unsigned int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
+		*nb = (unsigned short int)va_arg(*list, unsigned int);
+	else
+		*nb = va_arg(*list, unsigned int);
+}
+
 void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
 {
 	char					*nb_str;
@@ -89,16 +117,7 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 	size_t					i;
 	size_t					len;
 
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		nb = va_arg(*list, unsigned long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		nb = va_arg(*list, unsigned long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		nb = (char)va_arg(*list, int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		nb = (short int)va_arg(*list, int);
-	else
-		nb = va_arg(*list, unsigned int);
+	set_nb_unsigned(options, list, &nb);
 	nb_str = ft_ull_itoa_base(nb, 16);
 	len = ft_strlen(nb_str);
 	i = 0;
@@ -131,16 +150,7 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 	unsigned long long int	nb;
 	size_t					len;
 
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		nb = va_arg(*list, unsigned long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		nb = va_arg(*list, unsigned long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		nb = (char)va_arg(*list, int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		nb = (short int)va_arg(*list, int);
-	else
-		nb = va_arg(*list, unsigned int);
+	set_nb_unsigned(options, list, &nb);
 	nb_str = ft_ull_itoa_base(nb, 8);
 	len = ft_strlen(nb_str);
 	print_out_nb_str(options, char_count, len, nb_str);
@@ -154,18 +164,7 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count)
 	unsigned long long int	nb;
 	size_t					len;
 
-	//this is copy pasted from above so do something about it
-	// also r u kidding, if the only thing that changes is the base.. factoriser tout ca
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		nb = va_arg(*list, unsigned long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		nb = va_arg(*list, unsigned long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		nb = (char)va_arg(*list, int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		nb = (short int)va_arg(*list, int);
-	else
-		nb = va_arg(*list, unsigned int);
+	set_nb_unsigned(options, list, &nb);
 	nb_str = ft_ull_itoa_base(nb, 10);
 	len = ft_strlen(nb_str);
 	print_out_nb_str(options, char_count, len, nb_str);
@@ -179,16 +178,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	size_t			len;
 	long long int	nb;
 
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		nb = va_arg(*list, long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		nb = va_arg(*list, long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		nb = (char)va_arg(*list, int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		nb = (short int)va_arg(*list, int);
-	else
-		nb = va_arg(*list, int);
+	set_nb(options, list, &nb);
     nb_str = ft_ll_itoa(nb);
 	len = ft_strlen(nb_str);
 	if (nb < 0)

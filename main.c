@@ -45,11 +45,11 @@ int	main(void)
 	ull_nb = 25;
 	ul_nb = 56;
 	u_nb = -52;
-	short_nb = 32765;
+	short_nb = -563;
 	my_char = 'g';
 	//char r = 'R';
 	//short int my_int = 42;
-	printf("hey '%hu'\n", short_nb);
-	ft_printf("hey '%hu'\n", short_nb);
+	printf("hey '%hd'\n", short_nb);
+	ft_printf("hey '%hd'\n", short_nb);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
