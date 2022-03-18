@@ -184,7 +184,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	if (nb < 0)
 		len--;
 	print_out_nb_str(options, char_count, len, nb_str);
-	free(nb_str);
+	//free(nb_str);
 	//ft_memdel((void *)nb_str);
 }
 

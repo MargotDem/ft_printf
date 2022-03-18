@@ -101,27 +101,37 @@ void    handle_field_width(char *ptr, t_options *options, va_list *list)
 	}
 }
 
-void    handle_precision(char *ptr, t_options *options)
+void    handle_precision(char *ptr, t_options *options, va_list *list)
 {
     int	precision;
 	char *precision_str;
 
     if (*ptr != '.')
         return ;
-	if (*ptr == '.' && ft_atoi(ptr + 1) < 0) // original: invalid conv specifier
-		exit(1);
-    precision = (size_t)ft_atoi(ptr + 1);
-    if (precision == 0)
-    {
-        options->precision = 0;
-        options->chars_to_skip += 1;
-        if (*(ptr + 1) == '0')
-            options->chars_to_skip += 1;
-        return ;
-    }
-    precision_str = ft_itoa(precision);
-    options->precision = precision;
-    options->chars_to_skip += ft_strlen(precision_str) + 1;
+	if (*(ptr + 1) == '*')
+	{
+		precision = va_arg(*list, int);
+		options->chars_to_skip += 2;
+		if (precision >= 0)
+			options->precision = precision;
+	}
+	else
+	{
+		if (ft_atoi(ptr + 1) < 0) // original: invalid conv specifier
+			exit(1);
+		precision = (size_t)ft_atoi(ptr + 1);
+		if (precision == 0)
+		{
+			options->precision = 0;
+			options->chars_to_skip += 1;
+			if (*(ptr + 1) == '0')
+				options->chars_to_skip += 1;
+			return ;
+		}
+		precision_str = ft_itoa(precision);
+		options->precision = precision;
+		options->chars_to_skip += ft_strlen(precision_str) + 1;
+	}
 }
 
 void    handle_len_mod(char *ptr, t_options *options)
@@ -186,7 +196,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
     handle_arg_nb(ptr, options);
     handle_flags(ptr + options->chars_to_skip, options);
     handle_field_width(ptr + options->chars_to_skip, options, list);
-    handle_precision(ptr + options->chars_to_skip, options);
+    handle_precision(ptr + options->chars_to_skip, options, list);
     handle_len_mod(ptr + options->chars_to_skip, options);
     handle_conv_specifier(ptr + options->chars_to_skip, options);
     //printf("flags : %x\n", options->flags);

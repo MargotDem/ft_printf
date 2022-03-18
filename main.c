@@ -49,7 +49,7 @@ int	main(void)
 	my_char = 'g';
 	//char r = 'R';
 	//short int my_int = 42;
-	printf("hey '%-*hd'\n", 8, short_nb);
-	ft_printf("hey '%-*hd'\n", 8, short_nb);
+	printf("hey '%-*.*hd'\n", 8, -5, short_nb);
+	ft_printf("hey '%-*.*hd'\n", 8, -5, short_nb);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
