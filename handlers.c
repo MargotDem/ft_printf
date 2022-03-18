@@ -103,20 +103,24 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 
 void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *nb_str)
 {
+	char	*tmp;
+	int		no_sign;
+
+	// "if a signed conversion results in no characters" what does that even mean
+	if (*nb_str != '+' && *nb_str != '-')
+		no_sign = 1;
 	if (options->precision == -1 && options->flags & F_ZERO)
-	{
 		nb_str = adjust_int(nb_str, options->field_width, 1);
-		padded_print(nb_str, options, char_count);
-	}
-    else if (options->precision <= len)
-	{
-		padded_print(nb_str, options, char_count);
-	}
     else
-	{
 		nb_str = adjust_int(nb_str, options->precision, 0);
-		padded_print(nb_str, options, char_count);
+	//so if if (options->precision <= len) we dont adjust int
+	if (no_sign && options->flags & F_SPACE && !(options->flags & F_PLUS) && !(options->flags & F_MINUS))
+	{
+		tmp = ft_strjoin(" ", nb_str);
+		free(nb_str);
+		nb_str = tmp;
 	}
+	padded_print(nb_str, options, char_count);
 }
 
 void	set_nb(t_options *options, va_list *list, long long int *nb)

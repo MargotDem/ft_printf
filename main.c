@@ -54,5 +54,18 @@ int	main(void)
 	printf("\n\n");
 	printf("hey '% d'\n", nb);
 	ft_printf("hey '% d'\n", nb);
+	printf("\n\n");
+	printf("hey '% 10d'\n", nb);
+	ft_printf("hey '% 10d'\n", nb);
+		printf("\n\n");
+	printf("hey '% .5d'\n", nb);
+	ft_printf("hey '% .5d'\n", nb);
+	printf("\n\n");
+	printf("\n\n");
+	printf("hey '%10.5d'\n", -6);
+	ft_printf("hey '%10.5d'\n", -6);
+		printf("\n\n");
+	printf("hey '%+10.5d'\n", 6);
+	ft_printf("hey '%+10.5d'\n", 6);
 	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
 }
