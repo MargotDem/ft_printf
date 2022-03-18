@@ -66,26 +66,39 @@ void    handle_flags(char *ptr, t_options *options)
     }
 }
 
-void    handle_field_width(char *ptr, t_options *options)
+void    handle_field_width(char *ptr, t_options *options, va_list *list)
 {
 	int	field_width;
 	char *field_width_str;
 
-    if (ft_atoi(ptr) < 0) //?? useless bc if starts with -, the - will be interpreted as a flag ??
-        exit(1);
-	field_width = (size_t)ft_atoi(ptr);
-    if (field_width == 0)
-    {
-        options->field_width = 0;
-		// why did i do this? if an actual 0 is specified, doesnt it get interpreted as a flag? wtf
-        if (*ptr == '0') // actual printf refuses this cos undefined behavior
-            options->chars_to_skip += 1;
-        return ;
-    }
-	field_width_str = ft_itoa(field_width);
-    options->field_width = field_width;
-    options->chars_to_skip += ft_strlen(field_width_str);
-
+	if (*ptr == '*')
+	{
+		field_width = va_arg(*list, int);
+		if (field_width < 0)
+		{
+			field_width = - field_width;
+			options->flags = options->flags | F_MINUS;
+		}
+		options->field_width = field_width;
+		options->chars_to_skip ++;
+	}
+	else
+	{
+		if (ft_atoi(ptr) < 0) //?? useless bc if starts with -, the - will be interpreted as a flag ??
+			exit(1);
+		field_width = (size_t)ft_atoi(ptr);
+		if (field_width == 0)
+		{
+			options->field_width = 0;
+			// why did i do this? if an actual 0 is specified, doesnt it get interpreted as a flag? wtf
+			if (*ptr == '0') // actual printf refuses this cos undefined behavior
+				options->chars_to_skip += 1;
+			return ;
+		}
+		field_width_str = ft_itoa(field_width);
+		options->field_width = field_width;
+		options->chars_to_skip += ft_strlen(field_width_str);
+	}
 }
 
 void    handle_precision(char *ptr, t_options *options)
@@ -172,7 +185,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
     options->precision = -1;
     handle_arg_nb(ptr, options);
     handle_flags(ptr + options->chars_to_skip, options);
-    handle_field_width(ptr + options->chars_to_skip, options);
+    handle_field_width(ptr + options->chars_to_skip, options, list);
     handle_precision(ptr + options->chars_to_skip, options);
     handle_len_mod(ptr + options->chars_to_skip, options);
     handle_conv_specifier(ptr + options->chars_to_skip, options);
