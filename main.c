@@ -49,6 +49,8 @@ int	main(void)
 	my_char = 'g';
 	//char r = 'R';
 	//short int my_int = 42;
+
+	/*
 	printf("hey '% 10.5d'\n", nb);
 	ft_printf("hey '% 10.5d'\n", nb);
 	printf("\n\n");
@@ -67,5 +69,41 @@ int	main(void)
 		printf("\n\n");
 	printf("hey '%+10.5d'\n", 6);
 	ft_printf("hey '%+10.5d'\n", 6);
-	// ft_printf("hey '%.3d', and '%d'\n", 42, 58);
+	*/
+
+	printf("\n\n");
+	printf("hey '%#x'\n", 6);
+	ft_printf("hey '%#x'\n", 6);
+
+	printf("\n\n");
+	printf("hey '%#x'\n", 0);
+	ft_printf("hey '%#x'\n", 0);
+
+	printf("\n\n");
+	printf("hey '%#x'\n", 9);
+	ft_printf("hey '%#x'\n", 9);
+
+
+	printf("\n\n");
+	printf("hey '%#.5x'\n", 9);
+	ft_printf("hey '%#.5x'\n", 9);
+
+	printf("\n\n");
+	printf("hey '%#.5x'\n", 0);
+	ft_printf("hey '%#.5x'\n", 0);
+
+	printf("\n\n");
+	printf("hey '%#10X'\n", 10);
+	ft_printf("hey '%#10X'\n", 10);
+
+	printf("\n\n");
+	printf("hey '%#10.5x'\n", 9);
+	ft_printf("hey '%#10.5x'\n", 9);
+
+		printf("\n\n");
+	printf("hey '%#10.5o'\n", 9);
+	ft_printf("hey '%#10.5o'\n", 9);
+
+		printf("hey '%+010.8d'\n", 9);
+	ft_printf("hey '%+010.8d'\n", 9);
 }

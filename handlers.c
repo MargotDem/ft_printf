@@ -104,8 +104,10 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *nb_str)
 {
 	char	*tmp;
+	char	*original_str;
 	int		no_sign;
 
+	original_str = ft_strdup(nb_str);
 	// "if a signed conversion results in no characters" what does that even mean
 	if (*nb_str != '+' && *nb_str != '-')
 		no_sign = 1;
@@ -120,7 +122,27 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 		free(nb_str);
 		nb_str = tmp;
 	}
+	if (options->flags & F_HASHTAG)
+	{
+		if (options->conv_spec == CS_X || options->conv_spec == CS_XX)
+		{
+			if (*original_str != '0')
+			{
+				if (options->conv_spec == CS_X)
+					tmp = ft_strjoin("0x", nb_str);
+				else
+					tmp = ft_strjoin("0X", nb_str);
+				free(nb_str);
+				nb_str = tmp;
+			}
+		}
+		else if (options->conv_spec & CS_O)
+		{
+			//printf("hehe coucou\n");
+		}
+	}
 	padded_print(nb_str, options, char_count);
+	free(original_str);
 }
 
 void	set_nb(t_options *options, va_list *list, long long int *nb)
@@ -171,7 +193,7 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is
 		}
 	}
 	print_out_nb_str(options, char_count, len, nb_str);
-	free(nb_str);
+	//free(nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -195,7 +217,7 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 	nb_str = ft_ull_itoa_base(nb, 8);
 	len = ft_strlen(nb_str);
 	print_out_nb_str(options, char_count, len, nb_str);
-	free(nb_str);
+	//free(nb_str);
 	//ft_memdel((void *)nb_str);
 }
 
@@ -276,3 +298,11 @@ void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 
 	padded_print("%", options, char_count);
 }
+
+/*
+42filechecker
+
+70 78 are undefined behavior
+
+
+*/
