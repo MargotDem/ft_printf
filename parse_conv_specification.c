@@ -55,6 +55,21 @@ t_uchar get_flag(char *ptr)
         return (F_SPACE);
 }
 
+void	ignore_flags(t_options *options)
+{
+	if (options->flags & F_ZERO && options->flags & F_MINUS)
+	{
+		//printf("here");
+		options->flags = options->flags ^ F_ZERO;
+	}
+	if (options->flags & F_SPACE && options->flags & F_PLUS)
+	{
+		//printf("here");
+		options->flags = options->flags ^ F_SPACE;
+	}
+
+}
+
 void    handle_flags(char *ptr, t_options *options)
 {
     options->flags = 0x00;
@@ -199,6 +214,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
     handle_precision(ptr + options->chars_to_skip, options, list);
     handle_len_mod(ptr + options->chars_to_skip, options);
     handle_conv_specifier(ptr + options->chars_to_skip, options);
+	ignore_flags(options);
     //printf("flags : %x\n", options->flags);
     //printf("field width %zu\n", options->field_width);
     //printf("precision %zu\n", options->precision);

@@ -106,7 +106,7 @@ int	main(void)
 
 		printf("hey '%+010.8d'\n", 9);
 	ft_printf("hey '%+010.8d'\n", 9);
-	*/
+	
 	printf("\n\n");
 	printf("hey '%.4o'\n", 9);
 	ft_printf("hey '%.4o'\n", 9);
@@ -118,4 +118,30 @@ int	main(void)
 	printf("\n\n");
 	printf("hey '%#o'\n", 0);
 	ft_printf("hey '%#o'\n", 0);
+
+	*/
+
+	printf("\n\n");
+	printf("hey '%- d'\n", 45);
+	ft_printf("hey '%- d'\n", 45);
+
+	printf("\n\n");
+	printf("hey '%- 10d'\n", 45);
+	ft_printf("hey '%- 10d'\n", 45);
+
+	printf("\n\n");
+	printf("hey '% d'\n", -45);
+	ft_printf("hey '% d'\n", -45);
+
+	printf("\n\n");
+	printf("hey '%- 10d'\n", -45);
+	ft_printf("hey '%- 10d'\n", -45);
+
+	printf("\n\n");
+	printf("hey '% 10d'\n", -45);
+	ft_printf("hey '%+ 10d'\n", -45);
+
+	printf("\n\n");
+	printf("hey '%+10d'\n", 58);
+	ft_printf("hey '%+10d'\n", 58);
 }

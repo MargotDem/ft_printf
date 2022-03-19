@@ -55,20 +55,23 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 
 	len = ft_strlen(nb_str);
 	zeroes = precision - len;
+	// if i do if (zeros <= 0) then i fail 3 42filechcker tests, why
 	if (zeroes < 0)
 		return (nb_str);
 	if (*nb_str == '-' || *nb_str == '+')
 		sign = *nb_str;
 	else
 		sign = 0;
-	if (sign && !(field_width))
+	if (sign && !(field_width)) // forgot zhy this is necessary
 		zeroes++;
-	tmp = (char *)malloc(zeroes + len + 1);
+	tmp = ft_strnew(zeroes + len);
+	if (!tmp)
+		handle_error();
 	tmp_ptr = tmp;
 	nb_str_ptr = nb_str;
 	if (sign)
 	{
-		ft_memset(tmp_ptr, sign, 1);
+		*tmp_ptr = sign;
 		tmp_ptr++;
 		nb_str_ptr++;
 	}
@@ -109,15 +112,19 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 
 	original_str = ft_strdup(nb_str);
 	// "if a signed conversion results in no characters" what does that even mean
+	no_sign = 0;
 	if (*nb_str != '+' && *nb_str != '-')
 		no_sign = 1;
 	if (options->precision == -1 && options->flags & F_ZERO)
 		nb_str = adjust_int(nb_str, options->field_width, 1);
-    else
+    //previously just else
+	else if (options->precision > -1)
 		nb_str = adjust_int(nb_str, options->precision, 0);
-	//so if if (options->precision <= len) we dont adjust int
-	if (no_sign && options->flags & F_SPACE && !(options->flags & F_PLUS) && !(options->flags & F_MINUS))
+	//so if (options->precision <= len) we dont adjust int
+	//isnt that repetitive?
+	if (no_sign && options->flags & F_SPACE)
 	{
+		//printf("BUT WHY\n");
 		tmp = ft_strjoin(" ", nb_str);
 		free(nb_str);
 		nb_str = tmp;
