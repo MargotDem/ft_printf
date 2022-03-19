@@ -135,23 +135,29 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 		free(nb_str);
 		nb_str = tmp;
 	}
-	if (options->flags & F_HASHTAG)
+	//does this need to be here? this is ridiculous may i add. it looks hysterical. surely there must a better way
+	if (options->flags & F_HASHTAG && (options->conv_spec == CS_X || options->conv_spec == CS_XX))
 	{
-		if (options->conv_spec == CS_X || options->conv_spec == CS_XX)
+		if (*original_str != '0')
 		{
-			if (*original_str != '0')
+			if (options->flags & F_ZERO && options->precision == -1 && options->field_width > len)
+			{
+				tmp = ft_strdup(nb_str);
+				tmp[0] = '0';
+				if (options->conv_spec == CS_X)
+					tmp[1] = 'x';
+				else
+					tmp[1] = 'X';
+			}
+			else
 			{
 				if (options->conv_spec == CS_X)
 					tmp = ft_strjoin("0x", nb_str);
 				else
 					tmp = ft_strjoin("0X", nb_str);
-				free(nb_str);
-				nb_str = tmp;
 			}
-		}
-		else if (options->conv_spec & CS_O)
-		{
-			//printf("hehe coucou\n");
+			free(nb_str);
+			nb_str = tmp;
 		}
 	}
 	padded_print(nb_str, options, char_count);
@@ -230,7 +236,9 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 	set_nb_unsigned(options, list, &nb);
 	nb_str = ft_ull_itoa_base(nb, 8);
 	len = ft_strlen(nb_str);
-	if (options->flags & F_HASHTAG && options->precision <= (int)len && nb != 0)
+	if (options->flags & F_HASHTAG && \
+		options->precision <= (int)len && nb != 0 && \
+		!(options->flags & F_ZERO && options->field_width > len && options->precision == -1))
 		options->precision = (int)len + 1;
 	print_out_nb_str(options, char_count, len, nb_str);
 	//free(nb_str);

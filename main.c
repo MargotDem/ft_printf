@@ -100,11 +100,11 @@ int	main(void)
 	printf("hey '%#10.5x'\n", 9);
 	ft_printf("hey '%#10.5x'\n", 9);
 
-		printf("\n\n");
+	printf("\n\n");
 	printf("hey '%#10.5o'\n", 9);
 	ft_printf("hey '%#10.5o'\n", 9);
 
-		printf("hey '%+010.8d'\n", 9);
+	printf("hey '%+010.8d'\n", 9);
 	ft_printf("hey '%+010.8d'\n", 9);
 	
 	printf("\n\n");
@@ -118,8 +118,6 @@ int	main(void)
 	printf("\n\n");
 	printf("hey '%#o'\n", 0);
 	ft_printf("hey '%#o'\n", 0);
-
-	
 
 	printf("\n\n");
 	printf("hey '%- d'\n", 45);
@@ -145,8 +143,6 @@ int	main(void)
 	printf("hey '%+10d'\n", 58);
 	ft_printf("hey '%+10d'\n", 58);
 
-	*/
-
 	printf("\n\n");
 	printf("%u\n", (unsigned int)4294967295);
 	ft_printf("% u\n", (unsigned int)4294967295);
@@ -170,4 +166,64 @@ int	main(void)
 	printf("\n\n");
 	printf("wtf '%d'\n", 0);
 	ft_printf("wtf '%d'\n", 0);
+
+	printf("\n\n");
+	printf("wtf '%#08x'\n", 42);
+	ft_printf("wtf '%#08x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#08o'\n", 42);
+	ft_printf("wtf '%#08o'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#08.o'\n", 42);
+	ft_printf("wtf '%#08.o'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#08.4o'\n", 42);
+	ft_printf("wtf '%#08.4o'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#0o'\n", 42);
+	ft_printf("wtf '%#0o'\n", 42);
+
+
+	printf("\n\n");
+	printf("wtf '%#8o'\n", 42);
+	ft_printf("wtf '%#8o'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#8x'\n", 42);
+	ft_printf("wtf '%#8x'\n", 42);
+
+	*/
+
+	printf("\n\n");
+	printf("wtf '%#08x'\n", 42);
+	ft_printf("wtf '%#08x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#02x'\n", 42);
+	ft_printf("wtf '%#02x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#08.15x'\n", 42);
+	ft_printf("wtf '%#08.15x'\n", 42);
+
+
+	printf("\n\n");
+	printf("wtf '%#08.5x'\n", 42);
+	ft_printf("wtf '%#08.5x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#8x'\n", 42);
+	ft_printf("wtf '%#8x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#8.x'\n", 42);
+	ft_printf("wtf '%#8.x'\n", 42);
+
+	printf("\n\n");
+	printf("wtf '%#8.15x'\n", 42);
+	ft_printf("wtf '%#8.15x'\n", 42);
 }
