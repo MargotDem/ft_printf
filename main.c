@@ -196,7 +196,6 @@ int	main(void)
 	printf("wtf '%#8x'\n", 42);
 	ft_printf("wtf '%#8x'\n", 42);
 
-	*/
 
 	printf("\n\n");
 	printf("wtf '%#08x'\n", 42);
@@ -226,4 +225,44 @@ int	main(void)
 	printf("\n\n");
 	printf("wtf '%#8.15x'\n", 42);
 	ft_printf("wtf '%#8.15x'\n", 42);
+
+	printf("\n\n");
+	printf("hey '%#.x' '%#.0x'\n", 0, 0);
+	ft_printf("hey '%#.x' '%#.0x'\n", 0, 0);
+
+	printf("\n\n");
+	printf("hey '%#.x' '%#.0x'\n", 1, 1);
+	ft_printf("hey '%#.x' '%#.0x'\n", 1, 1);
+
+	printf("\n\n");
+	printf("wtf '% .d'\n", 0);
+	ft_printf("wtf '% .d'\n", 0);
+
+	printf("\n\n");
+	printf("hey '%#.o'\n", 0);
+	ft_printf("hey '%#.o'\n", 0);
+
+	printf("\n\n");
+	printf("hey '%#.1o'\n", 0);
+	ft_printf("hey '%#.1o'\n", 0);
+
+	printf("\n\n");
+	printf("hey '%#.o'\n", 5);
+	ft_printf("hey '%#.o'\n", 5);
+
+	printf("\n\n");
+	printf("hey '%#.2o'\n", 5);
+	ft_printf("hey '%#.2o'\n", 5);
+
+	*/
+
+	printf("\n\n");
+	printf("hey '%s'\n", NULL);
+	ft_printf("hey '%s'\n", NULL);
+
+		printf("\n\n");
+	//printf("hey '%.2c'\n", NULL);
+	ft_printf("hey '%.2c'\n", NULL);
+
+
 }

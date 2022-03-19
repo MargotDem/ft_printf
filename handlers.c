@@ -110,7 +110,7 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	char	*original_str;
 	int		no_sign;
 
-	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")))
+	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")) && !(options->conv_spec == CS_O &&options->flags & F_HASHTAG))
 	{
 		tmp = ft_strnew(0);
 		free(nb_str);
@@ -136,7 +136,7 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 		nb_str = tmp;
 	}
 	//does this need to be here? this is ridiculous may i add. it looks hysterical. surely there must a better way
-	if (options->flags & F_HASHTAG && (options->conv_spec == CS_X || options->conv_spec == CS_XX))
+	if (options->flags & F_HASHTAG && (options->conv_spec == CS_X || options->conv_spec == CS_XX) && *original_str != '\0')
 	{
 		if (*original_str != '0')
 		{
@@ -291,13 +291,21 @@ void    handle_str(t_options *options, va_list *list, size_t *char_count)
     char    *substr;
 
     str = va_arg(*list, char *);
-	if (options->precision < 0 || options->precision > ft_strlen(str))
-		padded_print(str, options, char_count);
+	if (!str)
+	{
+		ft_putstr("(null)");
+		*char_count += 6;
+	}
 	else
 	{
-		substr = ft_strsub(str, 0, options->precision);
-		padded_print(substr, options, char_count);
-		free(substr);
+		if (options->precision < 0 || options->precision > ft_strlen(str))
+			padded_print(str, options, char_count);
+		else
+		{
+			substr = ft_strsub(str, 0, options->precision);
+			padded_print(substr, options, char_count);
+			free(substr);
+		}
 	}
 }
 
@@ -307,13 +315,21 @@ void    handle_char(t_options *options, va_list *list, size_t *char_count)
 	char	*str;
 
 	c = va_arg(*list, int);
-	str = ft_strnew(1);
-	if (!str)
-		handle_error();
-	str[0] = c;
-	str[1] = '\0';
-	padded_print(str, options, char_count);
-	free(str);
+	if (c)
+	{
+		str = ft_strnew(1);
+		if (!str)
+			handle_error();
+		str[0] = c;
+		str[1] = '\0';
+		padded_print(str, options, char_count);
+		free(str);
+	}
+	else
+	{
+		str = "^@";
+		padded_print(str, options, char_count);
+	}
 }
 
 void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
@@ -324,9 +340,9 @@ void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 }
 
 /*
+
 42filechecker
 
 70 78 are undefined behavior
-
 
 */
