@@ -69,7 +69,7 @@ int	main(void)
 		printf("\n\n");
 	printf("hey '%+10.5d'\n", 6);
 	ft_printf("hey '%+10.5d'\n", 6);
-	*/
+	
 
 	printf("\n\n");
 	printf("hey '%#x'\n", 6);
@@ -106,4 +106,16 @@ int	main(void)
 
 		printf("hey '%+010.8d'\n", 9);
 	ft_printf("hey '%+010.8d'\n", 9);
+	*/
+	printf("\n\n");
+	printf("hey '%.4o'\n", 9);
+	ft_printf("hey '%.4o'\n", 9);
+
+	printf("\n\n");
+	printf("hey '%#o'\n", 9);
+	ft_printf("hey '%#o'\n", 9);
+
+	printf("\n\n");
+	printf("hey '%#o'\n", 0);
+	ft_printf("hey '%#o'\n", 0);
 }
