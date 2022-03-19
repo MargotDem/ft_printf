@@ -67,7 +67,10 @@ void	ignore_flags(t_options *options)
 		//printf("here");
 		options->flags = options->flags ^ F_SPACE;
 	}
-
+	if (options->flags & F_SPACE && \
+		(options->conv_spec != CS_D && options->conv_spec != CS_I && 
+		options->conv_spec != CS_F))
+		options->flags = options->flags ^ F_SPACE;
 }
 
 void    handle_flags(char *ptr, t_options *options)

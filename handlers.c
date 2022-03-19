@@ -110,6 +110,12 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	char	*original_str;
 	int		no_sign;
 
+	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")))
+	{
+		tmp = ft_strnew(0);
+		free(nb_str);
+		nb_str = tmp;
+	}
 	original_str = ft_strdup(nb_str);
 	// "if a signed conversion results in no characters" what does that even mean
 	no_sign = 0;
@@ -150,6 +156,7 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 	padded_print(nb_str, options, char_count);
 	free(original_str);
+	//free(nb_str);
 }
 
 void	set_nb(t_options *options, va_list *list, long long int *nb)

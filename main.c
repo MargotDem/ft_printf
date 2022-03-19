@@ -119,7 +119,7 @@ int	main(void)
 	printf("hey '%#o'\n", 0);
 	ft_printf("hey '%#o'\n", 0);
 
-	*/
+	
 
 	printf("\n\n");
 	printf("hey '%- d'\n", 45);
@@ -144,4 +144,30 @@ int	main(void)
 	printf("\n\n");
 	printf("hey '%+10d'\n", 58);
 	ft_printf("hey '%+10d'\n", 58);
+
+	*/
+
+	printf("\n\n");
+	printf("%u\n", (unsigned int)4294967295);
+	ft_printf("% u\n", (unsigned int)4294967295);
+
+	printf("\n\n");
+	printf("@moulitest: %.d %.0d\n", 0, 0);
+	ft_printf("@moulitest: %.d %.0d\n", 0, 0);
+
+	printf("\n\n");
+	printf("wtf '%.d %.0d'\n", 0, 0);
+	ft_printf("wtf '%.d %.0d'\n", 0, 0);
+
+	printf("\n\n");
+	printf("wtf '%10.d'\n", 0);
+	ft_printf("wtf '%10.d'\n", 0);
+
+	printf("\n\n");
+	printf("wtf '%.0d'\n", 0);
+	ft_printf("wtf '%.0d'\n", 0);
+
+	printf("\n\n");
+	printf("wtf '%d'\n", 0);
+	ft_printf("wtf '%d'\n", 0);
 }
