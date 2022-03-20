@@ -327,7 +327,10 @@ void    handle_char(t_options *options, va_list *list, size_t *char_count)
 	}
 	else
 	{
-		str = "^@";
+		str = "";
+		// not sure at all here
+		if (options->field_width > 0)
+			options->field_width --;
 		padded_print(str, options, char_count);
 	}
 }

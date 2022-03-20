@@ -257,12 +257,34 @@ int	main(void)
 	*/
 
 	printf("\n\n");
-	printf("hey '%s'\n", NULL);
-	ft_printf("hey '%s'\n", NULL);
+	//printf("hey '%.2c'\n", (char)NULL);
+	ft_printf("hey '%.2c'\n", (char)NULL);
 
-		printf("\n\n");
-	//printf("hey '%.2c'\n", NULL);
-	ft_printf("hey '%.2c'\n", NULL);
+	printf("\n\n");
+	printf("hey '%c'\n", (char)0);
+	ft_printf("hey '%c'\n", (char)0);
 
+	printf("\n\n");
+	printf("hey '%1c'\n", (char)0);
+	ft_printf("hey '%1c'\n", (char)0);
 
+	printf("\n\n");
+	printf("hey '%-2c'\n", (char)0);
+	ft_printf("hey '%-2c'\n", (char)0);
+
+	printf("\n\n");
+	printf("hey '%3c'\n", (char)0);
+	ft_printf("hey '%3c'\n", (char)0);
+
+	printf("\n\n");
+	//printf("hey '% c'\n", (char)0);
+	ft_printf("hey '% c'\n", (char)0);
 }
+
+/*
+ft_printf("%.2c", NULL); -> "^@"
+ft_printf("@moulitest: %c", 0);               -> "@moulitest: ^@"
+ft_printf("%2c", 0);                          -> " ^@"
+ft_printf("null %c and text", 0);             -> "null ^@ and text"
+ft_printf("% c", 0);                          -> "^@"
+*/
