@@ -46,6 +46,8 @@ void	handle_hex_x(t_options *options, va_list *list, size_t *char_count);
 void	handle_hex_X(t_options *options, va_list *list, size_t *char_count);
 void	handle_oct(t_options *options, va_list *list, size_t *char_count);
 void	handle_decimal(t_options *options, va_list *list, size_t *char_count);
+void    handle_f(t_options *options, va_list *list, size_t *char_count);
+void    handle_p(t_options *options, va_list *list, size_t *char_count);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40

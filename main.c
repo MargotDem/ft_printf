@@ -254,7 +254,7 @@ int	main(void)
 	printf("hey '%#.2o'\n", 5);
 	ft_printf("hey '%#.2o'\n", 5);
 
-	*/
+	
 
 	printf("\n\n");
 	//printf("hey '%.2c'\n", (char)NULL);
@@ -277,8 +277,29 @@ int	main(void)
 	ft_printf("hey '%3c'\n", (char)0);
 
 	printf("\n\n");
+	//printf("hey '%0c'\n", (char)0);
+	ft_printf("hey '%0c'\n", (char)0);
+
+	printf("\n\n");
 	//printf("hey '% c'\n", (char)0);
 	ft_printf("hey '% c'\n", (char)0);
+
+	printf("\n\n");
+	printf("hey '%3c'\n", 'f');
+	ft_printf("hey '%3c'\n", 'f');
+
+	*/
+
+	char *str = "hello";
+	char *str2 = "hello";
+	printf("\n\n");
+	printf("hey '%10p'\n", (void *)str2);
+	ft_printf("hey '%10p'\n", (void *)str2);
+	printf("test '%x'\n", (unsigned int)str2);
+
+	printf("\n\n");
+	//printf("hey '%.10p'\n", (void *)str);
+	ft_printf("hey '%.10p'\n", (void *)str);
 }
 
 /*

@@ -342,6 +342,21 @@ void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 	padded_print("%", options, char_count);
 }
 
+void    handle_f(t_options *options, va_list *list, size_t *char_count)
+{
+    (void)list;
+
+	padded_print("hey", options, char_count);
+}
+
+void    handle_p(t_options *options, va_list *list, size_t *char_count)
+{
+    (void)list;
+
+	padded_print("hey", options, char_count);
+}
+
+
 /*
 
 42filechecker
