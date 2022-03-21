@@ -25,10 +25,11 @@ static int	get_size(unsigned long long int nb, int base)
 	return (nb_size);
 }
 
-static void	make_string(char *str, int nb_size, unsigned long long int nb, int base)
+static void	make_string(char *str, int nb_size, unsigned long long int nb, \
+	int base)
 {
 	unsigned long long int	tmp;
-	int	i;
+	int						i;
 
 	i = 0;
 	while (i < nb_size)

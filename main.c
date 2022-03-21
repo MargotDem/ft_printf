@@ -292,14 +292,48 @@ int	main(void)
 
 	char *str = "hello";
 	char *str2 = "hello";
-	printf("\n\n");
-	printf("hey '%10p'\n", (void *)str2);
-	ft_printf("hey '%10p'\n", (void *)str2);
-	printf("test '%x'\n", (unsigned int)str2);
+	(void)str2;
 
+	printf("\n\n");
+	printf("hey '%10p'\n", (void *)str);
+	ft_printf("hey '%10p'\n", (void *)str);
+
+
+	printf("\n\n");
+	printf("hey '%-10p'\n", (void *)str);
+	ft_printf("hey '%-10p'\n", (void *)str);
+
+	printf("\n\n");
+	//printf("hey '%+10p'\n", (void *)str);
+	ft_printf("hey '%+10p'\n", (void *)str);
+
+	printf("\n\n");
+	//printf("hey '%010p'\n", (void *)str);
+	ft_printf("hey '%010p'\n", (void *)str);
+	
 	printf("\n\n");
 	//printf("hey '%.10p'\n", (void *)str);
 	ft_printf("hey '%.10p'\n", (void *)str);
+
+	printf("\n\n");
+	printf("heyyy '%-p'\n", (void *)NULL);
+	ft_printf("heyyy '%-p'\n", (void *)NULL);
+
+	printf("\n\n");
+	printf("heyyy '%-10p'\n", (void *)NULL);
+	ft_printf("heyyy '%-10p'\n", (void *)NULL);
+
+	printf("\n\n");
+	printf("heyyy '%20p'\n", (void *)NULL);
+	ft_printf("heyyy '%20p'\n", (void *)NULL);
+
+	printf("\n\n");
+	printf("heyyy '%-4p'\n", (void *)NULL);
+	ft_printf("heyyy '%-4p'\n", (void *)NULL);
+
+	printf("\n\n");
+	printf("heyyy '%20p'\n", (void *)str);
+	ft_printf("heyyy '%20p'\n", (void *)str);
 }
 
 /*

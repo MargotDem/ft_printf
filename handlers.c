@@ -352,8 +352,14 @@ void    handle_f(t_options *options, va_list *list, size_t *char_count)
 void    handle_p(t_options *options, va_list *list, size_t *char_count)
 {
     (void)list;
+	char	*nb_str;
+	unsigned long long int	nb;
 
-	padded_print("hey", options, char_count);
+	nb = va_arg(*list, unsigned long long int);
+	nb_str = ft_ull_itoa_base(nb, 16);
+	nb_str = ft_strjoin("0x", nb_str);
+	padded_print(nb_str, options, char_count);
+	free(nb_str);
 }
 
 
