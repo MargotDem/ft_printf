@@ -431,14 +431,22 @@ int	main(void)
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008881);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008884);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008885);
+	printf("hehehoho '%.f'\n", 0.5000000000000008881);
+	printf("hehehoho '%.f'\n", 0.5000000000000008884);
+	printf("hehehoho '%.f'\n", 0.5000000000000008885);
 
 
-	printf("putain de sa daronne jpp '%.f'\n", 0.5);
-	printf("putain de sa daronne jpp '%.f'\n", 1.5);
+	printf("bankers rounding '%.f'\n", 0.5);
+	printf("bankers rounding '%.f'\n", 1.5);
 
 }
 
 /*
+42file checker tests i dont pass
+
+but why ^@
+what is the meaning of this
+
 ft_printf("%.2c", NULL); -> "^@"
 ft_printf("@moulitest: %c", 0);               -> "@moulitest: ^@"
 ft_printf("%2c", 0);                          -> " ^@"
