@@ -45,6 +45,12 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 			i++;
 		}
 	}
+	else if (options->flags & F_HASHTAG)
+	{
+		tmp = ft_strjoin(nb_str, ".");
+		free(nb_str);
+		nb_str = tmp;
+	}
 	padded_print(nb_str, options, char_count);
 	free(nb_str);
 	//padded_print(ft_itoa(main), options, char_count);

@@ -373,6 +373,29 @@ int	main(void)
 	printf("test '%.f'\n", 10.4);
 	printf("test '%.f'\n", 10.5);
 	printf("test '%.f'\n", 10.6);
+
+	printf("test '%.f'\n", 10.49);
+	printf("test '%.1f'\n", 10.9988);
+	printf("test '%.3f'\n", 10.9988);
+	printf("test '%.1f'\n", 10.88);
+
+	printf("test '%d'\n", (int)10.9);
+	printf("test '%f'\n", 0.56 * 10);
+
+	printf("hey '%#########################################################################--###------10o'\n", 7);
+	ft_printf("hey '%########################################################--####################------10o'\n", 7);
+
+	printf("hey %f\n", (double)10.2);
+	printf("hey %lf\n", (double)10.2);
+	printf("hey %Lf\n", (long double)10.2);
+
+		printf("\n\n");
+	printf("hey '%-15f'\n", (double)10.256);
+	ft_printf("hey '%-15f'\n", (double)10.256);
+
+	printf("test '%#.0f'\n", 10.49);
+	ft_printf("test '%#.0f'\n", 10.49);
+
 	printf("oihkugjtest '%.f'\n", 10.56);
 	printf("oihkugjtest '%.f'\n", 10.50);
 	printf("oihkugjtest '%.f'\n", 10.55);
@@ -391,30 +414,27 @@ int	main(void)
 	printf("oihkugjtest '%.f'\n", 10.5000000000001);
 	printf("oihkugjtest '%.f'\n", 10.50000000000001);
 	printf("oihkugjtest '%.f'\n", 10.500000000000001);
-	printf("oihkugjtest '%.f'\n", 10.5000000000000009);
+	printf("here '%.f'\n", 10.5000000000000009);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000001);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000004);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000005);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008);
+	printf("there '%.f'\n", 10.5000000000000009);
 	printf("oihkugjtest '%.f'\n", 10.50000000000000089);
+	printf("oihkugjtest '%.f'\n", 10.50000000000000059);
 	printf("oihkugjtest '%.f'\n", 10.50000000000000001); //17
-	printf("test '%.1f'\n", 10.9988);
-	printf("test '%.3f'\n", 10.9988);
-	printf("test '%.1f'\n", 10.88);
+	printf("oihkugjtest '%.f'\n", 10.500000000000000001); //17
 
-	printf("test '%d'\n", (int)10.9);
-	printf("test '%f'\n", 0.56 * 10);
+	printf("AAAA\n");
 
-	printf("hey '%#########################################################################--###------10o'\n", 7);
-	ft_printf("hey '%########################################################--####################------10o'\n", 7);
 
-	printf("hey %f\n", (double)10.2);
-	printf("hey %lf\n", (double)10.2);
-	printf("hey %Lf\n", (long double)10.2);
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008884);
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008885);
 
-		printf("\n\n");
-	printf("hey '%-15f'\n", (double)10.256);
-	ft_printf("hey '%-15f'\n", (double)10.256);
+
+	printf("putain de sa daronne jpp '%.f'\n", 0.5);
+	printf("putain de sa daronne jpp '%.f'\n", 1.5);
 
 }
 
