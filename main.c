@@ -288,7 +288,7 @@ int	main(void)
 	printf("hey '%3c'\n", 'f');
 	ft_printf("hey '%3c'\n", 'f');
 
-	*/
+
 
 	char *str = "hello";
 	char *str2 = "hello";
@@ -334,6 +334,56 @@ int	main(void)
 	printf("\n\n");
 	printf("heyyy '%20p'\n", (void *)str);
 	ft_printf("heyyy '%20p'\n", (void *)str);
+
+	*/
+
+	printf("\n\n");
+	printf("heyyy '%f'\n", (double)10);
+	ft_printf("heyyy '%f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.f'\n", (double)10);
+	ft_printf("heyyy '%.f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.0f'\n", (double)10);
+	ft_printf("heyyy '%.0f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.1f'\n", (double)10);
+	ft_printf("heyyy '%.1f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.4f'\n", (double)10);
+	ft_printf("heyyy '%.4f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.10f'\n", (double)10);
+	ft_printf("heyyy '%.10f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%Lf'\n", (long double)10);
+	ft_printf("heyyy '%Lf'\n", (long double)10);
+
+
+	printf("test '%d'\n", (int)10.9988);
+	printf("test '%f'\n", 10.9988);
+	printf("test '%.f'\n", 10.9988);
+	printf("test '%.f'\n", 10.1);
+	printf("test '%.f'\n", 10.4);
+	printf("test '%.f'\n", 10.5);
+	printf("test '%.f'\n", 10.6);
+	printf("oihkugjtest '%.f'\n", 10.56);
+	printf("oihkugjtest '%.f'\n", 10.50);
+	printf("oihkugjtest '%.f'\n", 10.55);
+	printf("oihkugjtest '%.f'\n", 10.5);
+	printf("test '%.1f'\n", 10.9988);
+	printf("test '%.3f'\n", 10.9988);
+	printf("test '%.1f'\n", 10.88);
+
+	printf("test '%d'\n", (int)10.9);
+	printf("test '%f'\n", 10.9 / (float)2);
+
 }
 
 /*
