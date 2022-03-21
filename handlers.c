@@ -342,38 +342,6 @@ void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
 	padded_print("%", options, char_count);
 }
 
-void	handle_float(t_options *options, va_list *list, size_t *char_count)
-{
-	double	nb;
-
-	nb = va_arg(*list, double);
-	padded_print("hey", options, char_count);
-}
-
-void	handle_ld_float(t_options *options, va_list *list, size_t *char_count)
-{
-	long double	nb;
-
-	nb = va_arg(*list, long double);
-	padded_print("hey", options, char_count);
-}
-
-void    handle_f(t_options *options, va_list *list, size_t *char_count)
-{
-    (void)list;
-
-	if (options->len_mod && *options->len_mod == 'L')
-	{
-		printf("long double\n");
-		handle_ld_float(options, list, char_count);
-	}
-	else
-	{
-		printf("simple float\n");
-		handle_float(options, list, char_count);
-	}
-}
-
 void    handle_p(t_options *options, va_list *list, size_t *char_count)
 {
     (void)list;
