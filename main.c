@@ -430,6 +430,7 @@ int	main(void)
 
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008881);
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008884);
+
 	printf("oihkugjtest '%.f'\n", 10.5000000000000008885);
 	printf("hehehoho '%.f'\n", 0.5000000000000008881);
 	printf("hehehoho '%.f'\n", 0.5000000000000008884);
@@ -439,6 +440,95 @@ int	main(void)
 	printf("bankers rounding '%.f'\n", 0.5);
 	printf("bankers rounding '%.f'\n", 1.5);
 
+	printf("test '%.10f'\n", 10.49);
+
+
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 9.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 9.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 8.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 8.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 7.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 7.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 6.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 6.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 5.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 5.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 4.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 4.5000000000000008884);
+	printf("\n\n");
+
+	printf("oihkugjtest '%.f'\n", 10.5000000000000008881);
+	printf("oihkugjtest '%.f'\n", 10.50000000000000088818);
+	printf("oihkugjtest '%.17f'\n", 10.5000000000000008882);
+	printf("oihkugjtest '%.20f'\n", 10.5000000000000008882);
+	printf("oihkugjtest '%.19f'\n", 10.5000000000000008882);
+
+	printf("\n\n");
+	printf("bankers rounding '%.f'\n", 4.5);
+	printf("bankers rounding '%.f'\n", 5.5);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 4.5);
+	printf("oihkugjtest '%.1f'\n", 5.5);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 5.5);
+	printf("oihkugjtest '%.1f'\n", 5.9);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 5.595);
+	printf("oihkugjtest '%.1f'\n", 5.95);
+
+	printf("\n\n");
+	printf("oihkugjtest '%f'\n", 5.595);
+
+	printf("oihkugjtest '%.1f'\n", 5.49);
+	printf("oihkugjtest '%.1f'\n", 5.59);
+	printf("oihkugjtest '%.1f'\n", 5.99);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.40f'\n", 5.0000001155566464684864646158489596566);
+ ft_printf("oihkugjtest '%.40f'\n", 5.0000001155566464684864646158489596566);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.30f'\n", 5.0000001155566464684864646158489596566);
+ ft_printf("oihkugjtest '%.30f'\n", 5.0000001155566464684864646158489596566);
+
+
+	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", 5.9);
+ ft_printf("oihkugjtest '%.f'\n", 5.9);
+
+ 	printf("\n\n");
+	printf("oihkugjtest '%#.f'\n", 5.9);
+ ft_printf("oihkugjtest '%#.f'\n", 5.9);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 5.96);
+ ft_printf("oihkugjtest '%.1f'\n", 5.96);
+
+ 	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 9.99);
+ ft_printf("oihkugjtest '%.1f'\n", 9.99);
+
+ 	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", (double)456);
+ ft_printf("oihkugjtest '%.f'\n", (double)456);
+	
 }
 
 /*
