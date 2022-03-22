@@ -39,11 +39,9 @@ char	*round_float(char *nb_str, size_t last_digit, size_t len)
 	if (last_digit > 4)
 	{
 		main = ft_atoi(nb_str);
+		// just a round float or a round float plus dot
 		if (ft_strlen(ft_itoa(main)) == len || ft_strlen(ft_itoa(main)) == len - 1)
-		{
-			// just a round float or a round float plus dot
 			nb_str = round_main(nb_str, main, len);
-		}
 		else
 		{
 			place = len - 1;
@@ -62,6 +60,16 @@ char	*round_float(char *nb_str, size_t last_digit, size_t len)
 	return (nb_str);
 }
 
+char	*add_dot(char *nb_str)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(nb_str, ".");
+	free(nb_str);
+	nb_str = tmp;
+	return (nb_str);
+}
+
 void	handle_float(t_options *options, va_list *list, size_t *char_count)
 {
 	double	nb;
@@ -76,40 +84,55 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	size_t	last_digit; 
 
 	nb = va_arg(*list, double);
-	main = (int)nb;
+
 	precision = options->precision;
-	if (precision == -1)
-		precision = 6;
-	i = 0;
-	nb_str = ft_itoa(main);
-	len = ft_strlen(nb_str);
-	total_len = len;
-	if (precision != 0)
+	main = (int)nb;
+	if (precision == 0 && nb - main - 0.500000000000000 == 0.000000000000000)
 	{
-		tmp = ft_strnew(len + precision + 1);
-		ft_strcpy(tmp, nb_str);
-		free(nb_str);
-		nb_str = tmp;
-		nb_str[len] = '.';
-		while (i < precision)
+		printf("here. %d\n", nb - main - 0.500000000000000 == 0.000000000000000);
+		printf("here. %.15f\n", nb);
+		if (main % 2 == 0)
+			nb_str = ft_itoa(main);
+		else
+			nb_str = ft_itoa(main + 1);
+		if (options->flags & F_HASHTAG)
+			nb_str = add_dot(nb_str);
+	}
+	else
+	{
+		printf("and there. %d\n", nb - main - 0.500000000000000 == 0.000000000000000);
+		printf("and there. %.15f\n", nb);
+		if (precision == -1)
+			precision = 6;
+		i = 0;
+		nb_str = ft_itoa(main);
+		len = ft_strlen(nb_str);
+		total_len = len;
+		if (precision != 0)
 		{
-			nb = (nb - (int)nb) * 10;
-			decimal = (int)(nb);
-			nb_str[len + i + 1] = ft_itoa(decimal)[0];
-			i++;
+			tmp = ft_strnew(len + precision + 1);
+			ft_strcpy(tmp, nb_str);
+			free(nb_str);
+			nb_str = tmp;
+			nb_str[len] = '.';
+			while (i < precision)
+			{
+				nb = (nb - (int)nb) * 10;
+				decimal = (int)(nb);
+				nb_str[len + i + 1] = ft_itoa(decimal)[0];
+				i++;
+			}
+			total_len = len + precision + 1;
 		}
-		total_len = len + precision + 1;
+		else if (options->flags & F_HASHTAG)
+		{
+			nb_str = add_dot(nb_str);
+			total_len++;
+		}
+		nb = (nb - (int)nb) * 10;
+		last_digit = (int)nb;
+		nb_str = round_float(nb_str, last_digit, total_len);
 	}
-	else if (options->flags & F_HASHTAG)
-	{
-		tmp = ft_strjoin(nb_str, ".");
-		free(nb_str);
-		nb_str = tmp;
-		total_len++;
-	}
-	nb = (nb - (int)nb) * 10;
-	last_digit = (int)nb;
-	nb_str = round_float(nb_str, last_digit, total_len);
 	padded_print(nb_str, options, char_count);
 	free(nb_str);
 }
