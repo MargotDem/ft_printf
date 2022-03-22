@@ -337,6 +337,8 @@ int	main(void)
 
 	*/
 
+
+
 	printf("\n\n");
 	printf("heyyy '%f'\n", (double)10);
 	ft_printf("heyyy '%f'\n", (double)10);
@@ -477,28 +479,87 @@ int	main(void)
 	printf("oihkugjtest '%.20f'\n", 10.5000000000000008882);
 	printf("oihkugjtest '%.19f'\n", 10.5000000000000008882);
 
+
+	printf("HLELLLOOOOOOOO\n\n"); 
+
+	printf("\n\n");
+	printf("hello hello '%.4f'\n", 10.50009);
+ ft_printf("hello hello '%.4f'\n", 10.50009);
+
+	printf("\n\n");
+	printf("hello hello '%.f'\n", 10.50009);
+ ft_printf("hello hello '%.f'\n", 10.50009);
+	
+	printf("\n\n");
+	printf("WHAT IN THE NAME OF JESUS '%.f'\n", 10.5000000000000008881);
+ ft_printf("hello hello '%.f'\n", 10.5000000000000008881);
+
+ 	printf("\n\n");
+	printf("hello hello '%.f'\n", 10.5000004000000008881);
+ ft_printf("hello hello '%.f'\n", 10.5000004000000008881);
+
+	printf("\n\n");
+	printf("hello hello '%.f'\n", 10.5000000000000008882);
+ ft_printf("hello hello '%.f'\n", 10.5000000000000008882);
+
+	printf("\n\n");
+	printf("hello hello '%.f'\n", 10.50000000000000088818);
+ ft_printf("hello hello '%.f'\n", 10.50000000000000088818);
+
+ 	printf("\n\n");
+	printf("hello hello '%.17f'\n", 10.5000000000000008882);
+ ft_printf("hello hello '%.17f'\n", 10.5000000000000008882);
+
+  	printf("\n\n");
+	printf("hello hello '%.19f'\n", 10.5000000000000008882);
+ ft_printf("hello hello '%.19f'\n", 10.5000000000000008882);
+
+  	printf("\n\n");
+	printf("hello hello '%.20f'\n", 10.5000000000000008882);
+ ft_printf("hello hello '%.20f'\n", 10.5000000000000008882);
+
+
 	printf("\n\n");
 	printf("bankers rounding '%.f'\n", 4.5);
+ ft_printf("bankers rounding '%.f'\n", 4.5);
+
+		printf("\n\n");
 	printf("bankers rounding '%.f'\n", 5.5);
+ ft_printf("bankers rounding '%.f'\n", 5.5);
+
+
 
 	printf("\n\n");
-	printf("oihkugjtest '%.1f'\n", 4.5);
-	printf("oihkugjtest '%.1f'\n", 5.5);
-
-	printf("\n\n");
-	printf("oihkugjtest '%.1f'\n", 5.5);
 	printf("oihkugjtest '%.1f'\n", 5.9);
+ ft_printf("oihkugjtest '%.1f'\n", 5.9);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 5.5);
+ ft_printf("oihkugjtest '%.1f'\n", 5.5);
+
+	printf("\n\n");
+	printf("oihkugjtest '%.1f'\n", 5.95);
+ ft_printf("oihkugjtest '%.1f'\n", 5.95);
 
 	printf("\n\n");
 	printf("oihkugjtest '%.1f'\n", 5.595);
-	printf("oihkugjtest '%.1f'\n", 5.95);
+ ft_printf("oihkugjtest '%.1f'\n", 5.595);
 
 	printf("\n\n");
 	printf("oihkugjtest '%f'\n", 5.595);
+ ft_printf("oihkugjtest '%f'\n", 5.595);
 
+	printf("\n\n");
 	printf("oihkugjtest '%.1f'\n", 5.49);
+ ft_printf("oihkugjtest '%.1f'\n", 5.49);
+
+	printf("\n\n");
 	printf("oihkugjtest '%.1f'\n", 5.59);
+ ft_printf("oihkugjtest '%.1f'\n", 5.59);
+	
+	printf("\n\n");
 	printf("oihkugjtest '%.1f'\n", 5.99);
+ ft_printf("oihkugjtest '%.1f'\n", 5.99);
 
 	printf("\n\n");
 	printf("oihkugjtest '%.40f'\n", 5.0000001155566464684864646158489596566);
@@ -528,18 +589,60 @@ int	main(void)
  	printf("\n\n");
 	printf("oihkugjtest '%.f'\n", (double)456);
  ft_printf("oihkugjtest '%.f'\n", (double)456);
+
+  	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", (double)0.0);
+ ft_printf("oihkugjtest '%.f'\n", (double)0.0);
+
+   	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", (double)0.004);
+ ft_printf("oihkugjtest '%.f'\n", (double)0.004);
+
+    	printf("\n\n");
+	printf("oihkugjtest '%.3f'\n", (double)0.004);
+ ft_printf("oihkugjtest '%.3f'\n", (double)0.004);
+
+     	printf("\n\n");
+	printf("oihkugjtest '%.3f'\n", (double)0.005);
+ ft_printf("oihkugjtest '%.3f'\n", (double)0.005);
+
+     	printf("\n\n");
+	printf("oihkugjtest '%.2f'\n", (double)0.005);
+ ft_printf("oihkugjtest '%.2f'\n", (double)0.005);
+
+   	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", (double)0.555);
+ ft_printf("oihkugjtest '%.f'\n", (double)0.555);
+
+  	printf("\n\n");
+	printf("oihkugjtest '%.f'\n", (double)0);
+ ft_printf("oihkugjtest '%.f'\n", (double)0);
+
+
+
+/*
+//printf("%.2c\n", NULL);
+ft_printf("'%.2c'\n", NULL);
+printf("\n\n");
+
+printf("@moulitest: '%c'\n", 0);
+ft_printf("@moulitest: '%c'\n", 0);
+printf("\n\n");
+
+printf("'%2c'\n", 0);
+ft_printf("'%2c'\n", 0);
+printf("\n\n");
+
+printf("null '%c' and text\n", 0);
+ft_printf("null '%c' and text\n", 0);
+printf("\n\n");
+
+printf("null '%c' and text\n", 0);
+ft_printf("null '%c' and text\n", 0);
+printf("\n\n");
+
+*/
+
 	
 }
 
-/*
-42file checker tests i dont pass
-
-but why ^@
-what is the meaning of this
-
-ft_printf("%.2c", NULL); -> "^@"
-ft_printf("@moulitest: %c", 0);               -> "@moulitest: ^@"
-ft_printf("%2c", 0);                          -> " ^@"
-ft_printf("null %c and text", 0);             -> "null ^@ and text"
-ft_printf("% c", 0);                          -> "^@"
-*/

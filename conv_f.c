@@ -12,35 +12,37 @@
 
 #include "ft_printf.h"
 
-char	*round_float(char	*nb_str, size_t last_digit, size_t len)
+char	*round_main(char *nb_str, int main, size_t len)
+{
+	char	*tmp;
+
+	main++;
+	if (ft_strlen(ft_itoa(main)) > ft_strlen(ft_itoa(main - 1)))
+	{
+		tmp = ft_strnew(len + 1);
+		ft_strcpy(tmp + 1, nb_str);
+		free(nb_str);
+		nb_str = tmp;
+		ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
+	}
+	else
+		ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
+	return (nb_str);
+}
+
+char	*round_float(char *nb_str, size_t last_digit, size_t len)
 {
 	size_t	second_to_last;
 	size_t	place;
 	int		main;
-	char	*tmp;
 
-	if (!ft_strcmp(nb_str, "0"))
-	{
-		printf("heyyyyyyyyyy\n");
-		return (nb_str);
-	}
 	if (last_digit > 4)
 	{
 		main = ft_atoi(nb_str);
 		if (ft_strlen(ft_itoa(main)) == len || ft_strlen(ft_itoa(main)) == len - 1)
 		{
-			//printf("just an int or int and dot. str is '%s' \n", nb_str);
-			main++;
-			if (ft_strlen(ft_itoa(main)) > ft_strlen(ft_itoa(main - 1)))
-			{
-				tmp = ft_strnew(len + 1);
-				ft_strcpy(tmp + 1, nb_str);
-				free(nb_str);
-				nb_str = tmp;
-				ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
-			}
-			else
-				ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
+			// just a round float or a round float plus dot
+			nb_str = round_main(nb_str, main, len);
 		}
 		else
 		{
@@ -54,20 +56,7 @@ char	*round_float(char	*nb_str, size_t last_digit, size_t len)
 				place --;
 			}
 			if (second_to_last == 0)
-			{
-				// feels like deja vu lmao
-				main++;
-				if (ft_strlen(ft_itoa(main)) > ft_strlen(ft_itoa(main - 1)))
-				{
-					tmp = ft_strnew(len + 1);
-					ft_strcpy(tmp + 1, nb_str);
-					free(nb_str);
-					nb_str = tmp;
-					ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
-				}
-				else
-					ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
-			}
+				nb_str = round_main(nb_str, main, len);
 		}
 	}
 	return (nb_str);
