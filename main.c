@@ -338,9 +338,70 @@ int	main(void)
 	*/
 
 
-/*
 
-	printf("HLELLLOOOOOOOO\n\n"); 
+
+	
+
+ 
+
+/*printf("\n\n");
+printf("testons donc '%.15f'\n", 0.500000000000001 - 0.500000000000000);
+printf("testons donc '%.15f'\n", 0.5000 - 0.500000000000000);
+printf("testons donc '%.15f'\n", 0.5001 - 0.500000000000000);
+printf("testons donc '%.15f'\n", 0.5
+000000000000001 - 0.500000000000000);
+
+*/
+
+/*
+//printf("%.2c\n", NULL);
+ft_printf("'%.2c'\n", NULL);
+printf("\n\n");
+
+printf("@moulitest: '%c'\n", 0);
+ft_printf("@moulitest: '%c'\n", 0);
+printf("\n\n");
+
+printf("'%2c'\n", 0);
+ft_printf("'%2c'\n", 0);
+printf("\n\n");
+
+printf("null '%c' and text\n", 0);
+ft_printf("null '%c' and text\n", 0);
+printf("\n\n");
+
+printf("null '%c' and text\n", 0);
+ft_printf("null '%c' and text\n", 0);
+printf("\n\n");
+
+*/
+
+/*
+int int1;
+int int2;
+ 	printf("\n\n");
+	int1 = printf("test null char '%10c'\n", (int)NULL);
+ int2 = ft_printf("test null char '%10c'\n", (int)NULL);
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
+
+	printf("\n\n");
+	int1 = printf("print percentage: '%-10.10%' and '%05%'\n");
+	int2 = ft_printf("print percentage: '%-10.10%' and '%05%'\n");
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
+
+		printf("\n\n");
+	int1 = printf("print percentage: '%015.40%'\n");
+	int2 = ft_printf("print percentage: '%015.40%'\n");
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
+
+
+
+*/
+
+printf("HLELLLOOOOOOOO\n\n"); 
 
 	printf("\n\n");
 	printf("hello hello '%.4f'\n", 10.50009);
@@ -596,64 +657,7 @@ printf("\n\n");
 	printf("test '%#-20.25f'\n", 10.49);
  ft_printf("test '%#-20.25f'\n", 10.49);
 
- */
-
-/*printf("\n\n");
-printf("testons donc '%.15f'\n", 0.500000000000001 - 0.500000000000000);
-printf("testons donc '%.15f'\n", 0.5000 - 0.500000000000000);
-printf("testons donc '%.15f'\n", 0.5001 - 0.500000000000000);
-printf("testons donc '%.15f'\n", 0.5
-000000000000001 - 0.500000000000000);
-
-*/
-
-/*
-//printf("%.2c\n", NULL);
-ft_printf("'%.2c'\n", NULL);
-printf("\n\n");
-
-printf("@moulitest: '%c'\n", 0);
-ft_printf("@moulitest: '%c'\n", 0);
-printf("\n\n");
-
-printf("'%2c'\n", 0);
-ft_printf("'%2c'\n", 0);
-printf("\n\n");
-
-printf("null '%c' and text\n", 0);
-ft_printf("null '%c' and text\n", 0);
-printf("\n\n");
-
-printf("null '%c' and text\n", 0);
-ft_printf("null '%c' and text\n", 0);
-printf("\n\n");
-
-*/
-
-/*
-int int1;
-int int2;
- 	printf("\n\n");
-	int1 = printf("test null char '%10c'\n", (int)NULL);
- int2 = ft_printf("test null char '%10c'\n", (int)NULL);
-	printf("ret printf %d\n", int1);
-	printf("ret ft_printf %d\n", int2);
-
-	printf("\n\n");
-	int1 = printf("print percentage: '%-10.10%' and '%05%'\n");
-	int2 = ft_printf("print percentage: '%-10.10%' and '%05%'\n");
-	printf("ret printf %d\n", int1);
-	printf("ret ft_printf %d\n", int2);
-
-		printf("\n\n");
-	int1 = printf("print percentage: '%015.40%'\n");
-	int2 = ft_printf("print percentage: '%015.40%'\n");
-	printf("ret printf %d\n", int1);
-	printf("ret ft_printf %d\n", int2);
-
-
-
-*/
+ 
   	printf("\n\n");
 	printf("null '%0 10d' and text\n", 3);
  ft_printf("null '%0 10d' and text\n", 3);
@@ -697,5 +701,90 @@ int int2;
  	printf("\n\n");
 	printf("null '%0 10f' and text\n", -3.14159265);
  ft_printf("null '%0 10f' and text\n", -3.14159265);
+
+ 
+
+  	printf("\n\n");
+	printf("null '%0#10.1f' and text\n", -3.14159265);
+ ft_printf("null '%0#10.1f' and text\n", -3.14159265);
+
+   	printf("\n\n");
+	printf("null '%0#10.1f' and text\n", 3.14159265);
+ ft_printf("null '%0#10.1f' and text\n", 3.14159265);
+
+ 
+    	printf("\n\n");
+	printf("null '%.2f' and text\n", -12.126);
+ ft_printf("null '%.2f' and text\n", -12.126);
+
+     	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.126);
+ ft_printf("null '%.2f' and text\n", 12.126);
+
+     	printf("\n\n");
+	printf("null '%.2f' and text\n", -958.125);
+ ft_printf("null '%.2f' and text\n", -958.125);
+
+     	printf("\n\n");
+	printf("null '%.2f' and text\n", -958.125);
+ ft_printf("null '%.2f' and text\n", -958.125);
+
+      	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.135);
+ ft_printf("null '%.2f' and text\n", 12.135);
+
+       	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.125);
+ ft_printf("null '%.2f' and text\n", 12.125);
+
+ 	printf("\n\nBANKERS ROUNDING\n\n");
+	printf("bankers rounding '%.f'\n", 4.5);
+ ft_printf("bankers rounding '%.f'\n", 4.5);
+
+		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 5.5);
+ ft_printf("bankers rounding '%.f'\n", 5.5);
+
+ 		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 4.500000000000001);
+ ft_printf("bankers rounding '%.f'\n", 4.500000000000001);
+
+  		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 4.5000000000000001);
+ ft_printf("bankers rounding '%.f'\n", 4.5000000000000001);
+
+  		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 0.5);
+ ft_printf("bankers rounding '%.f'\n", 0.5);
+
+  		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 1.5);
+ ft_printf("bankers rounding '%.f'\n", 1.5);
+
+
+      	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.135); //12.13
+ ft_printf("null '%.2f' and text\n", 12.135);
+
+       	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.125); //12.12 makes ZERO SENSE GOD WHY
+ ft_printf("null '%.2f' and text\n", 12.125);
+
+       	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.136); //12.14 makes sense
+ ft_printf("null '%.2f' and text\n", 12.136);
+
+       	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.126); //12.13 makes sense
+ ft_printf("null '%.2f' and text\n", 12.126);
+
+       	printf("\n\n");
+	printf("null '%.2f' and text\n", 12.1352); //12.14
+ ft_printf("null '%.2f' and text\n", 12.1352);
+
+        	printf("\n\n");
+	printf("null '%.2f' and text\n", -12.1352); //12.14
+ ft_printf("null '%.2f' and text\n", -12.1352);
+
 }
 

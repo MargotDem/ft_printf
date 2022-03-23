@@ -88,6 +88,7 @@ void	ft_lstadd_back(t_list *list, t_list *new);
 int		ft_iswhitespace(char c);
 int		ft_lstsize(t_list *list);
 int		ft_abs(int i);
+long double	ft_abs_float(long double nb);
 int		get_next_line(const int fd, char **line);
 int		ft_sqrt(int nb);
 char	*ft_itoa_base(int nb, int base);

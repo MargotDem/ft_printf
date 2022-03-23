@@ -30,13 +30,14 @@ char	*round_main(char *nb_str, int main, size_t len)
 	return (nb_str);
 }
 
-char	*round_float(char *nb_str, size_t last_digit, size_t len)
+char	*round_float(char *nb_str, long double last_digit, size_t len)
 {
 	size_t	second_to_last;
 	size_t	place;
 	int		main;
 
-	if (last_digit > 4)
+	//printf("here, last digit   is %.10Lf\n", last_digit);
+	if (last_digit > 5.000000000000000)
 	{
 		main = ft_atoi(nb_str);
 		// just a round float or a round float plus dot
@@ -81,12 +82,13 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	char	*tmp;
 	size_t	len;
 	size_t	total_len;
-	size_t	last_digit; 
+	double	last_digit; 
 
 	nb = va_arg(*list, double);
 
 	precision = options->precision;
 	main = (int)nb;
+	// bankers rounding
 	if (precision == 0 && nb - main - 0.500000000000000 == 0.000000000000000)
 	{
 		if (main % 2 == 0)
@@ -126,7 +128,11 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 			total_len++;
 		}
 		nb = (nb - (int)nb) * 10;
-		last_digit = (int)nb;
+		//printf("here, float nb  is %.20f\n", nb);
+		//printf("here, int nb  is %d\n", (int)nb);
+
+		last_digit = ft_abs_float(nb);
+		//printf("first here, last digit is %zu\n", last_digit);
 		nb_str = round_float(nb_str, last_digit, total_len);
 	}
 	//deja vu in handlersm, extract
@@ -138,7 +144,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	}
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
-	if (options->precision == -1 && options->flags & F_ZERO) // how bout the precision tho
+	if (options->flags & F_ZERO) // how bout the precision tho
 		nb_str = adjust_int(nb_str, options->field_width, 1, options);
 	if (options->no_sign && options->flags & F_SPACE)
 	{

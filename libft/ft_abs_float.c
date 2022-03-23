@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_abs_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 14:05:55 by mde-maul          #+#    #+#             */
-/*   Updated: 2021/11/30 14:05:59 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/03/23 16:33:14 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/03/23 16:33:16 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_abs(int i)
+long double	ft_abs_float(long double nb)
 {
-	if (i < 0)
-		i = -i;
-	return (i);
+	if (nb < (long double)0)
+		nb = -nb;
+	return (nb);
 }
