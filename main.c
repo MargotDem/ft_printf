@@ -797,5 +797,7 @@ printf("\n\n");
 	printf("null '%+d' and text\n", -958);
  ft_printf("null '%+d' and text\n", -958);
 
+
+
 }
 

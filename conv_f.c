@@ -61,16 +61,6 @@ char	*round_float(char *nb_str, long double last_digit, size_t len)
 	return (nb_str);
 }
 
-char	*add_dot(char *nb_str)
-{
-	char	*tmp;
-
-	tmp = ft_strjoin(nb_str, ".");
-	free(nb_str);
-	nb_str = tmp;
-	return (nb_str);
-}
-
 void	handle_float(t_options *options, va_list *list, size_t *char_count)
 {
 	double	nb;
@@ -96,7 +86,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		else
 			nb_str = ft_itoa(main + 1);
 		if (options->flags & F_HASHTAG)
-			nb_str = add_dot(nb_str);
+			nb_str = ft_strjoin_replace(nb_str, ".");
 	}
 	else
 	{
@@ -124,7 +114,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		}
 		else if (options->flags & F_HASHTAG)
 		{
-			nb_str = add_dot(nb_str);
+			nb_str = ft_strjoin_replace(nb_str, ".");
 			total_len++;
 		}
 		nb = (nb - (int)nb) * 10;

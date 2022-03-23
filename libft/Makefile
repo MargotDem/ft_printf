@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/23 19:52:47 by mde-maul          #+#    #+#              #
+#    Updated: 2022/03/23 19:52:51 by mde-maul         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -22,7 +34,8 @@ FILES = ft_strlen.c ft_putchar.c ft_putstr.c ft_strcmp.c \
 	ft_lstsize.c ft_abs.c btree_create_node.c btree_apply_prefix.c \
 	btree_apply_infix.c btree_apply_suffix.c btree_insert_data.c \
 	btree_find_node.c get_next_line.c ft_sqrt.c ft_itoa_base.c \
-	ft_ull_itoa_base.c ft_ll_itoa.c ft_abs_float.c
+	ft_ull_itoa_base.c ft_ll_itoa.c ft_abs_float.c \
+	ft_strjoin_replace.c
 
 O_FILES = $(FILES:.c=.o)
 
