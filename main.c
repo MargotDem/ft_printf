@@ -338,7 +338,7 @@ int	main(void)
 	*/
 
 
-
+/*
 
 	printf("HLELLLOOOOOOOO\n\n"); 
 
@@ -488,6 +488,14 @@ int	main(void)
 	printf("bankers rounding '%.f'\n", 4.5000000000000001);
  ft_printf("bankers rounding '%.f'\n", 4.5000000000000001);
 
+  		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 0.5);
+ ft_printf("bankers rounding '%.f'\n", 0.5);
+
+  		printf("\n\n");
+	printf("bankers rounding '%.f'\n", 1.5);
+ ft_printf("bankers rounding '%.f'\n", 1.5);
+
 
   		printf("\n\n");
   		printf("\n\n");
@@ -519,28 +527,85 @@ int	main(void)
 	printf("test # '%#.f'\n", (double)4);
  ft_printf("test # '%#.f'\n", (double)4);
 
-double float_nb = 4.5000000000000008881;
-double float_nb2 = 4.5000000000000008882;
-printf("test test %d\n", (float_nb - (int)float_nb - 0.500000000000000) == 0.000000000000000);
-printf("test test %d\n", (float_nb2 - (int)float_nb2 - 0.500000000000000) == 0.000000000000000);
-
-	printf("\n\nWHAT IN THE NAME OF JESUS\n");
-	printf("hello hello '%.f'\n", 10.5000000000000008881);
- ft_printf("hello hello '%.f'\n", 10.5000000000000008881);
 
 	printf("\n\n");
-	printf("hello hello '%.f'\n", 10.5000000000000008882);
- ft_printf("hello hello '%.f'\n", 10.5000000000000008882);
+	printf("heyyy '%f'\n", (double)10);
+	ft_printf("heyyy '%f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.f'\n", (double)10);
+	ft_printf("heyyy '%.f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.0f'\n", (double)10);
+	ft_printf("heyyy '%.0f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.1f'\n", (double)10);
+	ft_printf("heyyy '%.1f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.4f'\n", (double)10);
+	ft_printf("heyyy '%.4f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%.10f'\n", (double)10);
+	ft_printf("heyyy '%.10f'\n", (double)10);
+
+	printf("\n\n");
+	printf("heyyy '%Lf'\n", (long double)10);
+	ft_printf("heyyy '%Lf'\n", (long double)10);
+
+	printf("\n\n");
+	printf("heyyy '%f'\n", 10.9988);
+ ft_printf("heyyy '%f'\n", 10.9988);
+
+		printf("\n\n");
+	printf("heyyy '%.f'\n", 10.9988);
+ ft_printf("heyyy '%.f'\n", 10.9988);
+
+		printf("\n\n");
+	printf("heyyy '%.f'\n", 10.1);
+ ft_printf("heyyy '%.f'\n", 10.1);
+
+		printf("\n\n");
+	printf("heyyy '%.f'\n", 10.5);
+ ft_printf("heyyy '%.f'\n", 10.5);
+
+ 		printf("\n\n");
+	printf("heyyy '%.3f'\n", 10.9988);
+ ft_printf("heyyy '%.3f'\n", 10.9988);
 
 printf("\n\n");
- printf("testttt %.15f, %.15f\n", 10.5000000000000008881, 10.5000000000000008882);
+	printf("hey '%#########################################################################--###------10o'\n", 7);
+ ft_printf("hey '%########################################################--####################------10o'\n", 7);
 
+ 		printf("\n\n");
+	printf("hey '%-15f'\n", 10.256);
+ ft_printf("hey '%-15f'\n", 10.256);
+
+	printf("\n\n");
+	printf("test '%#.0f'\n", 10.49);
+ ft_printf("test '%#.0f'\n", 10.49);
+
+	printf("\n\n");
+	printf("test '%#-20.1f'\n", 10.49);
+ ft_printf("test '%#-20.1f'\n", 10.49);
+
+ 	printf("\n\n");
+	printf("test '%#-20.25f'\n", 10.49);
+ ft_printf("test '%#-20.25f'\n", 10.49);
+
+ */
 
 /*printf("\n\n");
 printf("testons donc '%.15f'\n", 0.500000000000001 - 0.500000000000000);
 printf("testons donc '%.15f'\n", 0.5000 - 0.500000000000000);
 printf("testons donc '%.15f'\n", 0.5001 - 0.500000000000000);
-printf("testons donc '%.15f'\n", 0.5000000000000001 - 0.500000000000000);*/
+printf("testons donc '%.15f'\n", 0.5
+000000000000001 - 0.500000000000000);
+
+*/
 
 /*
 //printf("%.2c\n", NULL);
@@ -565,6 +630,13 @@ printf("\n\n");
 
 */
 
+int int1;
+int int2;
+ 	printf("\n\n");
+	int1 = printf("test null char '%10c'\n", (int)NULL);
+ int2 = ft_printf("test null char '%10c'\n", (int)NULL);
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
 	
 }
 

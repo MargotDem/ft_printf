@@ -313,6 +313,7 @@ void    handle_char(t_options *options, va_list *list, size_t *char_count)
 {
 	char    c;
 	char	*str;
+	int		padding;
 
 	c = va_arg(*list, int);
 	if (c)
@@ -327,11 +328,18 @@ void    handle_char(t_options *options, va_list *list, size_t *char_count)
 	}
 	else
 	{
-		str = "";
-		// not sure at all here
-		if (options->field_width > 0)
-			options->field_width --;
-		padded_print(str, options, char_count);
+		padding = options->field_width - 1;
+		if (options->flags & F_MINUS)
+			ft_putchar('\0');
+		while (padding > 0)
+		{
+			ft_putchar(' ');
+			(*char_count)++;
+			padding--;
+		}
+		if (!(options->flags & F_MINUS))
+			ft_putchar('\0');
+		(*char_count)++;
 	}
 }
 

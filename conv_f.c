@@ -89,8 +89,6 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	main = (int)nb;
 	if (precision == 0 && nb - main - 0.500000000000000 == 0.000000000000000)
 	{
-		printf("here. %d\n", nb - main - 0.500000000000000 == 0.000000000000000);
-		printf("here. %.15f\n", nb);
 		if (main % 2 == 0)
 			nb_str = ft_itoa(main);
 		else
@@ -100,8 +98,6 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	}
 	else
 	{
-		printf("and there. %d\n", nb - main - 0.500000000000000 == 0.000000000000000);
-		printf("and there. %.15f\n", nb);
 		if (precision == -1)
 			precision = 6;
 		i = 0;
