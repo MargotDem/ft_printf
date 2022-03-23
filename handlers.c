@@ -129,12 +129,7 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	//so if (options->precision <= len) we dont adjust int
 	//isnt that repetitive?
 	if (options->no_sign && options->flags & F_SPACE)
-	{
-		//printf("BUT WHY\n");
-		tmp = ft_strjoin(" ", nb_str);
-		free(nb_str);
-		nb_str = tmp;
-	}
+		nb_str = ft_strjoin_replace(" ", nb_str, 0);
 	//does this need to be here? this is ridiculous may i add. it looks hysterical. surely there must a better way
 	if (options->flags & F_HASHTAG && (options->conv_spec == CS_X || options->conv_spec == CS_XX) && *original_str != '\0')
 	{
@@ -274,11 +269,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	else
 	{
 		if (options->flags & F_PLUS)
-		{
-			tmp = ft_strjoin("+", nb_str);
-			free(nb_str);
-			nb_str = tmp;
-		}
+			nb_str = ft_strjoin_replace("+", nb_str, 0);
 	}
 	print_out_nb_str(options, char_count, len, nb_str);
 	//free(nb_str);

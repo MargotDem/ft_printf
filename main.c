@@ -794,9 +794,16 @@ printf("\n\n");
  ft_printf("null '%+0f' and text\n", -958.125);
 
         	printf("\n\n");
-	printf("null '%+d' and text\n", -958);
- ft_printf("null '%+d' and text\n", -958);
+	printf("null '% d' and text\n", 958);
+ ft_printf("null '% d' and text\n", 958);
 
+         	printf("\n\n");
+	printf("null '%#.f' and text\n", (double)5);
+ ft_printf("null '%#.f' and text\n", (double)5);
+
+          	printf("\n\n");
+	printf("null '% .f' and text\n", 5.5);
+ ft_printf("null '% .f' and text\n", 5.5);
 
 
 }

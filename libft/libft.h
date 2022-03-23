@@ -94,7 +94,7 @@ int			ft_sqrt(int nb);
 char		*ft_itoa_base(int nb, int base);
 char		*ft_ull_itoa_base(unsigned long long int nb, int base);
 char		*ft_ll_itoa(long long int n);
-char		*ft_strjoin_replace(char *s1, char *s2);
+char		*ft_strjoin_replace(char *s1, char *s2, int first_str);
 
 # define BUFF_SIZE 200
 # define FD_ARRAY_SIZE 4096

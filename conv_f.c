@@ -86,7 +86,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		else
 			nb_str = ft_itoa(main + 1);
 		if (options->flags & F_HASHTAG)
-			nb_str = ft_strjoin_replace(nb_str, ".");
+			nb_str = ft_strjoin_replace(nb_str, ".", 1);
 	}
 	else
 	{
@@ -114,7 +114,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		}
 		else if (options->flags & F_HASHTAG)
 		{
-			nb_str = ft_strjoin_replace(nb_str, ".");
+			nb_str = ft_strjoin_replace(nb_str, ".", 1);
 			total_len++;
 		}
 		nb = (nb - (int)nb) * 10;
@@ -125,23 +125,14 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		//printf("first here, last digit is %zu\n", last_digit);
 		nb_str = round_float(nb_str, last_digit, total_len);
 	}
-	//deja vu in handlersm, extract
 	if (options->flags & F_PLUS && nb > 0)
-	{
-		tmp = ft_strjoin("+", nb_str);
-		free(nb_str);
-		nb_str = tmp;
-	}
+		nb_str = ft_strjoin_replace("+", nb_str, 0);
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
 	if (options->flags & F_ZERO) // how bout the precision tho
 		nb_str = adjust_int(nb_str, options->field_width, 1, options);
 	if (options->no_sign && options->flags & F_SPACE)
-	{
-		tmp = ft_strjoin(" ", nb_str);
-		free(nb_str);
-		nb_str = tmp;
-	}
+		nb_str = ft_strjoin_replace(" ", nb_str, 0);
 	padded_print(nb_str, options, char_count);
 	free(nb_str);
 }
