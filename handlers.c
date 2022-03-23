@@ -308,32 +308,3 @@ void    handle_str(t_options *options, va_list *list, size_t *char_count)
 		}
 	}
 }
-
-void    handle_percentage(t_options *options, va_list *list, size_t *char_count)
-{
-    (void)list;
-
-	padded_print("%", options, char_count);
-}
-
-void    handle_p(t_options *options, va_list *list, size_t *char_count)
-{
-    (void)list;
-	char	*nb_str;
-	unsigned long long int	nb;
-
-	nb = va_arg(*list, unsigned long long int);
-	nb_str = ft_ull_itoa_base(nb, 16);
-	nb_str = ft_strjoin("0x", nb_str);
-	padded_print(nb_str, options, char_count);
-	free(nb_str);
-}
-
-
-/*
-
-42filechecker
-
-70 78 are undefined behavior
-
-*/

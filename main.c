@@ -637,6 +637,19 @@ int int2;
  int2 = ft_printf("test null char '%10c'\n", (int)NULL);
 	printf("ret printf %d\n", int1);
 	printf("ret ft_printf %d\n", int2);
+
+	printf("\n\n");
+	int1 = printf("print percentage: '%-10.10%' and '%05%'\n");
+	int2 = ft_printf("print percentage: '%-10.10%' and '%05%'\n");
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
+
+		printf("\n\n");
+	int1 = printf("print percentage: '%015.40%'\n");
+	int2 = ft_printf("print percentage: '%015.40%'\n");
+	printf("ret printf %d\n", int1);
+	printf("ret ft_printf %d\n", int2);
+
 	
 }
 
