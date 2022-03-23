@@ -762,7 +762,9 @@ printf("\n\n");
  ft_printf("bankers rounding '%.f'\n", 1.5);
 
 
-      	printf("\n\n");
+      	printf("\n\nHELLOOOO\n\n");
+
+
 	printf("null '%.2f' and text\n", 12.135); //12.13
  ft_printf("null '%.2f' and text\n", 12.135);
 
@@ -802,9 +804,82 @@ printf("\n\n");
  ft_printf("null '%#.f' and text\n", (double)5);
 
           	printf("\n\n");
-	printf("null '% .f' and text\n", 5.5);
- ft_printf("null '% .f' and text\n", 5.5);
+	printf("null '%+f' and text\n", 1.0);
+ ft_printf("null '%+f' and text\n", 1.0);
 
+           	printf("\n\n");
+	printf("null '%+f' and text\n", -0.0);
+ ft_printf("null '%+f' and text\n", -0.0);
+
+ if (-0.0 == 0.0)
+	printf("what ever the FUCK is this BULLSHIT\n");
+
+
+
+
+
+/*
+printf("\n\nbest of de cette fonction de la mort\n\n");
+
+// the four following make no sense to me
+           	printf("\n\n"); // 0.1
+	printf("null '%.1f' and text\n", 0.05);
+ ft_printf("null '%.1f' and text\n", 0.05);
+
+        	printf("\n\n"); // 12.12
+	printf("null '%.2f' and text\n", 12.125);
+ ft_printf("null '%.2f' and text\n", 12.125);
+
+         	printf("\n\n"); // 13.123
+	printf("null '%.3f' and text\n", 13.1225);
+ ft_printf("null '%.3f' and text\n", 13.1225);
+
+          	printf("\n\n"); // 0.122
+	printf("null '%.3f' and text\n", 0.1225);
+ ft_printf("null '%.3f' and text\n", 0.1225);
+
+printf("\n\n"); // 10
+ 	printf("hello hello '%.f'\n", 10.5000000000000008881);
+ ft_printf("hello hello '%.f'\n", 10.5000000000000008881);
+
+	printf("\n\n"); // 11
+	printf("hello hello '%.f'\n", 10.5000000000000008882);
+ ft_printf("hello hello '%.f'\n", 10.5000000000000008882);
+
+ 	printf("\n\n"); // 5.0000001155566460298018682806286960840225
+	printf("oihkugjtest '%.40f'\n", 5.0000001155566464684864646158489596566);
+ ft_printf("oihkugjtest '%.40f'\n", 5.0000001155566464684864646158489596566);
+
+
+ 		printf("\n\n"); // 5
+	printf("bankers rounding '%.f'\n", 4.500000000000001);
+ ft_printf("bankers rounding '%.f'\n", 4.500000000000001);
+
+  		printf("\n\n"); // 4
+	printf("bankers rounding '%.f'\n", 4.5000000000000001);
+ ft_printf("bankers rounding '%.f'\n", 4.5000000000000001);
+ 
+ */
+
+           	printf("\n\n"); // 0.1
+	printf("null '%.1f' and text\n", 0.05);
+ ft_printf("null '%.1f' and text\n", 0.05);
+
+        	printf("\n\n"); // 12.12
+	printf("null '%.2f' and text\n", 12.125);
+ ft_printf("null '%.2f' and text\n", 12.125);
+
+         	printf("\n\n"); // 13.123
+	printf("null '%.3f' and text\n", 13.1225);
+ ft_printf("null '%.3f' and text\n", 13.1225);
+
+          	printf("\n\n"); // 0.122
+	printf("null '%.3f' and text\n", 0.1225);
+ ft_printf("null '%.3f' and text\n", 0.1225);
 
 }
+/*
 
+5.00000000000497379915 11
+5.00000000000008881784 13
+*/

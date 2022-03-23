@@ -36,8 +36,8 @@ char	*round_float(char *nb_str, long double last_digit, size_t len)
 	size_t	place;
 	int		main;
 
-	//printf("here, last digit   is %.10Lf\n", last_digit);
-	if (last_digit > 5.000000000000000)
+	printf("here, last digit   is %.20Lf\n", last_digit);
+	if (last_digit >= (long double)5.0000000000000)
 	{
 		main = ft_atoi(nb_str);
 		// just a round float or a round float plus dot
@@ -64,6 +64,7 @@ char	*round_float(char *nb_str, long double last_digit, size_t len)
 void	handle_float(t_options *options, va_list *list, size_t *char_count)
 {
 	double	nb;
+	double	nb_original;
 	int		main;
 	int		decimal;
 	int		precision;
@@ -75,6 +76,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	double	last_digit; 
 
 	nb = va_arg(*list, double);
+	nb_original = nb;
 
 	precision = options->precision;
 	main = (int)nb;
@@ -125,7 +127,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		//printf("first here, last digit is %zu\n", last_digit);
 		nb_str = round_float(nb_str, last_digit, total_len);
 	}
-	if (options->flags & F_PLUS && nb > 0)
+	if (options->flags & F_PLUS && nb_original >= (double)0)
 		nb_str = ft_strjoin_replace("+", nb_str, 0);
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
