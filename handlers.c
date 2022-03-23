@@ -44,7 +44,7 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 }
 */
 
-char	*adjust_int(char *nb_str, size_t precision, int field_width)
+char	*adjust_int(char *nb_str, size_t precision, int field_width, t_options *options)
 {
 	char	*tmp;
 	char	*tmp_ptr;
@@ -64,6 +64,8 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width)
 		sign = 0;
 	if (sign && !(field_width)) // forgot zhy this is necessary
 		zeroes++;
+	if (zeroes > 0 && options->no_sign && options->flags & F_SPACE && options->precision == -1)
+		zeroes--;
 	tmp = ft_strnew(zeroes + len);
 	if (!tmp)
 		handle_error();
@@ -108,7 +110,6 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 {
 	char	*tmp;
 	char	*original_str;
-	int		no_sign;
 
 	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")) && !(options->conv_spec == CS_O &&options->flags & F_HASHTAG))
 	{
@@ -117,18 +118,17 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 		nb_str = tmp;
 	}
 	original_str = ft_strdup(nb_str);
-	// "if a signed conversion results in no characters" what does that even mean
-	no_sign = 0;
+	// no_sign. space. "if a signed conversion results in no characters" what does that even mean
 	if (*nb_str != '+' && *nb_str != '-')
-		no_sign = 1;
+		options->no_sign = 1;
 	if (options->precision == -1 && options->flags & F_ZERO)
-		nb_str = adjust_int(nb_str, options->field_width, 1);
+		nb_str = adjust_int(nb_str, options->field_width, 1, options);
     //previously just else
 	else if (options->precision > -1)
-		nb_str = adjust_int(nb_str, options->precision, 0);
+		nb_str = adjust_int(nb_str, options->precision, 0, options);
 	//so if (options->precision <= len) we dont adjust int
 	//isnt that repetitive?
-	if (no_sign && options->flags & F_SPACE)
+	if (options->no_sign && options->flags & F_SPACE)
 	{
 		//printf("BUT WHY\n");
 		tmp = ft_strjoin(" ", nb_str);

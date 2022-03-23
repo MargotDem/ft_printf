@@ -30,6 +30,7 @@ typedef struct s_options {
     int   precision;
     char    *len_mod;
     t_uchar conv_spec;
+	int   no_sign;
 }               t_options;
 
 typedef void handle_arg_type(t_options *options, va_list *list, size_t *char_count);
@@ -49,7 +50,7 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count);
 void    handle_f(t_options *options, va_list *list, size_t *char_count);
 void    handle_p(t_options *options, va_list *list, size_t *char_count);
 void	padded_print(char *str, t_options *options, size_t *char_count);
-char	*adjust_int(char *nb_str, size_t precision, int field_width);
+char	*adjust_int(char *nb_str, size_t precision, int field_width, t_options *options);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40

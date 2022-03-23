@@ -115,7 +115,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 			{
 				nb = (nb - (int)nb) * 10;
 				decimal = (int)(nb);
-				nb_str[len + i + 1] = ft_itoa(decimal)[0];
+				nb_str[len + i + 1] = ft_itoa(ft_abs(decimal))[0];
 				i++;
 			}
 			total_len = len + precision + 1;
@@ -128,6 +128,23 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		nb = (nb - (int)nb) * 10;
 		last_digit = (int)nb;
 		nb_str = round_float(nb_str, last_digit, total_len);
+	}
+	//deja vu in handlersm, extract
+	if (options->flags & F_PLUS)
+	{
+		tmp = ft_strjoin("+", nb_str);
+		free(nb_str);
+		nb_str = tmp;
+	}
+	if (*nb_str != '+' && *nb_str != '-')
+		options->no_sign = 1;
+	if (options->precision == -1 && options->flags & F_ZERO) // how bout the precision tho
+		nb_str = adjust_int(nb_str, options->field_width, 1, options);
+	if (options->no_sign && options->flags & F_SPACE)
+	{
+		tmp = ft_strjoin(" ", nb_str);
+		free(nb_str);
+		nb_str = tmp;
 	}
 	padded_print(nb_str, options, char_count);
 	free(nb_str);

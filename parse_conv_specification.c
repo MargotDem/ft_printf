@@ -213,6 +213,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, ha
     options->len_mod = NULL;
     options->precision = -1;
     options->field_width = 0;
+    options->no_sign = 0;
     handle_arg_nb(ptr, options);
     handle_flags(ptr + options->chars_to_skip, options);
     handle_field_width(ptr + options->chars_to_skip, options, list);

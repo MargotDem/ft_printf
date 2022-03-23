@@ -630,6 +630,7 @@ printf("\n\n");
 
 */
 
+/*
 int int1;
 int int2;
  	printf("\n\n");
@@ -650,6 +651,51 @@ int int2;
 	printf("ret printf %d\n", int1);
 	printf("ret ft_printf %d\n", int2);
 
-	
+
+
+*/
+  	printf("\n\n");
+	printf("null '%0 10d' and text\n", 3);
+ ft_printf("null '%0 10d' and text\n", 3);
+
+   	printf("\n\n");
+	printf("null '%0 10.4d' and text\n", 3);
+ ft_printf("null '%0 10.4d' and text\n", 3);
+
+   	printf("\n\n");
+	printf("null '%0 .4d' and text\n", 3);
+ ft_printf("null '%0 .4d' and text\n", 3);
+
+
+   	printf("\n\n");
+	printf("null '%0 8d' and text\n", 3);
+ ft_printf("null '%0 8d' and text\n", 3);
+
+
+   	printf("\n\n");
+	printf("null '% 8d' and text\n", 3);
+ ft_printf("null '% 8d' and text\n", 3);
+ 	
+	printf("\n\n");
+	printf("null '%010f' and text\n", 3.14159265);
+ ft_printf("null '%010f' and text\n", 3.14159265);
+
+ 
+
+ 	printf("\n\n");
+	printf("null '%0 f' and text\n", 3.14159265);
+ ft_printf("null '%0 f' and text\n", 3.14159265);
+
+ 	printf("\n\n");
+	printf("null '%0 10f' and text\n", 3.14159265);
+ ft_printf("null '%0 10f' and text\n", 3.14159265);
+
+ 	printf("\n\n");
+	printf("null '%0+25f' and text\n", 3.14159265);
+ ft_printf("null '%0+25f' and text\n", 3.14159265);
+
+ 	printf("\n\n");
+	printf("null '%0 10f' and text\n", -3.14159265);
+ ft_printf("null '%0 10f' and text\n", -3.14159265);
 }
 
