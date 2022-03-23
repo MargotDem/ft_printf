@@ -136,7 +136,7 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		nb_str = round_float(nb_str, last_digit, total_len);
 	}
 	//deja vu in handlersm, extract
-	if (options->flags & F_PLUS)
+	if (options->flags & F_PLUS && nb > 0)
 	{
 		tmp = ft_strjoin("+", nb_str);
 		free(nb_str);

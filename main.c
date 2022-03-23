@@ -657,7 +657,7 @@ printf("\n\n");
 	printf("test '%#-20.25f'\n", 10.49);
  ft_printf("test '%#-20.25f'\n", 10.49);
 
- 
+
   	printf("\n\n");
 	printf("null '%0 10d' and text\n", 3);
  ft_printf("null '%0 10d' and text\n", 3);
@@ -785,6 +785,17 @@ printf("\n\n");
         	printf("\n\n");
 	printf("null '%.2f' and text\n", -12.1352); //12.14
  ft_printf("null '%.2f' and text\n", -12.1352);
+
+
+
+
+        	printf("\n\n");
+	printf("null '%+0f' and text\n", -958.125);
+ ft_printf("null '%+0f' and text\n", -958.125);
+
+        	printf("\n\n");
+	printf("null '%+d' and text\n", -958);
+ ft_printf("null '%+d' and text\n", -958);
 
 }
 
