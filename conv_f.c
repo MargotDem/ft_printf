@@ -12,39 +12,68 @@
 
 #include "ft_printf.h"
 
-char	*round_main(char *nb_str, int main, size_t len)
+char	*round_main(char *nb_str, long long int main, size_t len, int is_positive)
 {
-	char	*tmp;
+	char			*tmp;
+	long long int	original_main;
 
-	main++;
-	if (ft_strlen(ft_itoa(main)) > ft_strlen(ft_itoa(main - 1)))
+	original_main = main;
+	//printf("here, origina main   is %lld\n", original_main);
+	if (is_positive)
+		main++;
+	else
+		main--;
+	//printf("here,  main   is %lld\n", main);
+	
+	if (ft_strlen(ft_ll_itoa(main)) <= ft_strlen(ft_ll_itoa(original_main)) || (original_main == 0 && !is_positive))
 	{
+				//printf("aaaa. str is %s\n", nb_str);
+		ft_memmove(nb_str, ft_ll_itoa(main), ft_strlen(ft_ll_itoa(main)));
+		//printf("aaaa. str is %s\n", nb_str);
+
+	}
+	else
+	{
+		//printf("here\n");
 		tmp = ft_strnew(len + 1);
 		ft_strcpy(tmp + 1, nb_str);
 		free(nb_str);
 		nb_str = tmp;
-		ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
+		ft_memmove(nb_str, ft_ll_itoa(main), ft_strlen(ft_ll_itoa(main)));
+
 	}
-	else
-		ft_memmove(nb_str, ft_itoa(main), ft_strlen(ft_itoa(main)));
 	return (nb_str);
 }
 
-char	*round_float(char *nb_str, long double last_digit, size_t len)
+char	*round_float(char *nb_str, long double last_digit, size_t len, long double test_stl)
 {
-	size_t	second_to_last;
-	size_t	place;
-	int		main;
+	size_t			second_to_last;
+	size_t			place;
+	long long int	main;
+	int				is_positive;
 
-	printf("here, last digit   is %.20Lf\n", last_digit);
-	if (last_digit >= (long double)5.0000000000000)
+	//printf("heree nbstr is %s\n", nb_str);
+	//printf("here, last digit   is %.30Lf\n", last_digit);
+	//printf("here, second to last digit   is %.30Lf\n", test_stl);
+	//if (last_digit >= (long double)5.0000000000001)
+	//printf("hey nb is %.3Lf\n", test_stl);
+	//printf("hey nbstr is %s\n", nb_str);
+	main = ft_ll_atoi(nb_str);
+	is_positive = 0;
+	if (test_stl > 0)
+		is_positive = 1;
+	if (last_digit > 5 || (last_digit == 5 && ft_abs((int)test_stl % 2) == 1))
 	{
-		main = ft_atoi(nb_str);
+		//printf("main is %lld\n", main);
 		// just a round float or a round float plus dot
-		if (ft_strlen(ft_itoa(main)) == len || ft_strlen(ft_itoa(main)) == len - 1)
-			nb_str = round_main(nb_str, main, len);
+		if (ft_strlen(ft_ll_itoa(main)) == len || ft_strlen(ft_ll_itoa(main)) == len - 1)
+		{
+			nb_str = round_main(nb_str, main, len, is_positive);
+		}
 		else
 		{
+			
+			//printf("here\n");
 			place = len - 1;
 			while (nb_str[place] != '.')
 			{
@@ -55,47 +84,54 @@ char	*round_float(char *nb_str, long double last_digit, size_t len)
 				place --;
 			}
 			if (second_to_last == 0)
-				nb_str = round_main(nb_str, main, len);
+				nb_str = round_main(nb_str, main, len, is_positive);
 		}
 	}
 	return (nb_str);
 }
 
+int		is_nb_negative(double nb)
+{
+	int	is_negative;
+
+	is_negative = 0;
+	if (nb < 0)
+		is_negative = 1;
+	return (is_negative);
+}
+
 void	handle_float(t_options *options, va_list *list, size_t *char_count)
 {
-	double	nb;
-	double	nb_original;
-	int		main;
-	int		decimal;
-	int		precision;
-	int		i;
-	char	*nb_str;
-	char	*tmp;
-	size_t	len;
-	size_t	total_len;
-	double	last_digit; 
+	long double			nb;
+	long double			nb_original;
+	long long int	main;
+	int				decimal;
+	int				precision;
+	int				i;
+	char			*nb_str;
+	char			*tmp;
+	size_t			len;
+	size_t			total_len;
+	long double			last_digit; 
+	int				is_negative;
 
 	nb = va_arg(*list, double);
 	nb_original = nb;
+	is_negative = is_nb_negative(nb);
 
 	precision = options->precision;
-	main = (int)nb;
-	// bankers rounding
-	if (precision == 0 && nb - main - 0.500000000000000 == 0.000000000000000)
-	{
-		if (main % 2 == 0)
-			nb_str = ft_itoa(main);
-		else
-			nb_str = ft_itoa(main + 1);
-		if (options->flags & F_HASHTAG)
-			nb_str = ft_strjoin_replace(nb_str, ".", 1);
-	}
-	else
-	{
+	main = (long long int)nb;
+
+
 		if (precision == -1)
 			precision = 6;
 		i = 0;
-		nb_str = ft_itoa(main);
+		nb_str = ft_ll_itoa(main);
+		if (nb < 0 && nb > -1)
+		{
+			//printf("here\n");
+			nb_str = ft_strjoin_replace("-", nb_str, 0);
+		}
 		len = ft_strlen(nb_str);
 		total_len = len;
 		if (precision != 0)
@@ -107,9 +143,10 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 			nb_str[len] = '.';
 			while (i < precision)
 			{
-				nb = (nb - (int)nb) * 10;
-				decimal = (int)(nb);
-				nb_str[len + i + 1] = ft_itoa(ft_abs(decimal))[0];
+				nb = (nb - (double)(long long int)nb) * (double)10;
+				//printf("HERE float nb is %.30f\n", nb);
+				decimal = (long long int)(nb);
+				nb_str[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
 				i++;
 			}
 			total_len = len + precision + 1;
@@ -117,16 +154,13 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 		else if (options->flags & F_HASHTAG)
 		{
 			nb_str = ft_strjoin_replace(nb_str, ".", 1);
+		
 			total_len++;
 		}
-		nb = (nb - (int)nb) * 10;
-		//printf("here, float nb  is %.20f\n", nb);
-		//printf("here, int nb  is %d\n", (int)nb);
+		last_digit = ft_abs_float((nb - (long long int)nb) * 10);
+		
+		nb_str = round_float(nb_str, last_digit, total_len, nb);
 
-		last_digit = ft_abs_float(nb);
-		//printf("first here, last digit is %zu\n", last_digit);
-		nb_str = round_float(nb_str, last_digit, total_len);
-	}
 	if (options->flags & F_PLUS && nb_original >= (double)0)
 		nb_str = ft_strjoin_replace("+", nb_str, 0);
 	if (*nb_str != '+' && *nb_str != '-')
@@ -152,13 +186,7 @@ void    handle_f(t_options *options, va_list *list, size_t *char_count)
     (void)list;
 
 	if (options->len_mod && *options->len_mod == 'L')
-	{
-		//printf("long double\n");
 		handle_ld_float(options, list, char_count);
-	}
 	else
-	{
-		//printf("simple float\n");
 		handle_float(options, list, char_count);
-	}
 }

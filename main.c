@@ -725,9 +725,6 @@ printf("\n\n");
 	printf("null '%.2f' and text\n", -958.125);
  ft_printf("null '%.2f' and text\n", -958.125);
 
-     	printf("\n\n");
-	printf("null '%.2f' and text\n", -958.125);
- ft_printf("null '%.2f' and text\n", -958.125);
 
       	printf("\n\n");
 	printf("null '%.2f' and text\n", 12.135);
@@ -817,7 +814,6 @@ printf("\n\n");
 
 
 
-
 /*
 printf("\n\nbest of de cette fonction de la mort\n\n");
 
@@ -877,9 +873,165 @@ printf("\n\n"); // 10
 	printf("null '%.3f' and text\n", 0.1225);
  ft_printf("null '%.3f' and text\n", 0.1225);
 
+
+      	printf("\n\n");
+	printf("null '%.2f' and text\n", -958.125);
+ ft_printf("null '%.2f' and text\n", -958.125);
+
+
+
+           	printf("\n\n");
+	printf("hey '%f'\n", 18014398509481984.0);
+ ft_printf("hey '%f'\n", 18014398509481984.0);
+
+
+           	printf("\n\n"); // 0.1
+	printf("null '%.1f' and text\n", 0.05);
+ ft_printf("null '%.1f' and text\n", 0.05);
+
+            	printf("\n\n"); // 0.1
+	printf("null '%.1f' and text\n", 0.15);
+ ft_printf("null '%.1f' and text\n", 0.15);
+
+            	printf("\n\n"); // 0.2
+	printf("null '%.1f' and text\n", 0.25);
+ ft_printf("null '%.1f' and text\n", 0.25);
+
+            	printf("\n\n"); // 0.3
+	printf("null '%.1f' and text\n", 0.35);
+ ft_printf("null '%.1f' and text\n", 0.35);
+
+         	printf("\n\n"); // 0.5
+	printf("null '%.1f' and text\n", 0.45);
+ ft_printf("null '%.1f' and text\n", 0.45);
+
+         	printf("\n\n"); // 0.6
+	printf("null '%.1f' and text\n", 0.55);
+ ft_printf("null '%.1f' and text\n", 0.55);
+
+         	printf("\n\n"); // 0.7
+	printf("null '%.1f' and text\n", 0.65);
+ ft_printf("null '%.1f' and text\n", 0.65);
+
+ 
+             	printf("\n\n");
+	printf("null '%.0f' and text\n", 1.5);
+ ft_printf("null '%.0f' and text\n", 1.5);
+
+              	printf("\n\n");
+	printf("null '%.0f' and text\n", 2.5);
+ ft_printf("null '%.0f' and text\n", 2.5);
+             	printf("\n\n");
+	printf("null '%.0f' and text\n", -1.5);
+ ft_printf("null '%.0f' and text\n", -1.5);
+
+              	printf("\n\n");
+	printf("null '%.0f' and text\n", -2.5);
+ ft_printf("null '%.0f' and text\n", -2.5);
+
+
+              	printf("\n\n");
+	printf("null '%.1f' and text\n", -1.78);
+ ft_printf("null '%.1f' and text\n", -1.78);
+
+               	printf("\n\n");
+	printf("null '%.f' and text\n", -1.78);
+ ft_printf("null '%.f' and text\n", -1.78);
+
+                	printf("\n\n");
+	printf("null '%.f' and text\n", -0.78);
+ ft_printf("null '%.f' and text\n", -0.78);
+
+                 	printf("\n\n");
+	printf("null '%.f' and text\n", -0.18);
+ ft_printf("null '%.f' and text\n", -0.18);
+
+
+
+ //tests im not passing from satus tests
+ printf("\n\n\n\n\n\n\n\n\n\n\ntests still not passing \n\n\n");
+
+          	printf("\n\n"); // -958.12
+	printf("null '%.2f' and text\n",  -958.125);
+ ft_printf("null '%.2f' and text\n",  -958.125);
+
+            	printf("\n\n");
+	printf("null '%f' and text\n", -0.0);
+ ft_printf("null '%f' and text\n", -0.0);
+
+
+
+           	printf("\n\n"); // 0.1 round
+	printf("null '%.1f' and text\n", 0.05); //1 odd round. 0 % 2 0.
+ ft_printf("null '%.1f' and text\n", 0.05);
+
+            	printf("\n\n"); // 0.1 dont
+	printf("null '%.1f' and text\n", 0.15); //02 even dont round
+ ft_printf("null '%.1f' and text\n", 0.15);
+
+            	printf("\n\n"); // 0.2 dont
+	printf("null '%.1f' and text\n", 0.25); //3 odd round
+ ft_printf("null '%.1f' and text\n", 0.25);
+
+            	printf("\n\n"); // 0.3 dont
+	printf("null '%.1f' and text\n", 0.35); //4 round
+ ft_printf("null '%.1f' and text\n", 0.35);
+
+         	printf("\n\n"); // 0.5 round
+	printf("null '%.1f' and text\n", 0.45);
+ ft_printf("null '%.1f' and text\n", 0.45);
+
+         	printf("\n\n"); // 0.6 round
+	printf("null '%.1f' and text\n", 0.55);
+ ft_printf("null '%.1f' and text\n", 0.55);
+
+         	printf("\n\n"); // 0.7 round
+	printf("null '%.1f' and text\n", 0.65);
+ ft_printf("null '%.1f' and text\n", 0.65);
+
+         	printf("\n\n"); // 0.7 round
+	printf("null '%.2f' and text\n", 123.125);
+ ft_printf("null '%.2f' and text\n", 123.125);
+
+
+          	printf("\n\n"); 
+	printf("null '%.30f' and text\n",  0.65000000000000002220446049);
+ ft_printf("null '%.30f' and text\n",  0.65000000000000002220446049);
+
+
+         	printf("\n\n"); // 0.7 round
+	printf("null '%f' and text\n", 0.876508942);
+ ft_printf("null '%f' and text\n", 0.876508942);
+
+          	printf("\n\n"); // 0.7 round
+	printf("null '%.f' and text\n", 0.876508942);
+ ft_printf("null '%.f' and text\n", 0.876508942);
+
+           	printf("\n\n");
+	printf("null '%.1f' and text\n", 0.75);
+ ft_printf("null '%.1f' and text\n", 0.75);
+
+
+           	printf("\n\n");
+	printf("null '%#.0f' and text\n", -99.5);
+ ft_printf("null '%#.0f' and text\n", -99.5);
+
+            	printf("\n\n");
+	printf("null '%.f' and text\n", -0.55);
+ ft_printf("null '%.f' and text\n", -0.55);
+
+            	printf("\n\n");
+	printf("null '%.f' and text\n", -12.7);
+ ft_printf("null '%.f' and text\n", -12.7);
+
+
+
+
+
+
 }
 /*
 
 5.00000000000497379915 11
 5.00000000000008881784 13
-*/
+*/   
