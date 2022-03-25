@@ -1024,7 +1024,84 @@ printf("\n\n"); // 10
 	printf("null '%.f' and text\n", -12.7);
  ft_printf("null '%.f' and text\n", -12.7);
 
+            	printf("\n\n");
+	printf("null '%.f' and text\n", -0.0);
+ ft_printf("null '%.f' and text\n", -0.0);
 
+
+
+
+            	printf("\n\n");
+	printf("hey '%-10f'\n", -1.0 / 0);
+ ft_printf("hey '%-10f'\n", -1.0 / 0);
+
+            	printf("\n\n");
+	printf("hey '%+f'\n", 1.0 / 0);
+ ft_printf("hey '%+f'\n", 1.0 / 0);
+
+             	printf("\n\n");
+	printf("hey '%12f'\n", 0.0 / 0);
+ ft_printf("hey '%12f'\n", 0.0 / 0);
+
+              	printf("\n\n");
+	printf("hey '%.f'\n", -0.0 / 0);
+ ft_printf("hey '%.f'\n", -0.0 / 0);
+
+
+            	printf("\n\nAAAAA\n\n");
+	int int1 = printf("hey '% f'\n", 1.0 / 0);
+ int int2 = ft_printf("hey '% f'\n", 1.0 / 0);
+printf("int1 is %d and int2 is %d\n", int1, int2);
+
+
+            	printf("\n\nAAAAA\n\n");
+	int int3 = printf("hey '%#0 f'\n", 0.0 / 0);
+ int int4 = ft_printf("hey '%#0 f'\n", 0.0 / 0);
+printf("int1 is %d and int2 is %d\n", int3, int4);
+
+              	printf("\n\n");
+	printf("hey '%.1f'\n", 0.25);
+ ft_printf("hey '%.1f'\n", 0.25);
+
+
+                	printf("\n\n");
+	printf("hey '%.1Lf'\n", (long double)-0.05);
+ ft_printf("hey '%.1Lf'\n", (long double)-0.05);
+
+
+              	printf("\n\n");
+	printf("hey '%.1f'\n", 0.05);
+ ft_printf("hey '%.1f'\n", 0.05);
+
+              	printf("\n\n");
+	printf("hey '%.1f'\n", 0.06);
+ ft_printf("hey '%.1f'\n", 0.06);
+
+                	printf("\n\n");
+	printf("hey '%.1Lf'\n", (long double)0.05);
+ ft_printf("hey '%.1Lf'\n", (long double)0.05);
+
+
+               	printf("\n\n");
+	printf("hey '%.1Lf'\n", 0.05l);
+ ft_printf("hey '%.1Lf'\n", 0.05l);
+
+printf("\n\n");
+ long double testtest = 0.05;
+ printf("hey '%.30Lf'\n", testtest);
+ printf("hey '%.30Lf'\n", testtest * 10l);
+
+
+
+	 long double testre = 0.05l;
+	 printf("\n\n");
+ printf("v '%.30Lf'\n", testre);
+ printf("v '%.30Lf'\n", testre + 1.0);
+ printf("v '%.30Lf'\n", testre * 1.0);
+ printf("v '%.30Lf'\n", testre * 10.0);
+
+ printf("\n\n");
+ 
 
 
 

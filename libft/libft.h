@@ -43,7 +43,8 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 int				ft_isascii(int c);
 char			*ft_strstr(const char *haystack, const char *needle);
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char			*ft_strnstr(const char *haystack, const char *needle, \
+					size_t len);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -97,6 +98,7 @@ char			*ft_ll_itoa(long long int n);
 char			*ft_strjoin_replace(char *s1, char *s2, int first_str);
 long long int	ft_abs_ll(long long int i);
 long long int	ft_ll_atoi(const char *str);
+int				ft_isnan(long double nb);
 
 # define BUFF_SIZE 200
 # define FD_ARRAY_SIZE 4096
@@ -110,13 +112,13 @@ typedef struct s_btree
 	void			*item;
 }				t_btree;
 
-t_btree		*btree_create_node(void *item);
-void		btree_apply_prefix(t_btree *root, void (*applyf)(void *));
-void		btree_apply_infix(t_btree *root, void (*applyf)(void *));
-void		btree_apply_suffix(t_btree *root, void (*applyf)(void *));
-t_btree		*btree_insert_data(t_btree **root, void *item, \
-				int (*cmpf)(void *, void *));
-t_btree		*btree_find_node(t_btree *btree, int (*f)(void \
-				*cur_node_item, void *looked_for_item), void *item);
+t_btree			*btree_create_node(void *item);
+void			btree_apply_prefix(t_btree *root, void (*applyf)(void *));
+void			btree_apply_infix(t_btree *root, void (*applyf)(void *));
+void			btree_apply_suffix(t_btree *root, void (*applyf)(void *));
+t_btree			*btree_insert_data(t_btree **root, void *item, \
+					int (*cmpf)(void *, void *));
+t_btree			*btree_find_node(t_btree *btree, int (*f)(void \
+					*cur_node_item, void *looked_for_item), void *item);
 
 #endif

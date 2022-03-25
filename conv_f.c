@@ -90,20 +90,45 @@ char	*round_float(char *nb_str, long double last_digit, size_t len, long double 
 	return (nb_str);
 }
 
-int		is_nb_negative(double nb)
+int		handle_isnan(long double nb, t_options *options, size_t *char_count)
 {
-	int	is_negative;
+	char	*nb_str;
 
-	is_negative = 0;
-	if (nb < 0)
-		is_negative = 1;
-	return (is_negative);
+	if (ft_isnan(nb))
+	{
+		nb_str = "nan";
+		padded_print(nb_str, options, char_count);
+		return (1);
+	}
+	return (0);
 }
 
-void	handle_float(t_options *options, va_list *list, size_t *char_count)
+int		handle_isinf(long double nb, t_options *options, size_t *char_count)
 {
-	long double			nb;
-	long double			nb_original;
+	char	*nb_str;
+
+	if (nb == 1.0 / 0 || nb == -1.0 / 0)
+	{
+		if (nb == 1.0 / 0)
+		{
+			if (options->flags & F_PLUS)
+				nb_str = "+inf";
+			else if (options->flags & F_SPACE)
+				nb_str = " inf";
+			else
+				nb_str = "inf";
+		}
+		else
+			nb_str = "-inf";
+		padded_print(nb_str, options, char_count);
+		return (1);
+	}
+	return (0);
+}
+
+void	handle_float(t_options *options, long double nb, size_t *char_count)
+{
+	long double		nb_original;
 	long long int	main;
 	int				decimal;
 	int				precision;
@@ -112,54 +137,60 @@ void	handle_float(t_options *options, va_list *list, size_t *char_count)
 	char			*tmp;
 	size_t			len;
 	size_t			total_len;
-	long double			last_digit; 
-	int				is_negative;
+	long double		last_digit; 
 
-	nb = va_arg(*list, double);
 	nb_original = nb;
-	is_negative = is_nb_negative(nb);
 
 	precision = options->precision;
 	main = (long long int)nb;
 
 
-		if (precision == -1)
-			precision = 6;
-		i = 0;
-		nb_str = ft_ll_itoa(main);
-		if (nb < 0 && nb > -1)
+
+	printf("hey nb is %.30Lf\n", nb);
+	printf("hey nb * 10 is %.30Lf\n", nb * (long double)10l);
+	if (handle_isinf(nb, options, char_count))
+		return ;
+	if (handle_isnan(nb, options, char_count))
+		return ;
+
+	if (precision == -1)
+		precision = 6;
+	i = 0;
+	nb_str = ft_ll_itoa(main);
+	if (nb < 0 && nb > -1)
+	{
+		//printf("here\n");
+		nb_str = ft_strjoin_replace("-", nb_str, 0);
+	}
+	len = ft_strlen(nb_str);
+	total_len = len;
+	if (precision != 0)
+	{
+		tmp = ft_strnew(len + precision + 1);
+		ft_strcpy(tmp, nb_str);
+		free(nb_str);
+		nb_str = tmp;
+		nb_str[len] = '.';
+		while (i < precision)
 		{
-			//printf("here\n");
-			nb_str = ft_strjoin_replace("-", nb_str, 0);
+			nb = (nb - (long double)(long long int)nb) * (long double)10.00000000000000000000000;
+			//printf("HERE float nb is %.30Lf\n", nb);
+			decimal = (long long int)(nb);
+			nb_str[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
+			i++;
 		}
-		len = ft_strlen(nb_str);
-		total_len = len;
-		if (precision != 0)
-		{
-			tmp = ft_strnew(len + precision + 1);
-			ft_strcpy(tmp, nb_str);
-			free(nb_str);
-			nb_str = tmp;
-			nb_str[len] = '.';
-			while (i < precision)
-			{
-				nb = (nb - (double)(long long int)nb) * (double)10;
-				//printf("HERE float nb is %.30f\n", nb);
-				decimal = (long long int)(nb);
-				nb_str[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
-				i++;
-			}
-			total_len = len + precision + 1;
-		}
-		else if (options->flags & F_HASHTAG)
-		{
-			nb_str = ft_strjoin_replace(nb_str, ".", 1);
-		
-			total_len++;
-		}
-		last_digit = ft_abs_float((nb - (long long int)nb) * 10);
-		
-		nb_str = round_float(nb_str, last_digit, total_len, nb);
+		total_len = len + precision + 1;
+	}
+	else if (options->flags & F_HASHTAG)
+	{
+		nb_str = ft_strjoin_replace(nb_str, ".", 1);
+	
+		total_len++;
+	}
+	last_digit = ft_abs_float((nb - (long long int)nb) * 10);
+	
+	//printf("hey nb is %.30Lf\n", nb);
+	nb_str = round_float(nb_str, last_digit, total_len, nb);
 
 	if (options->flags & F_PLUS && nb_original >= (double)0)
 		nb_str = ft_strjoin_replace("+", nb_str, 0);
@@ -182,11 +213,16 @@ void	handle_ld_float(t_options *options, va_list *list, size_t *char_count)
 }
 
 void    handle_f(t_options *options, va_list *list, size_t *char_count)
-{
-    (void)list;
+{ 
+	long double		nb;
 
 	if (options->len_mod && *options->len_mod == 'L')
-		handle_ld_float(options, list, char_count);
+	{
+		nb = va_arg(*list, long double);
+	}
 	else
-		handle_float(options, list, char_count);
+	{
+		nb = va_arg(*list, double);
+	}
+	handle_float(options, nb, char_count);
 }
