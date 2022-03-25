@@ -1068,6 +1068,15 @@ printf("int1 is %d and int2 is %d\n", int3, int4);
 	printf("hey '%.1Lf'\n", (long double)-0.05);
  ft_printf("hey '%.1Lf'\n", (long double)-0.05);
 
+                 	printf("\n\n");
+	printf("hey '%+.1f'\n", -0.12);
+ ft_printf("hey '%+.1f'\n", -0.12);
+
+  
+                	printf("\n\n");
+	printf("hey '% .1f'\n", 0.00);
+ ft_printf("hey '% .1f'\n", 0.00);
+
 
               	printf("\n\n");
 	printf("hey '%.1f'\n", 0.05);
@@ -1088,33 +1097,26 @@ printf("int1 is %d and int2 is %d\n", int3, int4);
 
 printf("\n\n");
  long double testtest = 0.05;
- printf("hey '%.30Lf'\n", testtest);
- printf("hey '%.30Lf'\n", testtest * 10l);
+ printf("hey test '%.30Lf'\n", testtest);
+ printf("hey test '%.30Lf'\n", testtest * 10l);
 
 
 
 long double testre = 0.05l;
 	 printf("\n\n");
- printf("v '%.30Lf'\n", (long double)testre);
+ printf("v '%.30Lf'\n", testre);
  printf("v '%.30Lf'\n", (long double)testre + 1.0);
  printf("v '%.30Lf'\n", (long double)testre * 1.0);
- printf("v '%.30Lf'\n", (long double)testre * 10.0);
+ printf("v '%.30Lf'\n", (long double)testre * (long double)10);
+ printf("v '%.30Lf'\n", (testre / 1) * 10);
+ printf("v '%.30Lf'\n", testre * 10);
+ printf("v '%.30Lf'\n", (testre - 0.05) * 1000000);
 
  printf("\n\n");
  
-                	printf("\n\n");
-	printf("hey '%+.1f'\n", -0.12);
- ft_printf("hey '%+.1f'\n", -0.12);
-
-  
-                	printf("\n\n");
-	printf("hey '% .1f'\n", 0.00);
- ft_printf("hey '% .1f'\n", 0.00);
-
-
-
 
 }
+
 /*
 
 5.00000000000497379915 11
