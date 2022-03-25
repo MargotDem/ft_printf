@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	initialize_dispatcher(handle_arg_type **dispatcher)
+void	initialize_dispatcher(t_handle_arg_type **dispatcher)
 {
 	dispatcher[CS_D] = &handle_d;
 	dispatcher[CS_I] = &handle_d;
@@ -33,7 +33,7 @@ int	ft_printf(const char *str, ...)
 	size_t		ret;
 	va_list		list;
 	size_t		char_count;
-	handle_arg_type    *dispatcher[11];
+	t_handle_arg_type    *dispatcher[11];
 
 	va_start(list, str);
 	initialize_dispatcher(dispatcher);
