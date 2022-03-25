@@ -1093,15 +1093,23 @@ printf("\n\n");
 
 
 
-	 long double testre = 0.05l;
+long double testre = 0.05l;
 	 printf("\n\n");
- printf("v '%.30Lf'\n", testre);
- printf("v '%.30Lf'\n", testre + 1.0);
- printf("v '%.30Lf'\n", testre * 1.0);
- printf("v '%.30Lf'\n", testre * 10.0);
+ printf("v '%.30Lf'\n", (long double)testre);
+ printf("v '%.30Lf'\n", (long double)testre + 1.0);
+ printf("v '%.30Lf'\n", (long double)testre * 1.0);
+ printf("v '%.30Lf'\n", (long double)testre * 10.0);
 
  printf("\n\n");
  
+                	printf("\n\n");
+	printf("hey '%+.1f'\n", -0.12);
+ ft_printf("hey '%+.1f'\n", -0.12);
+
+  
+                	printf("\n\n");
+	printf("hey '% .1f'\n", 0.00);
+ ft_printf("hey '% .1f'\n", 0.00);
 
 
 

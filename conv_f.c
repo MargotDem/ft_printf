@@ -137,17 +137,20 @@ void	handle_float(t_options *options, long double nb, size_t *char_count)
 	char			*tmp;
 	size_t			len;
 	size_t			total_len;
-	long double		last_digit; 
+	long double		last_digit;
+	int				is_negzero;
 
 	nb_original = nb;
 
 	precision = options->precision;
 	main = (long long int)nb;
 
+	is_negzero = 0;
+	if (nb == 0 && 1 / nb < 0)
+		is_negzero = 1;
 
-
-	printf("hey nb is %.30Lf\n", nb);
-	printf("hey nb * 10 is %.30Lf\n", nb * (long double)10l);
+	//printf("hey nb is %.30Lf\n", nb);
+	//printf("hey nb * 10 is %.30Lf\n", nb * (long double)10l);
 	if (handle_isinf(nb, options, char_count))
 		return ;
 	if (handle_isnan(nb, options, char_count))
@@ -157,7 +160,7 @@ void	handle_float(t_options *options, long double nb, size_t *char_count)
 		precision = 6;
 	i = 0;
 	nb_str = ft_ll_itoa(main);
-	if (nb < 0 && nb > -1)
+	if ((nb < 0 && nb > -1) || (is_negzero))
 	{
 		//printf("here\n");
 		nb_str = ft_strjoin_replace("-", nb_str, 0);
@@ -192,7 +195,7 @@ void	handle_float(t_options *options, long double nb, size_t *char_count)
 	//printf("hey nb is %.30Lf\n", nb);
 	nb_str = round_float(nb_str, last_digit, total_len, nb);
 
-	if (options->flags & F_PLUS && nb_original >= (double)0)
+	if (options->flags & F_PLUS && nb_original >= (double)0 && !is_negzero)
 		nb_str = ft_strjoin_replace("+", nb_str, 0);
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
@@ -225,4 +228,6 @@ void    handle_f(t_options *options, va_list *list, size_t *char_count)
 		nb = va_arg(*list, double);
 	}
 	handle_float(options, nb, char_count);
+	long double test = -0.0;
+	long double test2 = -0.0;
 }
