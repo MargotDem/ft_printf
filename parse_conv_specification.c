@@ -12,78 +12,76 @@
 
 #include "ft_printf.h"
 
-void handle_arg_nb(char *ptr, t_options *options)
+void	handle_arg_nb(char *ptr, t_options *options)
 {
-	int	arg_nb;
-	char *arg_nb_str;
+	int		arg_nb;
+	char	*arg_nb_str;
 
 	arg_nb = ft_atoi(ptr);
 	arg_nb_str = ft_itoa(arg_nb);
 	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
-    {
-        options->chars_to_skip = 0;
-        return ;
-    }
-    if (arg_nb < 0)
+	{
+		options->chars_to_skip = 0;
+		return ;
+	}
+	if (arg_nb < 0)
 		handle_error();
-    if (arg_nb == 0)
-    {
-        options->arg_nb = 0;
-        options->chars_to_skip = 0;
-        return ;
-    }
+	if (arg_nb == 0)
+	{
+		options->arg_nb = 0;
+		options->chars_to_skip = 0;
+		return ;
+	}
 	options->arg_nb = arg_nb;
 	options->chars_to_skip = ft_strlen(arg_nb_str) + 1;
 }
 
-void    handle_len_mod(char *ptr, t_options *options)
+void	handle_len_mod(char *ptr, t_options *options)
 {
-    if (!ft_strncmp(ptr, "ll", 2) || !ft_strncmp(ptr, "hh", 2))
-    {
-        options->len_mod = ft_strsub(ptr, 0, 2);
-        options->chars_to_skip += 2;
-        return ;
-    }
-    else if (*ptr == 'l' || *ptr == 'h' || *ptr == 'L')
-    {
-        options->len_mod = ft_strsub(ptr, 0, 1);
-        options->chars_to_skip += 1;
-    }
+	if (!ft_strncmp(ptr, "ll", 2) || !ft_strncmp(ptr, "hh", 2))
+	{
+		options->len_mod = ft_strsub(ptr, 0, 2);
+		options->chars_to_skip += 2;
+		return ;
+	}
+	else if (*ptr == 'l' || *ptr == 'h' || *ptr == 'L')
+	{
+		options->len_mod = ft_strsub(ptr, 0, 1);
+		options->chars_to_skip += 1;
+	}
 }
 
-void    handle_conv_specifier(char *ptr, t_options *options)
+void	handle_conv_specifier(char *ptr, t_options *options)
 {
-    char    c;
-
-    c = *ptr;
 	options->chars_to_skip += 1;
-	if (c == 'd')
+	if (*ptr == 'd')
 		options->conv_spec = CS_D;
-	else if (c == 'i')
+	else if (*ptr == 'i')
 		options->conv_spec = CS_I;
-	else if (c == 'o')
+	else if (*ptr == 'o')
 		options->conv_spec = CS_O;
-	else if (c == 'u')
+	else if (*ptr == 'u')
 		options->conv_spec = CS_U;
-	else if (c == 'x')
+	else if (*ptr == 'x')
 		options->conv_spec = CS_X;
-	else if (c == 'X')
+	else if (*ptr == 'X')
 		options->conv_spec = CS_XX;
-	else if (c == 'f')
+	else if (*ptr == 'f')
 		options->conv_spec = CS_F;
-	else if (c == 'c')
+	else if (*ptr == 'c')
 		options->conv_spec = CS_C;
-	else if (c == 's')
+	else if (*ptr == 's')
 		options->conv_spec = CS_S;
-	else if (c == 'p')
+	else if (*ptr == 'p')
 		options->conv_spec = CS_P;
-	else if (c == '%')
+	else if (*ptr == '%')
 		options->conv_spec = CS_PERCENTAGE;
-    else
+	else
 		handle_error();
 }
 
-size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, t_handle_arg_type **dispatcher)
+size_t	parse_conv_specification(char *ptr, va_list *list, \
+	size_t *char_count, t_handle_arg_type **dispatcher)
 {
 	t_options	*options;
 	size_t		chars_to_skip;
@@ -91,20 +89,20 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, t_
 	options = (t_options *)malloc(sizeof(t_options));
 	if (!options)
 		handle_error();
-    options->len_mod = NULL;
-    options->precision = -1;
-    options->field_width = 0;
-    options->no_sign = 0;
-    handle_arg_nb(ptr, options);
-    handle_flags(ptr + options->chars_to_skip, options);
-    handle_field_width(ptr + options->chars_to_skip, options, list);
-    handle_precision(ptr + options->chars_to_skip, options, list);
-    handle_len_mod(ptr + options->chars_to_skip, options);
-    handle_conv_specifier(ptr + options->chars_to_skip, options);
+	options->len_mod = NULL;
+	options->precision = -1;
+	options->field_width = 0;
+	options->no_sign = 0;
+	handle_arg_nb(ptr, options);
+	handle_flags(ptr + options->chars_to_skip, options);
+	handle_field_width(ptr + options->chars_to_skip, options, list);
+	handle_precision(ptr + options->chars_to_skip, options, list);
+	handle_len_mod(ptr + options->chars_to_skip, options);
+	handle_conv_specifier(ptr + options->chars_to_skip, options);
 	ignore_flags(options);
 	(dispatcher[options->conv_spec])(options, list, char_count);
-    if (options->len_mod)
-        free(options->len_mod);
+	if (options->len_mod)
+		free(options->len_mod);
 	chars_to_skip = options->chars_to_skip;
 	free(options);
 	return (chars_to_skip);
