@@ -48,7 +48,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count);
 void	handle_hex(t_options *options, va_list *list, \
 	size_t *char_count, size_t is_X);
 void	handle_hex_x(t_options *options, va_list *list, size_t *char_count);
-void	handle_hex_X(t_options *options, va_list *list, size_t *char_count);
+void	handle_hex_xx(t_options *options, va_list *list, size_t *char_count);
 void	handle_oct(t_options *options, va_list *list, size_t *char_count);
 void	handle_decimal(t_options *options, va_list *list, size_t *char_count);
 void	handle_f(t_options *options, va_list *list, size_t *char_count);
@@ -62,6 +62,10 @@ char	*round_main(char *nb_str, long long int main, size_t len, \
 	int is_positive);
 char	*round_float(char *nb_str, long double last_digit, \
 	size_t len, long double test_stl);
+void	set_nb_unsigned(t_options *options, va_list *list, \
+	unsigned long long int *nb);
+void	print_out_nb_str(t_options *options, size_t *char_count, \
+	size_t len, char *nb_str);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40

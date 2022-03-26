@@ -12,38 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-char	*adjust_int(char *nb_str, size_t precision, int field_width)
-{
-	char	*tmp;
-	char	*tmp_ptr;
-	char	*nb_str_ptr;
-	size_t   len;
-	int  zeroes;
-
-	len = ft_strlen(nb_str);
-	zeroes = precision - len;
-	if (zeroes < 0)
-		return (nb_str);
-	if (*nb_str == '-' && !(field_width))
-		zeroes++;
-	tmp = (char *)malloc(zeroes + len + 1);
-	tmp_ptr = tmp;
-	nb_str_ptr = nb_str;
-	if (*nb_str == '-')
-	{
-		ft_memset(tmp_ptr, '-', 1);
-		tmp_ptr++;
-		nb_str_ptr++;
-	}
-	ft_memset(tmp_ptr, '0', zeroes);
-	ft_strcpy(tmp_ptr + zeroes, nb_str_ptr);
-	free (nb_str);
-	nb_str = tmp;
-	return (nb_str);
-}
-*/
-
 char	*adjust_int(char *nb_str, size_t precision, int field_width, t_options *options)
 {
 	char	*tmp;
@@ -55,14 +23,13 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width, t_options *opt
 
 	len = ft_strlen(nb_str);
 	zeroes = precision - len;
-	// if i do if (zeros <= 0) then i fail 3 42filechcker tests, why
 	if (zeroes < 0)
 		return (nb_str);
 	if (*nb_str == '-' || *nb_str == '+')
 		sign = *nb_str;
 	else
 		sign = 0;
-	if (sign && !(field_width)) // forgot zhy this is necessary
+	if (sign && !(field_width))
 		zeroes++;
 	if (zeroes > 0 && options->no_sign && options->flags & F_SPACE && options->precision == -1)
 		zeroes--;
@@ -158,7 +125,6 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 	padded_print(nb_str, options, char_count);
 	free(original_str);
-	//free(nb_str);
 }
 
 void	set_nb(t_options *options, va_list *list, long long int *nb)
@@ -187,40 +153,6 @@ void	set_nb_unsigned(t_options *options, va_list *list, unsigned long long int *
 		*nb = (unsigned short int)va_arg(*list, unsigned int);
 	else
 		*nb = va_arg(*list, unsigned int);
-}
-
-void	handle_hex(t_options *options, va_list *list, size_t *char_count, size_t is_X)
-{
-	char					*nb_str;
-	unsigned long long int	nb;
-	size_t					i;
-	size_t					len;
-
-	set_nb_unsigned(options, list, &nb);
-	nb_str = ft_ull_itoa_base(nb, 16);
-	len = ft_strlen(nb_str);
-	i = 0;
-	if (is_X)
-	{
-		while(nb_str[i])
-		{
-			nb_str[i] = ft_toupper(nb_str[i]);
-			i++;
-		}
-	}
-	print_out_nb_str(options, char_count, len, nb_str);
-	//free(nb_str);
-	//ft_memdel((void *)nb_str);
-}
-
-void	handle_hex_x(t_options *options, va_list *list, size_t *char_count)
-{
-	handle_hex(options, list, char_count, 0);
-}
-
-void	handle_hex_X(t_options *options, va_list *list, size_t *char_count)
-{
-	handle_hex(options, list, char_count, 1);
 }
 
 void	handle_oct(t_options *options, va_list *list, size_t *char_count)
