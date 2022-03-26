@@ -69,6 +69,8 @@ void	print_out_nb_str(t_options *options, size_t *char_count, \
 void	set_nb(t_options *options, va_list *list, long long int *nb);
 void	set_nb_unsigned(t_options *options, va_list *list, \
 	unsigned long long int *nb);
+void    handle_flags(char *ptr, t_options *options);
+void	ignore_flags(t_options *options);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40

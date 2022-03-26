@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char	*handle_flags(t_options *options, char *nb_str, long double nb_original, int is_negzero)
+char	*handle_flags_f(t_options *options, char *nb_str, long double nb_original, int is_negzero)
 {
 	if (options->flags & F_PLUS && nb_original >= (double)0 && !is_negzero)
 		nb_str = ft_strjoin_replace("+", nb_str, 0);
@@ -80,7 +80,7 @@ void	handle_float(t_options *options, long double nb, size_t *char_count)
 	}
 	last_digit = ft_abs_float((nb - (long long int)nb) * 10);
 	nb_str = round_float(nb_str, last_digit, total_len, nb);
-	nb_str = handle_flags(options, nb_str, nb_original, is_negzero);
+	nb_str = handle_flags_f(options, nb_str, nb_original, is_negzero);
 	padded_print(nb_str, options, char_count);
 }
 

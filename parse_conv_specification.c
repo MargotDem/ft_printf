@@ -24,58 +24,16 @@ void handle_arg_nb(char *ptr, t_options *options)
         options->chars_to_skip = 0;
         return ;
     }
-    //what is is negative?
     if (arg_nb < 0)
-    {
-        //printf("nope\n");
-        exit(1);
-    }
+		handle_error();
     if (arg_nb == 0)
     {
         options->arg_nb = 0;
         options->chars_to_skip = 0;
         return ;
     }
-	//printf("%s\n", arg_nb_str);
 	options->arg_nb = arg_nb;
 	options->chars_to_skip = ft_strlen(arg_nb_str) + 1;
-}
-
-t_uchar get_flag(char *ptr)
-{
-    if (*ptr == '#')
-        return (F_HASHTAG);
-    else if (*ptr == '0')
-        return (F_ZERO);
-    else if (*ptr == '+')
-        return (F_PLUS);
-    else if (*ptr == '-')
-        return (F_MINUS);
-    else
-        return (F_SPACE);
-}
-
-void	ignore_flags(t_options *options)
-{
-	if (options->flags & F_ZERO && options->flags & F_MINUS)
-		options->flags = options->flags ^ F_ZERO;
-	if (options->flags & F_SPACE && options->flags & F_PLUS)
-		options->flags = options->flags ^ F_SPACE;
-	if (options->flags & F_SPACE && \
-		(options->conv_spec != CS_D && options->conv_spec != CS_I && 
-		options->conv_spec != CS_F))
-		options->flags = options->flags ^ F_SPACE;
-}
-
-void    handle_flags(char *ptr, t_options *options)
-{
-    options->flags = 0x00;
-    while (*ptr == '#' || *ptr == '0' || *ptr == '+' || *ptr == '-' || *ptr == ' ')
-    {
-        options->flags = options->flags | get_flag(ptr);
-        options->chars_to_skip += 1;
-        ptr++;
-    }
 }
 
 void    handle_field_width(char *ptr, t_options *options, va_list *list)
@@ -130,8 +88,8 @@ void    handle_precision(char *ptr, t_options *options, va_list *list)
 	}
 	else
 	{
-		if (ft_atoi(ptr + 1) < 0) // original: invalid conv specifier
-			exit(1);
+		if (ft_atoi(ptr + 1) < 0)
+			handle_error();
 		precision = (size_t)ft_atoi(ptr + 1);
 		if (precision == 0)
 		{
@@ -164,7 +122,6 @@ void    handle_len_mod(char *ptr, t_options *options)
 
 void    handle_conv_specifier(char *ptr, t_options *options)
 {
-    // d i o u x X f c s p and %
     char    c;
 
     c = *ptr;
@@ -192,8 +149,7 @@ void    handle_conv_specifier(char *ptr, t_options *options)
 	else if (c == '%')
 		options->conv_spec = CS_PERCENTAGE;
     else
-        exit(1);
-    // if no conv spec: invalid input??
+		handle_error();
 }
 
 size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, t_handle_arg_type **dispatcher)
@@ -215,19 +171,9 @@ size_t	parse_conv_specification(char *ptr, va_list *list, size_t *char_count, t_
     handle_len_mod(ptr + options->chars_to_skip, options);
     handle_conv_specifier(ptr + options->chars_to_skip, options);
 	ignore_flags(options);
-    //printf("flags : %x\n", options->flags);
-    //printf("field width %zu\n", options->field_width);
-    //printf("precision %zu\n", options->precision);
-    //printf("len mod %s\n", options->len_mod);
-    //printf("conv spec %x\n", options->conv_spec);
-	//printf("hey\n");
 	(dispatcher[options->conv_spec])(options, list, char_count);
     if (options->len_mod)
         free(options->len_mod);
-	/*// by what black magic was this working? if you free it how can you access it???
-    free(options);
-	return (options->chars_to_skip);
-	*/
 	chars_to_skip = options->chars_to_skip;
 	free(options);
 	return (chars_to_skip);
