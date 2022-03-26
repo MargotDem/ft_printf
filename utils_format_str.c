@@ -32,7 +32,7 @@ char	*make_new_str(char *nb_str, char *tmp, char sign, int zeroes)
 	return (tmp);
 }
 
-char	*adjust_str(char *nb_str, size_t precision, int field_width, \
+char	*adjust_str(char *nb_str, size_t total_len, int is_field_width, \
 	t_options *options)
 {
 	char	*tmp;
@@ -41,14 +41,14 @@ char	*adjust_str(char *nb_str, size_t precision, int field_width, \
 	char	sign;
 
 	len = ft_strlen(nb_str);
-	zeroes = precision - len;
+	zeroes = total_len - len;
 	if (zeroes < 0)
 		return (nb_str);
 	if (*nb_str == '-' || *nb_str == '+')
 		sign = *nb_str;
 	else
 		sign = 0;
-	if (sign && !(field_width))
+	if (sign && !(is_field_width))
 		zeroes++;
 	if (zeroes > 0 && options->no_sign && options->flags & F_SPACE \
 		&& options->precision == -1)
