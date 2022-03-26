@@ -58,15 +58,9 @@ t_uchar get_flag(char *ptr)
 void	ignore_flags(t_options *options)
 {
 	if (options->flags & F_ZERO && options->flags & F_MINUS)
-	{
-		//printf("here");
 		options->flags = options->flags ^ F_ZERO;
-	}
 	if (options->flags & F_SPACE && options->flags & F_PLUS)
-	{
-		//printf("here");
 		options->flags = options->flags ^ F_SPACE;
-	}
 	if (options->flags & F_SPACE && \
 		(options->conv_spec != CS_D && options->conv_spec != CS_I && 
 		options->conv_spec != CS_F))

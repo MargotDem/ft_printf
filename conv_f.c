@@ -19,7 +19,7 @@ static char	*handle_flags(t_options *options, char *nb_str, long double nb_origi
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
 	if (options->flags & F_ZERO)
-		nb_str = adjust_int(nb_str, options->field_width, 1, options);
+		nb_str = adjust_str(nb_str, options->field_width, 1, options);
 	if (options->no_sign && options->flags & F_SPACE)
 		nb_str = ft_strjoin_replace(" ", nb_str, 0);
 	return (nb_str);

@@ -54,7 +54,7 @@ void	handle_decimal(t_options *options, va_list *list, size_t *char_count);
 void	handle_f(t_options *options, va_list *list, size_t *char_count);
 void	handle_p(t_options *options, va_list *list, size_t *char_count);
 void	padded_print(char *str, t_options *options, size_t *char_count);
-char	*adjust_int(char *nb_str, size_t precision, \
+char	*adjust_str(char *nb_str, size_t precision, \
 	int field_width, t_options *options);
 int		handle_isnan(long double nb, t_options *options, size_t *char_count);
 int		handle_isinf(long double nb, t_options *options, size_t *char_count);
