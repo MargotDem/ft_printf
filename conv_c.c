@@ -44,7 +44,6 @@ void	handle_char(t_options *options, va_list *list, size_t *char_count)
 		str[0] = c;
 		str[1] = '\0';
 		padded_print(str, options, char_count);
-		free(str);
 	}
 	else
 		handle_null_char(options, list, char_count);

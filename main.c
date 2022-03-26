@@ -1113,7 +1113,30 @@ long double testre = 0.05l;
  printf("v '%.30Lf'\n", (testre - 0.05) * 1000000);
 
  printf("\n\n");
+
+
+                 	printf("\n\n");
+	printf("hey '%.10Lf'\n", 0.87650894255l);
+ ft_printf("hey '%.10Lf'\n", 0.87650894255l);
+
+                  	printf("\n\n");
+	printf("hey '%.1Lf'\n", (long double)0.35);
+ ft_printf("hey '%.1Lf'\n", (long double)0.35);
+
+ long double test_double = 0.28;
+ long double test_double2 = 0.28l;
+
+
  
+                 	printf("\n\n");
+	printf("hey '%.30Lf'\n", test_double);
+ ft_printf("hey '%.30Lf'\n", test_double);
+
+
+                 	printf("\n\n");
+	printf("hey '%.30Lf'\n", test_double2);
+ ft_printf("hey '%.30Lf'\n", test_double2);
+
 
 }
 

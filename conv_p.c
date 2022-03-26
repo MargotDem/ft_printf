@@ -22,5 +22,4 @@ void	handle_p(t_options *options, va_list *list, size_t *char_count)
 	nb_str = ft_ull_itoa_base(nb, 16);
 	nb_str = ft_strjoin_replace("0x", nb_str, 0);
 	padded_print(nb_str, options, char_count);
-	free(nb_str);
 }

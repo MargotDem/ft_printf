@@ -18,7 +18,7 @@ int	handle_isnan(long double nb, t_options *options, size_t *char_count)
 
 	if (ft_isnan(nb))
 	{
-		nb_str = "nan";
+		nb_str = ft_strdup("nan");
 		padded_print(nb_str, options, char_count);
 		return (1);
 	}
@@ -34,14 +34,14 @@ int	handle_isinf(long double nb, t_options *options, size_t *char_count)
 		if (nb == 1.0 / 0)
 		{
 			if (options->flags & F_PLUS)
-				nb_str = "+inf";
+				nb_str = ft_strdup("+inf");
 			else if (options->flags & F_SPACE)
-				nb_str = " inf";
+				nb_str = ft_strdup(" inf");
 			else
-				nb_str = "inf";
+				nb_str = ft_strdup("inf");
 		}
 		else
-			nb_str = "-inf";
+			nb_str = ft_strdup("-inf");
 		padded_print(nb_str, options, char_count);
 		return (1);
 	}

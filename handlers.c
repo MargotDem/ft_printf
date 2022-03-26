@@ -104,6 +104,7 @@ void	padded_print(char *str, t_options *options, size_t *char_count)
 	if (!(options->flags & F_MINUS))
 		ft_putstr(str);
 	(*char_count) += len;
+	free(str);
 }
 
 void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *nb_str)
@@ -290,12 +291,14 @@ void    handle_str(t_options *options, va_list *list, size_t *char_count)
 	else
 	{
 		if (options->precision < 0 || options->precision > ft_strlen(str))
-			padded_print(str, options, char_count);
+		{
+			substr = ft_strdup(str);
+			padded_print(substr, options, char_count);
+		}
 		else
 		{
 			substr = ft_strsub(str, 0, options->precision);
 			padded_print(substr, options, char_count);
-			free(substr);
 		}
 	}
 }

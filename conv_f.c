@@ -12,6 +12,19 @@
 
 #include "ft_printf.h"
 
+static char	*handle_flags(t_options *options, char *nb_str, long double nb_original, int is_negzero)
+{
+	if (options->flags & F_PLUS && nb_original >= (double)0 && !is_negzero)
+		nb_str = ft_strjoin_replace("+", nb_str, 0);
+	if (*nb_str != '+' && *nb_str != '-')
+		options->no_sign = 1;
+	if (options->flags & F_ZERO)
+		nb_str = adjust_int(nb_str, options->field_width, 1, options);
+	if (options->no_sign && options->flags & F_SPACE)
+		nb_str = ft_strjoin_replace(" ", nb_str, 0);
+	return (nb_str);
+}
+
 void	handle_float(t_options *options, long double nb, size_t *char_count)
 {
 	long double		nb_original;
@@ -67,20 +80,12 @@ void	handle_float(t_options *options, long double nb, size_t *char_count)
 	}
 	last_digit = ft_abs_float((nb - (long long int)nb) * 10);
 	nb_str = round_float(nb_str, last_digit, total_len, nb);
-	if (options->flags & F_PLUS && nb_original >= (double)0 && !is_negzero)
-		nb_str = ft_strjoin_replace("+", nb_str, 0);
-	if (*nb_str != '+' && *nb_str != '-')
-		options->no_sign = 1;
-	if (options->flags & F_ZERO)
-		nb_str = adjust_int(nb_str, options->field_width, 1, options);
-	if (options->no_sign && options->flags & F_SPACE)
-		nb_str = ft_strjoin_replace(" ", nb_str, 0);
+	nb_str = handle_flags(options, nb_str, nb_original, is_negzero);
 	padded_print(nb_str, options, char_count);
-	free(nb_str);
 }
 
-void    handle_f(t_options *options, va_list *list, size_t *char_count)
-{ 
+void	handle_f(t_options *options, va_list *list, size_t *char_count)
+{
 	long double		nb;
 
 	if (options->len_mod && *options->len_mod == 'L')
