@@ -186,29 +186,3 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	}
 	print_out_nb_str(options, char_count, len, nb_str);
 }
-
-void    handle_str(t_options *options, va_list *list, size_t *char_count)
-{
-    char    *str;
-    char    *substr;
-
-    str = va_arg(*list, char *);
-	if (!str)
-	{
-		ft_putstr("(null)");
-		*char_count += 6;
-	}
-	else
-	{
-		if (options->precision < 0 || options->precision > ft_strlen(str))
-		{
-			substr = ft_strdup(str);
-			padded_print(substr, options, char_count);
-		}
-		else
-		{
-			substr = ft_strsub(str, 0, options->precision);
-			padded_print(substr, options, char_count);
-		}
-	}
-}
