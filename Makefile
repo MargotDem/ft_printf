@@ -12,9 +12,10 @@
 
 NAME =  libftprintf.a
 
-SRCS = ft_printf.c parse_conv_specification.c utils.c handle_error.c \
+SRCS = ft_printf.c parse_conv_specification.c utils_set_nb.c handle_error.c \
 	conv_f.c conv_c.c conv_percentage.c conv_p.c utils_floats.c \
-	conv_x.c conv_o.c conv_s.c conv_d.c conv_u.c
+	conv_x.c conv_o.c conv_s.c conv_d.c conv_u.c utils_format_str.c \
+	utils_print.c
 
 OBJS = $(SRCS:.c=.o)
 

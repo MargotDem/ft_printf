@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.c                                         :+:      :+:    :+:   */
+/*   utils_format_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 15:45:38 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/01/25 15:45:40 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/03/26 16:17:53 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/03/26 16:17:55 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,6 @@ char	*adjust_int(char *nb_str, size_t precision, int field_width, t_options *opt
 	free (nb_str);
 	nb_str = tmp;
 	return (nb_str);
-}
-
-void	padded_print(char *str, t_options *options, size_t *char_count)
-{
-	size_t	len;
-	size_t	total_len;
-	int		padding;
-
-	len = ft_strlen(str);
-	total_len = options->field_width;
-	padding = total_len - len;
-	if (options->flags & F_MINUS)
-		ft_putstr(str);
-	while (padding > 0)
-	{
-		ft_putchar(' ');
-		(*char_count)++;
-		padding--;
-	}
-	if (!(options->flags & F_MINUS))
-		ft_putstr(str);
-	(*char_count) += len;
-	free(str);
 }
 
 void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *nb_str)
@@ -125,32 +102,4 @@ void	print_out_nb_str(t_options *options, size_t *char_count, size_t len, char *
 	}
 	padded_print(nb_str, options, char_count);
 	free(original_str);
-}
-
-void	set_nb(t_options *options, va_list *list, long long int *nb)
-{
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		*nb = va_arg(*list, long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		*nb = va_arg(*list, long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		*nb = (char)va_arg(*list, int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		*nb = (short int)va_arg(*list, int);
-	else
-		*nb = va_arg(*list, int);
-}
-
-void	set_nb_unsigned(t_options *options, va_list *list, unsigned long long int *nb)
-{
-	if (options->len_mod && !ft_strncmp(options->len_mod, "ll", 2))
-		*nb = va_arg(*list, unsigned long long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "l", 1))
-		*nb = va_arg(*list, unsigned long int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "hh", 2))
-		*nb = (unsigned char)va_arg(*list, unsigned int);
-	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
-		*nb = (unsigned short int)va_arg(*list, unsigned int);
-	else
-		*nb = va_arg(*list, unsigned int);
 }
