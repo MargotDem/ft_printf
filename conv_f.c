@@ -12,75 +12,82 @@
 
 #include "ft_printf.h"
 
-char	*handle_flags_f(t_options *options, char *nb_str, long double nb_original, int is_negzero)
+size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
+	size_t len)
 {
-	if (options->flags & F_PLUS && nb_original >= (double)0 && !is_negzero)
-		nb_str = ft_strjoin_replace("+", nb_str, 0);
-	if (*nb_str != '+' && *nb_str != '-')
-		options->no_sign = 1;
-	if (options->flags & F_ZERO)
-		nb_str = adjust_str(nb_str, options->field_width, 1, options);
-	if (options->no_sign && options->flags & F_SPACE)
-		nb_str = ft_strjoin_replace(" ", nb_str, 0);
-	return (nb_str);
+	int				i;
+	int				decimal;
+	size_t			total_len;
+	char			*tmp;
+
+	tmp = ft_strnew(len + precision + 1);
+	ft_strcpy(tmp, (*nb_str));
+	free((*nb_str));
+	(*nb_str) = tmp;
+	(*nb_str)[len] = '.';
+	i = 0;
+	while (i < precision)
+	{
+		(*nb) = ((*nb) - (long double)(long long int)(*nb)) * (long double)10;
+		decimal = (long long int)((*nb));
+		(*nb_str)[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
+		i++;
+	}
+	total_len = len + precision + 1;
+	return (total_len);
 }
 
-void	handle_float(t_options *options, long double nb, size_t *char_count)
+int	set_nb_str(long double nb, char **nb_str, t_options *options, \
+	size_t *char_count)
 {
-	long double		nb_original;
 	long long int	main;
-	int				decimal;
-	int				precision;
-	int				i;
-	char			*nb_str;
-	char			*tmp;
-	size_t			len;
-	size_t			total_len;
-	long double		last_digit;
-	int				is_negzero;
 
-	nb_original = nb;
-	precision = options->precision;
+	if (handle_isinf(nb, options, char_count))
+		return (1);
+	if (handle_isnan(nb, options, char_count))
+		return (1);
 	main = (long long int)nb;
+	*nb_str = ft_ll_itoa(main);
+	return (0);
+}
+
+int	handle_negzero(long double nb, char **nb_str)
+{
+	int	is_negzero;
+
 	is_negzero = 0;
 	if (nb == 0 && 1 / nb < 0)
 		is_negzero = 1;
-	if (handle_isinf(nb, options, char_count))
-		return ;
-	if (handle_isnan(nb, options, char_count))
-		return ;
+	if ((nb < 0 && nb > -1) || (is_negzero))
+		*nb_str = ft_strjoin_replace("-", *nb_str, 0);
+	return (is_negzero);
+}
+
+void	handle_float(t_options *options, long double nb, \
+	long double original_nb, size_t *char_count)
+{
+	int		precision;
+	char	*nb_str;
+	size_t	total_len;
+	int		is_negzero;
+
+	precision = options->precision;
 	if (precision == -1)
 		precision = 6;
-	i = 0;
-	nb_str = ft_ll_itoa(main);
-	if ((nb < 0 && nb > -1) || (is_negzero))
-		nb_str = ft_strjoin_replace("-", nb_str, 0);
-	len = ft_strlen(nb_str);
-	total_len = len;
+	if (set_nb_str(nb, &nb_str, options, char_count))
+		return ;
+	is_negzero = handle_negzero(nb, &nb_str);
+	total_len = ft_strlen(nb_str);
 	if (precision != 0)
-	{
-		tmp = ft_strnew(len + precision + 1);
-		ft_strcpy(tmp, nb_str);
-		free(nb_str);
-		nb_str = tmp;
-		nb_str[len] = '.';
-		while (i < precision)
-		{
-			nb = (nb - (long double)(long long int)nb) * (long double)10.00000000000000000000000;
-			decimal = (long long int)(nb);
-			nb_str[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
-			i++;
-		}
-		total_len = len + precision + 1;
-	}
+		total_len = handle_decimals(&nb, &nb_str, precision, total_len);
 	else if (options->flags & F_HASHTAG)
 	{
 		nb_str = ft_strjoin_replace(nb_str, ".", 1);
 		total_len++;
 	}
-	last_digit = ft_abs_float((nb - (long long int)nb) * 10);
-	nb_str = round_float(nb_str, last_digit, total_len, nb);
-	nb_str = handle_flags_f(options, nb_str, nb_original, is_negzero);
+	nb_str = round_float(nb_str, \
+		ft_abs_float((nb - (long long int)nb) * 10), total_len, nb);
+	nb_str = handle_flags_f(options, nb_str, original_nb, is_negzero);
 	padded_print(nb_str, options, char_count);
 }
 
@@ -92,5 +99,5 @@ void	handle_f(t_options *options, va_list *list, size_t *char_count)
 		nb = va_arg(*list, long double);
 	else
 		nb = va_arg(*list, double);
-	handle_float(options, nb, char_count);
+	handle_float(options, nb, nb, char_count);
 }
