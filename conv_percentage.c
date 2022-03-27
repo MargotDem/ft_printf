@@ -17,7 +17,7 @@ void	handle_percentage(t_options *options, va_list *list, size_t *char_count)
 	char	*nb_str;
 
 	(void)list;
-	nb_str = ft_strnew(1);
+	nb_str = handle_str_malloc(ft_strnew(1));
 	nb_str[0] = '%';
 	if (options->flags & F_ZERO)
 		nb_str = adjust_str(nb_str, options->field_width, 1, options);

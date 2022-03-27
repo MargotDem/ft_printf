@@ -26,14 +26,9 @@ void	handle_str(t_options *options, va_list *list, size_t *char_count)
 	else
 	{
 		if (options->precision < 0 || options->precision > ft_strlen(str))
-		{
-			substr = ft_strdup(str);
-			padded_print(substr, options, char_count);
-		}
+			substr = handle_str_malloc(ft_strdup(str));
 		else
-		{
-			substr = ft_strsub(str, 0, options->precision);
-			padded_print(substr, options, char_count);
-		}
+			substr = handle_str_malloc(ft_strsub(str, 0, options->precision));
+		padded_print(substr, options, char_count);
 	}
 }

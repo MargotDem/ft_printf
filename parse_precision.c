@@ -28,7 +28,7 @@ static void	set_precision(t_options *options, char *ptr)
 			options->chars_to_skip += 1;
 		return ;
 	}
-	precision_str = ft_itoa(precision);
+	precision_str = handle_str_malloc(ft_itoa(precision));
 	options->precision = precision;
 	options->chars_to_skip += ft_strlen(precision_str) + 1;
 }

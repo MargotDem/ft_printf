@@ -59,7 +59,7 @@ int	handle_negzero(long double nb, char **nb_str)
 	if (nb == 0 && 1 / nb < 0)
 		is_negzero = 1;
 	if ((nb < 0 && nb > -1) || (is_negzero))
-		*nb_str = ft_strjoin_replace("-", *nb_str, 0);
+		*nb_str = handle_str_malloc(ft_strjoin_replace("-", *nb_str, 0));
 	return (is_negzero);
 }
 
@@ -82,7 +82,7 @@ void	handle_float(t_options *options, long double nb, \
 		total_len = handle_decimals(&nb, &nb_str, precision, total_len);
 	else if (options->flags & F_HASHTAG)
 	{
-		nb_str = ft_strjoin_replace(nb_str, ".", 1);
+		nb_str = handle_str_malloc(ft_strjoin_replace(nb_str, ".", 1));
 		total_len++;
 	}
 	nb_str = round_float(nb_str, \

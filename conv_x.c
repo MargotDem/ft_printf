@@ -21,7 +21,7 @@ void	handle_hex(t_options *options, va_list *list, size_t *char_count, \
 	size_t					len;
 
 	set_nb_unsigned(options, list, &nb);
-	nb_str = ft_ull_itoa_base(nb, 16);
+	nb_str = handle_str_malloc(ft_ull_itoa_base(nb, 16));
 	len = ft_strlen(nb_str);
 	i = 0;
 	if (is_X)

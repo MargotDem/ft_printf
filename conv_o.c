@@ -19,7 +19,7 @@ void	handle_oct(t_options *options, va_list *list, size_t *char_count)
 	size_t					len;
 
 	set_nb_unsigned(options, list, &nb);
-	nb_str = ft_ull_itoa_base(nb, 8);
+	nb_str = handle_str_malloc(ft_ull_itoa_base(nb, 8));
 	len = ft_strlen(nb_str);
 	if (options->flags & F_HASHTAG && \
 		options->precision <= (int)len && nb != 0 && \

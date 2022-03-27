@@ -33,7 +33,7 @@ void	handle_field_width(char *ptr, t_options *options, va_list *list)
 		field_width = (size_t)ft_atoi(ptr);
 		if (field_width == 0)
 			return ;
-		field_width_str = ft_itoa(field_width);
+		field_width_str = handle_str_malloc(ft_itoa(field_width));
 		options->field_width = field_width;
 		options->chars_to_skip += ft_strlen(field_width_str);
 	}

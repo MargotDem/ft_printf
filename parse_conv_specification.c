@@ -18,7 +18,7 @@ void	handle_arg_nb(char *ptr, t_options *options)
 	char	*arg_nb_str;
 
 	arg_nb = ft_atoi(ptr);
-	arg_nb_str = ft_itoa(arg_nb);
+	arg_nb_str = handle_str_malloc(ft_itoa(arg_nb));
 	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
 	{
 		options->chars_to_skip = 0;
@@ -38,17 +38,20 @@ void	handle_arg_nb(char *ptr, t_options *options)
 
 void	handle_len_mod(char *ptr, t_options *options)
 {
+	char	*len_mod;
+
+	len_mod = NULL;
 	if (!ft_strncmp(ptr, "ll", 2) || !ft_strncmp(ptr, "hh", 2))
 	{
-		options->len_mod = ft_strsub(ptr, 0, 2);
+		len_mod = handle_str_malloc(ft_strsub(ptr, 0, 2));
 		options->chars_to_skip += 2;
-		return ;
 	}
 	else if (*ptr == 'l' || *ptr == 'h' || *ptr == 'L')
 	{
-		options->len_mod = ft_strsub(ptr, 0, 1);
+		len_mod = handle_str_malloc(ft_strsub(ptr, 0, 1));
 		options->chars_to_skip += 1;
 	}
+	options->len_mod = len_mod;
 }
 
 void	handle_conv_specifier(char *ptr, t_options *options)
@@ -86,10 +89,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, \
 	t_options	*options;
 	size_t		chars_to_skip;
 
-	options = (t_options *)malloc(sizeof(t_options));
-	if (!options)
-		handle_error();
-	options->len_mod = NULL;
+	options = (t_options *)ft_handle_malloc((void *)malloc(sizeof(t_options)), &handle_error);
 	options->precision = -1;
 	options->field_width = 0;
 	options->no_sign = 0;
@@ -101,9 +101,9 @@ size_t	parse_conv_specification(char *ptr, va_list *list, \
 	handle_conv_specifier(ptr + options->chars_to_skip, options);
 	ignore_flags(options);
 	(dispatcher[options->conv_spec])(options, list, char_count);
+	chars_to_skip = options->chars_to_skip;
 	if (options->len_mod)
 		free(options->len_mod);
-	chars_to_skip = options->chars_to_skip;
 	free(options);
 	return (chars_to_skip);
 }

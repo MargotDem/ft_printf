@@ -27,7 +27,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	else
 	{
 		if (options->flags & F_PLUS)
-			nb_str = ft_strjoin_replace("+", nb_str, 0);
+			nb_str = handle_str_malloc(ft_strjoin_replace("+", nb_str, 0));
 	}
 	print_out_nb_str(options, char_count, len, nb_str);
 }
