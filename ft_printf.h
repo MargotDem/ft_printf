@@ -75,6 +75,7 @@ void	handle_field_width(char *ptr, t_options *options, va_list *list);
 void	handle_precision(char *ptr, t_options *options, va_list *list);
 char	*handle_flags_f(t_options *options, char *nb_str, \
 	long double original_nb, int is_negzero);
+char	*handle_str_malloc(char *str);
 
 # define F_HASHTAG 0x80
 # define F_ZERO 0x40

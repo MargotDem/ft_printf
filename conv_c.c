@@ -38,9 +38,7 @@ void	handle_char(t_options *options, va_list *list, size_t *char_count)
 	c = va_arg(*list, int);
 	if (c)
 	{
-		str = ft_strnew(1);
-		if (!str)
-			handle_error();
+		str = handle_str_malloc(ft_strnew(1));
 		str[0] = c;
 		str[1] = '\0';
 		padded_print(str, options, char_count);

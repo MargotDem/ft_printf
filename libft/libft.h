@@ -99,6 +99,7 @@ char			*ft_strjoin_replace(char *s1, char *s2, int first_str);
 long long int	ft_abs_ll(long long int i);
 long long int	ft_ll_atoi(const char *str);
 int				ft_isnan(long double nb);
+void			*ft_handle_malloc(void *ptr, void (*handle_error)(void));
 
 # define BUFF_SIZE 200
 # define FD_ARRAY_SIZE 4096
