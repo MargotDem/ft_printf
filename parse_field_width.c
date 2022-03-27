@@ -36,5 +36,6 @@ void	handle_field_width(char *ptr, t_options *options, va_list *list)
 		field_width_str = handle_str_malloc(ft_itoa(field_width));
 		options->field_width = field_width;
 		options->chars_to_skip += ft_strlen(field_width_str);
+		free(field_width_str);
 	}
 }

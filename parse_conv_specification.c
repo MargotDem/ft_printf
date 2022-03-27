@@ -34,6 +34,7 @@ void	handle_arg_nb(char *ptr, t_options *options)
 	}
 	options->arg_nb = arg_nb;
 	options->chars_to_skip = ft_strlen(arg_nb_str) + 1;
+	free(arg_nb_str);
 }
 
 void	handle_len_mod(char *ptr, t_options *options)
@@ -89,7 +90,9 @@ size_t	parse_conv_specification(char *ptr, va_list *list, \
 	t_options	*options;
 	size_t		chars_to_skip;
 
-	options = (t_options *)ft_handle_malloc((void *)malloc(sizeof(t_options)), &handle_error);
+	options = (t_options *)malloc(sizeof(t_options));
+	if (!options)
+		handle_error();
 	options->precision = -1;
 	options->field_width = 0;
 	options->no_sign = 0;

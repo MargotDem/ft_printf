@@ -15,7 +15,6 @@
 void	handle_d(t_options *options, va_list *list, size_t *char_count)
 {
 	char			*nb_str;
-	char			*tmp;
 	size_t			len;
 	long long int	nb;
 

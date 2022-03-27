@@ -31,6 +31,7 @@ static void	set_precision(t_options *options, char *ptr)
 	precision_str = handle_str_malloc(ft_itoa(precision));
 	options->precision = precision;
 	options->chars_to_skip += ft_strlen(precision_str) + 1;
+	free(precision_str);
 }
 
 void	handle_precision(char *ptr, t_options *options, va_list *list)

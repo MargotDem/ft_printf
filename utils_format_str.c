@@ -92,11 +92,11 @@ void	print_out_nb_str(t_options *options, size_t *char_count, \
 	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")) \
 		&& !(options->conv_spec == CS_O && options->flags & F_HASHTAG))
 	{
-		tmp = ft_strnew(0);
+		tmp = handle_str_malloc(ft_strnew(0));
 		free(nb_str);
 		nb_str = tmp;
 	}
-	original_str = ft_strdup(nb_str);
+	original_str = handle_str_malloc(ft_strdup(nb_str));
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;
 	if (options->precision == -1 && options->flags & F_ZERO)
