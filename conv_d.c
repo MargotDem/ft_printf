@@ -20,7 +20,7 @@ void	handle_d(t_options *options, va_list *list, size_t *char_count)
 	long long int	nb;
 
 	set_nb(options, list, &nb);
-	nb_str = ft_ll_itoa(nb);
+	nb_str = handle_str_malloc(ft_ll_itoa(nb));
 	len = ft_strlen(nb_str);
 	if (nb < 0)
 		len--;

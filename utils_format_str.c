@@ -53,9 +53,7 @@ char	*adjust_str(char *nb_str, size_t total_len, int is_field_width, \
 	if (zeroes > 0 && options->no_sign && options->flags & F_SPACE \
 		&& options->precision == -1)
 		zeroes--;
-	tmp = ft_strnew(zeroes + len);
-	if (!tmp)
-		handle_error();
+	tmp = handle_str_malloc(ft_strnew(zeroes + len));
 	nb_str = make_new_str(nb_str, tmp, sign, zeroes);
 	return (nb_str);
 }

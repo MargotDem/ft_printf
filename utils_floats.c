@@ -53,23 +53,28 @@ char	*round_main(char *nb_str, long long int main, size_t len, \
 {
 	char			*tmp;
 	long long int	original_main;
+	char			*main_str;
+	char			*original_main_str;
 
 	original_main = main;
-	if (is_positive)
-		main++;
-	else
-		main--;
-	if (ft_strlen(ft_ll_itoa(main)) <= ft_strlen(ft_ll_itoa(original_main)) \
+	main++;
+	if (!is_positive)
+		main -= 2;
+	main_str = handle_str_malloc(ft_ll_itoa(main));
+	original_main_str = handle_str_malloc(ft_ll_itoa(original_main));
+	if (ft_strlen(main_str) <= ft_strlen(original_main_str) \
 		|| (original_main == 0 && !is_positive))
-		ft_memmove(nb_str, ft_ll_itoa(main), ft_strlen(ft_ll_itoa(main)));
+		ft_memmove(nb_str, main_str, ft_strlen(main_str));
 	else
 	{
 		tmp = ft_strnew(len + 1);
 		ft_strcpy(tmp + 1, nb_str);
 		free(nb_str);
 		nb_str = tmp;
-		ft_memmove(nb_str, ft_ll_itoa(main), ft_strlen(ft_ll_itoa(main)));
+		ft_memmove(nb_str, main_str, ft_strlen(main_str));
 	}
+	free(main_str);
+	free(original_main_str);
 	return (nb_str);
 }
 
@@ -93,6 +98,7 @@ char	*round_float(char *nb_str, long double last_digit, size_t len, \
 {
 	size_t			second_to_last;
 	long long int	main;
+	char			*main_str;
 	int				is_positive;
 
 	main = ft_ll_atoi(nb_str);
@@ -101,9 +107,12 @@ char	*round_float(char *nb_str, long double last_digit, size_t len, \
 		is_positive = 1;
 	if (last_digit > 5 || (last_digit == 5 && ft_abs((int)test_stl % 2) == 1))
 	{
-		if (ft_strlen(ft_ll_itoa(main)) == len \
-			|| ft_strlen(ft_ll_itoa(main)) == len - 1)
+		main_str = handle_str_malloc(ft_ll_itoa(main));
+		if (ft_strlen(main_str) == len || ft_strlen(main_str) == len - 1)
+		{
 			nb_str = round_main(nb_str, main, len, is_positive);
+			free(main_str);
+		}
 		else
 		{
 			round_decimals(nb_str, len, &second_to_last);

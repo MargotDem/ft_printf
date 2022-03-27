@@ -20,7 +20,7 @@ size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	size_t			total_len;
 	char			*tmp;
 
-	tmp = ft_strnew(len + precision + 1);
+	tmp = handle_str_malloc(ft_strnew(len + precision + 1));
 	ft_strcpy(tmp, (*nb_str));
 	free((*nb_str));
 	(*nb_str) = tmp;
@@ -30,7 +30,7 @@ size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	{
 		(*nb) = ((*nb) - (long double)(long long int)(*nb)) * (long double)10;
 		decimal = (long long int)((*nb));
-		(*nb_str)[len + i + 1] = ft_ll_itoa(ft_abs_ll(decimal))[0];
+		(*nb_str)[len + i + 1] = ft_abs_ll(decimal) + '0';
 		i++;
 	}
 	total_len = len + precision + 1;
@@ -47,7 +47,7 @@ int	set_nb_str(long double nb, char **nb_str, t_options *options, \
 	if (handle_isnan(nb, options, char_count))
 		return (1);
 	main = (long long int)nb;
-	*nb_str = ft_ll_itoa(main);
+	*nb_str = handle_str_malloc(ft_ll_itoa(main));
 	return (0);
 }
 
