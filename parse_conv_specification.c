@@ -12,33 +12,6 @@
 
 #include "ft_printf.h"
 
-void	handle_arg_nb(char *ptr, t_options *options)
-{
-	int		arg_nb;
-	char	*arg_nb_str;
-
-	arg_nb = ft_atoi(ptr);
-	arg_nb_str = handle_str_malloc(ft_itoa(arg_nb));
-	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
-	{
-		options->chars_to_skip = 0;
-		free(arg_nb_str);
-		return ;
-	}
-	if (arg_nb < 0)
-		handle_error();
-	if (arg_nb == 0)
-	{
-		options->arg_nb = 0;
-		options->chars_to_skip = 0;
-		free(arg_nb_str);
-		return ;
-	}
-	options->arg_nb = arg_nb;
-	options->chars_to_skip = ft_strlen(arg_nb_str) + 1;
-	free(arg_nb_str);
-}
-
 void	handle_len_mod(char *ptr, t_options *options)
 {
 	char	*len_mod;
@@ -98,7 +71,7 @@ size_t	parse_conv_specification(char *ptr, va_list *list, \
 	options->precision = -1;
 	options->field_width = 0;
 	options->no_sign = 0;
-	handle_arg_nb(ptr, options);
+	options->chars_to_skip = 0;
 	handle_flags(ptr + options->chars_to_skip, options);
 	handle_field_width(ptr + options->chars_to_skip, options, list);
 	handle_precision(ptr + options->chars_to_skip, options, list);
