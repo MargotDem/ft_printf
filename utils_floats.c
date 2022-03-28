@@ -109,16 +109,14 @@ char	*round_float(char *nb_str, long double last_digit, size_t len, \
 	{
 		main_str = handle_str_malloc(ft_ll_itoa(main));
 		if (ft_strlen(main_str) == len || ft_strlen(main_str) == len - 1)
-		{
 			nb_str = round_main(nb_str, main, len, is_positive);
-			free(main_str);
-		}
 		else
 		{
 			round_decimals(nb_str, len, &second_to_last);
 			if (second_to_last == 0)
 				nb_str = round_main(nb_str, main, len, is_positive);
 		}
+		free(main_str);
 	}
 	return (nb_str);
 }

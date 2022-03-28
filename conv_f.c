@@ -21,6 +21,8 @@ size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	char			*tmp;
 
 	tmp = handle_str_malloc(ft_strnew(len + precision + 1));
+	if (!tmp)
+		handle_error();
 	ft_strcpy(tmp, (*nb_str));
 	free((*nb_str));
 	(*nb_str) = tmp;
