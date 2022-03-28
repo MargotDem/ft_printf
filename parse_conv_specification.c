@@ -22,6 +22,7 @@ void	handle_arg_nb(char *ptr, t_options *options)
 	if (*(ptr + ft_strlen(arg_nb_str)) != '$')
 	{
 		options->chars_to_skip = 0;
+		free(arg_nb_str);
 		return ;
 	}
 	if (arg_nb < 0)
@@ -30,6 +31,7 @@ void	handle_arg_nb(char *ptr, t_options *options)
 	{
 		options->arg_nb = 0;
 		options->chars_to_skip = 0;
+		free(arg_nb_str);
 		return ;
 	}
 	options->arg_nb = arg_nb;

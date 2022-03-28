@@ -49,5 +49,6 @@ int	ft_printf(const char *str, ...)
 	}
 	write(1, str, ft_strlen(str));
 	char_count += ft_strlen(str);
+	va_end(list);
 	return (char_count);
 }
