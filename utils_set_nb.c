@@ -22,6 +22,8 @@ void	set_nb(t_options *options, va_list *list, long long int *nb)
 		*nb = (char)va_arg(*list, int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
 		*nb = (short int)va_arg(*list, int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "z", 1))
+		*nb = va_arg(*list, size_t);
 	else
 		*nb = va_arg(*list, int);
 }
@@ -37,6 +39,8 @@ void	set_nb_unsigned(t_options *options, va_list *list, \
 		*nb = (unsigned char)va_arg(*list, unsigned int);
 	else if (options->len_mod && !ft_strncmp(options->len_mod, "h", 1))
 		*nb = (unsigned short int)va_arg(*list, unsigned int);
+	else if (options->len_mod && !ft_strncmp(options->len_mod, "z", 1))
+		*nb = va_arg(*list, size_t);
 	else
 		*nb = va_arg(*list, unsigned int);
 }

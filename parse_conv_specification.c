@@ -49,7 +49,7 @@ void	handle_len_mod(char *ptr, t_options *options)
 		len_mod = handle_str_malloc(ft_strsub(ptr, 0, 2));
 		options->chars_to_skip += 2;
 	}
-	else if (*ptr == 'l' || *ptr == 'h' || *ptr == 'L')
+	else if (*ptr == 'l' || *ptr == 'h' || *ptr == 'L' || *ptr == 'z')
 	{
 		len_mod = handle_str_malloc(ft_strsub(ptr, 0, 1));
 		options->chars_to_skip += 1;
