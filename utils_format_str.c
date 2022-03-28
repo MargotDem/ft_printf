@@ -28,7 +28,6 @@ char	*make_new_str(char *nb_str, char *tmp, char sign, int zeroes)
 	ft_memset(tmp_ptr, '0', zeroes);
 	ft_strcpy(tmp_ptr + zeroes, nb_str_ptr);
 	free (nb_str);
-	nb_str = tmp;
 	return (tmp);
 }
 
@@ -77,8 +76,7 @@ char	*handle_hashtag_x(t_options *options, char *nb_str, \
 			tmp = handle_str_malloc(ft_strjoin("0X", nb_str));
 		if (options->conv_spec == CS_X)
 				tmp[1] = 'x';
-		free(nb_str);
-		nb_str = tmp;
+		nb_str = ft_strreplace(nb_str, tmp);
 	}
 	return (nb_str);
 }
@@ -91,11 +89,7 @@ void	print_out_nb_str(t_options *options, size_t *char_count, \
 
 	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")) \
 		&& !(options->conv_spec == CS_O && options->flags & F_HASHTAG))
-	{
-		tmp = handle_str_malloc(ft_strnew(0));
-		free(nb_str);
-		nb_str = tmp;
-	}
+		nb_str = ft_strreplace(nb_str, handle_str_malloc(ft_strnew(0)));
 	original_str = handle_str_malloc(ft_strdup(nb_str));
 	if (*nb_str != '+' && *nb_str != '-')
 		options->no_sign = 1;

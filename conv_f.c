@@ -12,6 +12,23 @@
 
 #include "ft_printf.h"
 
+/*
+
+tmp = blabla(nb_str, etc)
+free nb_str
+nb_str = tmp
+
+should beceome one line:
+nb_str = ft_strreplace(nb_str, tmp)
+
+but this still makes you create a tmp
+wait im dumb lmao
+just:
+nb_str = ft_strreplace(nb_str, blabla(nb_str, etc))
+
+*/
+
+
 size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	size_t len)
 {
@@ -21,11 +38,8 @@ size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	char			*tmp;
 
 	tmp = handle_str_malloc(ft_strnew(len + precision + 1));
-	if (!tmp)
-		handle_error();
 	ft_strcpy(tmp, (*nb_str));
-	free((*nb_str));
-	(*nb_str) = tmp;
+	(*nb_str) = ft_strreplace((*nb_str), tmp);
 	(*nb_str)[len] = '.';
 	i = 0;
 	while (i < precision)

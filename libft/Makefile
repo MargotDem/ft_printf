@@ -36,7 +36,7 @@ FILES = ft_strlen.c ft_putchar.c ft_putstr.c ft_strcmp.c \
 	btree_find_node.c get_next_line.c ft_sqrt.c ft_itoa_base.c \
 	ft_ull_itoa_base.c ft_ll_itoa.c ft_abs_float.c \
 	ft_strjoin_replace.c ft_ll_atoi.c ft_abs_ll.c ft_isnan.c \
-	ft_handle_malloc.c
+	ft_handle_malloc.c ft_strreplace.c
 
 O_FILES = $(FILES:.c=.o)
 

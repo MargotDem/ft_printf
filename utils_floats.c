@@ -69,8 +69,7 @@ char	*round_main(char *nb_str, long long int main, size_t len, \
 	{
 		tmp = ft_strnew(len + 1);
 		ft_strcpy(tmp + 1, nb_str);
-		free(nb_str);
-		nb_str = tmp;
+		nb_str = ft_strreplace(nb_str, tmp);
 		ft_memmove(nb_str, main_str, ft_strlen(main_str));
 	}
 	free(main_str);
