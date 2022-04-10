@@ -12,23 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-
-tmp = blabla(nb_str, etc)
-free nb_str
-nb_str = tmp
-
-should beceome one line:
-nb_str = ft_strreplace(nb_str, tmp)
-
-but this still makes you create a tmp
-wait im dumb lmao
-just:
-nb_str = ft_strreplace(nb_str, blabla(nb_str, etc))
-
-*/
-
-
 size_t	handle_decimals(long double *nb, char **nb_str, int precision, \
 	size_t len)
 {
