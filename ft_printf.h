@@ -16,8 +16,6 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
-//delete
-# include <stdio.h>
 
 typedef unsigned char	t_uchar;
 typedef unsigned short	t_uint16;
