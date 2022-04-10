@@ -27,7 +27,7 @@ all: $(NAME)
 $(NAME):
 	make -C ./libft
 	cp ./libft/libft.a $(NAME)
-	gcc $(CFLAGS) -c $(SRCS)
+	gcc $(FLAGS) -c $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
@@ -42,7 +42,7 @@ re: fclean all
 
 dev:
 	cp ./libft/libft.a $(NAME)
-	gcc $(CFLAGS) -c $(SRCS)
+	gcc $(FLAGS) -c $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 	gcc $(FLAGS) main.c -L./ -lftprintf
 	rm -f $(OBJS)
