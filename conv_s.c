@@ -25,7 +25,7 @@ void	handle_str(t_options *options, va_list *list, size_t *char_count)
 	}
 	else
 	{
-		if (options->precision < 0 || options->precision > ft_strlen(str))
+		if (options->precision < 0 || options->precision > (int)ft_strlen(str))
 			substr = handle_str_malloc(ft_strdup(str));
 		else
 			substr = handle_str_malloc(ft_strsub(str, 0, options->precision));

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	handle_null_char(t_options *options, va_list *list, size_t *char_count)
+void	handle_null_char(t_options *options, size_t *char_count)
 {
 	int		padding;
 
@@ -44,5 +44,5 @@ void	handle_char(t_options *options, va_list *list, size_t *char_count)
 		padded_print(str, options, char_count);
 	}
 	else
-		handle_null_char(options, list, char_count);
+		handle_null_char(options, char_count);
 }

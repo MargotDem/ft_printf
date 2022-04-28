@@ -84,7 +84,6 @@ char	*handle_hashtag_x(t_options *options, char *nb_str, \
 void	print_out_nb_str(t_options *options, size_t *char_count, \
 	size_t len, char *nb_str)
 {
-	char	*tmp;
 	char	*original_str;
 
 	if (options->precision == 0 && !(ft_strcmp(nb_str, "0")) \
